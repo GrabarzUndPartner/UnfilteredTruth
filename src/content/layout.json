@@ -1,0 +1,102 @@
+{
+  "de": {
+    "components": {
+      "pageHeader": {},
+      "pageMenu": {
+        "navigation": [
+          {
+            "title": "Home",
+            "url": "/"
+          },
+          {
+            "title": "Über uns",
+            "url": "/ueber-uns"
+          },
+          {
+            "title": "Projekte",
+            "url": "/projekte",
+            "childrens": [
+              {
+                "title": "Projekt 1",
+                "url": "/projekte/projekt-1"
+              },
+              {
+                "title": "Projekt 2",
+                "url": "/projekte/projekt-2"
+              }
+            ]
+          }
+        ]
+      },
+      "pageMenuButton": {
+        "label": "Menu Öffnen/Schließen"
+      },
+      "pageFooter": {
+        "navigation": [
+          {
+            "title": "Kontakt",
+            "url": "/kontakt"
+          },
+          {
+            "title": "Nutzungsbedingungen",
+            "url": "/nutzungsbedingungen"
+          },
+          {
+            "title": "Rechtliche Hinweise",
+            "url": "/rechtliche-hinweise"
+          }
+        ]
+      }
+    }
+  },
+  "en": {
+    "components": {
+      "pageHeader": {},
+      "pageMenu": {
+        "navigation": [
+          {
+            "title": "Home",
+            "url": "index"
+          },
+          {
+            "title": "About",
+            "url": "/about"
+          },
+          {
+            "title": "Projects",
+            "url": "/projects",
+            "childrens": [
+              {
+                "title": "Project 1",
+                "url": "/projects/project-1"
+              },
+              {
+                "title": "Project 2",
+                "url": "/projects/project-2"
+              }
+            ]
+          }
+        ]
+      },
+      "pageMenuButton": {
+        "label": "Menu Open/Close"
+      },
+      "pageFooter": {
+        "navigation": [
+          {
+            "title": "Contact",
+            "url": "/contact"
+          },
+          {
+            "title": "Terms of use",
+            "url": "/terms"
+          },
+          {
+            "title": "Legals",
+            "url": "/legals"
+          }
+        ]
+      }
+    }
+  }
+}
