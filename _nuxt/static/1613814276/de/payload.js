@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/de", (function(a){return {data:[{title:"Home",components:[{component:"AudioModifier",data:{options:{visible:true}}}]}],fetch:[],mutations:[["i18n\u002FsetRouteParams",{en:{page:a},de:{page:a}}]]}}("home")));
