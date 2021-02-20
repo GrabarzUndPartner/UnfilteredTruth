@@ -1,5 +1,12 @@
 # Project Changelog
 
+# 1.0.0 (2021-02-20)
+
+
+### Bug Fixes
+
+* **init:** init working in chrome & edge ([7bf2747](https://github.com/StephanGerbeth/AudioModifier3000/commit/7bf27477319303e96dc45ed8221837c57653aa71))
+
 ## [2.21.36](https://github.com/GrabarzUndPartner/gp-vue-boilerplate/compare/v2.21.35...v2.21.36) (2021-02-15)
 
 
