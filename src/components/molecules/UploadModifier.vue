@@ -13,8 +13,8 @@
 <script>
 import AtomUpload from '@/components/atoms/Upload';
 import AtomProgress from '@/components/atoms/Progress';
-import { disguiseFile } from '@/service/ffmpeg';
-// import { disguise } from '@/service/ffmpegTest';
+// import { disguiseFile } from '@/service/ffmpeg';
+import { disguiseFile } from '@/service/ffmpegVideoConverter';
 
 export default {
   components: {
@@ -44,12 +44,25 @@ export default {
   methods: {
     async onFilesChange (files) {
       this.process = true;
-      const result = await Promise.all(Array.from(files).map((file) => {
+      const result = await Promise.all(Array.from(files).map(async (file) => {
         this.stats.name = file.name;
-        return disguiseFile(file, this.stats);
-        // return disguise(file, this.stats);
+
+        const observers = await disguiseFile(file);
+
+        observers.start.subscribe(e => console.log(e));
+        observers.stdout.subscribe((e) => {
+          this.stats.progress = e * 100;
+          console.log(e);
+        });
+        return new Promise((resolve) => {
+          observers.done.subscribe((e) => {
+            this.process = false;
+            this.stats.blob = e;
+            resolve();
+          });
+        });
       }));
-      this.process = false;
+
       this.$emit('ready', { id: this.id, stats: result });
     }
   }
