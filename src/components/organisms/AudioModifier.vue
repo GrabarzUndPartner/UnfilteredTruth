@@ -12,6 +12,7 @@
 <script>
 import MoleculeUploadModifier from '@/components/molecules/UploadModifier';
 import MoleculeWavesurfer from '@/components/molecules/Wavesurfer';
+import { getRandomString } from '@/utils/random';
 
 export default {
   components: {
@@ -34,10 +35,6 @@ export default {
     }
   }
 };
-
-function getRandomString () {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-}
 </script>
 
 <style lang="postcss" scoped>

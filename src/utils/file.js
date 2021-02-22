@@ -4,7 +4,6 @@ export function getBufferOfFile (file) {
     reader.addEventListener('load', function () {
       resolve(new Uint8Array(reader.result));
     }, false);
-
     reader.readAsArrayBuffer(file);
   });
 }

@@ -9,7 +9,7 @@
         class="preview"
         :src="stats.blob"
         controls
-        autoplay
+        playsinline
       />
     </div>
     <span>{{ stats.info }}</span>
@@ -54,24 +54,25 @@ export default {
       this.process = true;
       const result = await Promise.all(Array.from(files).map(async (file) => {
         this.stats.name = file.name;
-
-        const observers = await disguiseFile(file);
-
-        observers.start.subscribe(e => console.log(e));
-        observers.stdout.subscribe((e) => {
-          this.stats.progress = e * 100;
-          console.log(e);
-        });
-        return new Promise((resolve) => {
-          observers.done.subscribe((e) => {
-            this.process = false;
-            this.stats.blob = e;
-            resolve();
-          });
-        });
+        return this.observeConversion(await disguiseFile(file));
       }));
       result.video = this.$refs.video;
       this.$emit('ready', { id: this.id, stats: result });
+    },
+
+    observeConversion (observers) {
+      observers.start.subscribe(e => console.log(e));
+      observers.stdout.subscribe((progress) => {
+        this.stats.progress = progress * 100;
+        console.log(progress);
+      });
+      return new Promise((resolve) => {
+        observers.done.subscribe((blob) => {
+          this.process = false;
+          this.stats.blob = blob;
+          resolve();
+        });
+      });
     }
   }
 };
