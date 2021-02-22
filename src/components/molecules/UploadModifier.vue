@@ -3,7 +3,14 @@
     <div class="container">
       <atom-upload @files-change="onFilesChange" />
       <atom-progress v-if="process" class="progress" :stroke="5" :radius="60" :progress="stats.progress" />
-      <video v-if="stats.blob" class="preview" :src="stats.blob" controls autoplay />
+      <video
+        v-if="stats.blob"
+        ref="video"
+        class="preview"
+        :src="stats.blob"
+        controls
+        autoplay
+      />
     </div>
     <span>{{ stats.info }}</span>
     <a v-if="stats.blob" :href="stats.blob" :download="stats.name">Download</a>
@@ -36,7 +43,8 @@ export default {
         name: null,
         blob: null,
         info: null,
-        progress: 0
+        progress: 0,
+        video: null
       }
     };
   },
@@ -62,7 +70,7 @@ export default {
           });
         });
       }));
-
+      result.video = this.$refs.video;
       this.$emit('ready', { id: this.id, stats: result });
     }
   }

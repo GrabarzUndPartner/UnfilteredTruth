@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import parseProgress from '@ffmpeg/ffmpeg/src/utils/parseProgress';
 import { getBufferOfFile, getBlobUrlOfBuffer } from '@/utils/file';
 import { createSineBuffer } from '@/utils/sine';
-import { getVideoLength, getVideoDimension } from '@/utils/video';
+import { getVideoLength } from '@/utils/video';
 
 function getObservers () {
   const ready = new Subject();

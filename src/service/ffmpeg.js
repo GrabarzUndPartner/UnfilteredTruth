@@ -14,7 +14,7 @@ async function getObservers () {
     corePath: '/ffmpeg/ffmpeg-core.js',
     log: true
   });
-  ffmpeg.load().then(() => { ready.next(ffmpeg); });
+  ffmpeg.load().then(() => ready.next(ffmpeg)).catch((e) => { throw new Error(e); });
   ffmpeg.setProgress(({ ratio }) => { stdout.next(ratio); });
   return { ready, start, done, stdout };
 }
@@ -22,7 +22,7 @@ async function getObservers () {
 async function loadFile (ffmpeg, file, stats) {
   const { fetchFile } = await import('@ffmpeg/ffmpeg');
   ffmpeg.FS('writeFile', file.name, await fetchFile(file));
-  ffmpeg.FS('writeFile', `${file.name}.wav`, await getVideoLength(file).then((duration) => createSineBuffer(duration)))
+  ffmpeg.FS('writeFile', `${file.name}.wav`, await getVideoLength(file).then(duration => createSineBuffer(duration)));
 }
 
 export async function disguiseFile (file) {
@@ -41,7 +41,7 @@ export async function disguiseFile (file) {
       '-map', '[a]',
       'output.mp4'
     );
-    observers.done.next(getBlobUrlOfBuffer(ffmpeg.FS('readFile', 'output.mp4').buffer))
-  })
+    observers.done.next(getBlobUrlOfBuffer(ffmpeg.FS('readFile', 'output.mp4').buffer));
+  });
   return observers;
 }

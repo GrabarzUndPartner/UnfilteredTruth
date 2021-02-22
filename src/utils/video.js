@@ -4,7 +4,6 @@ export function getVideoLength (file) {
     video.preload = 'metadata';
     video.src = URL.createObjectURL(file);
     video.onloadedmetadata = (e) => {
-      console.log(video, e)
       resolve(video.duration);
     };
   });
@@ -16,7 +15,7 @@ export function getVideoDimension (file) {
     video.preload = 'metadata';
     video.src = URL.createObjectURL(file);
     video.onloadedmetadata = () => {
-      resolve({x: video.videoWidth, y: video.videoHeight});
+      resolve({ x: video.videoWidth, y: video.videoHeight });
     };
   });
 }
