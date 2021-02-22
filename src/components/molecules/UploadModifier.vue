@@ -82,15 +82,15 @@ export default {
 .molecule_upload-modifier {
   & .container {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   & .progress {
     position: absolute;
     top: 0;
     left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
   }
