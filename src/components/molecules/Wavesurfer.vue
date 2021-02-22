@@ -38,28 +38,30 @@ export default {
   },
 
   async mounted () {
-    const WaveSurfer = (await import('wavesurfer.js')).default;
-    const TimelinePlugin = (await import('wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js')).default;
-
-    this.wavesurfer = WaveSurfer.create({
-      container: this.$refs.waveform,
-      plugins: [
-        TimelinePlugin.create({
-          container: '#wave-timeline'
-        })
-      ],
-      waveColor: '#A8DBA8',
-      progressColor: '#3B8686',
-      splitChannels: true,
-      backend: 'MediaElement'
-    });
-
+    this.wavesurfer = await this.initializeWavesurfer();
     this.wavesurfer.load(this.video);
     this.wavesurfer.on('play', () => { this.playing = true; });
     this.wavesurfer.on('pause', () => { this.playing = false; });
   },
 
   methods: {
+    async initializeWavesurfer () {
+      const WaveSurfer = (await import('wavesurfer.js')).default;
+      const TimelinePlugin = (await import('wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js')).default;
+      return WaveSurfer.create({
+        container: this.$refs.waveform,
+        plugins: [
+          TimelinePlugin.create({
+            container: '#wave-timeline'
+          })
+        ],
+        waveColor: '#A8DBA8',
+        progressColor: '#3B8686',
+        splitChannels: true,
+        backend: 'MediaElement'
+      });
+    },
+
     togglePlay () {
       this.wavesurfer.playPause();
     }

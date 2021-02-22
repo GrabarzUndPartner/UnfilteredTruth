@@ -1,8 +1,6 @@
 <template>
   <div>
-    <svg
-      :viewBox="viewBox"
-    >
+    <svg :viewBox="viewBox">
       <circle
         stroke="white"
         fill="transparent"
@@ -60,10 +58,10 @@ export default {
 <style lang="postcss" scoped>
 div {
   position: relative;
+  background-color: black;
 
   & svg {
     height: inherit;
-    background-color: black;
   }
 
   & circle {
