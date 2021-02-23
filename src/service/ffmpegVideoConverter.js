@@ -11,7 +11,7 @@ function createOberservers () {
   const ready = new ReplaySubject(1);
   const start = new Subject();
   const done = new Subject();
-  const info = new ReplaySubject();
+  const info = new ReplaySubject(1);
   const progress = new Subject();
   const error = new ReplaySubject(1);
   return { ready, start, done, info, progress, error };
@@ -30,6 +30,7 @@ function prepare () {
     parseProgress(data, ({ ratio }) => { observers.progress.next(ratio); });
   });
   messages.pipe(filter(data => data.type === 'start')).subscribe(({ data }) => {
+    observers.start.next(data);
     observers.info.next('start conversion');
   });
   messages.pipe(filter(data => data.type === 'done')).subscribe(async ({ data }) => {
@@ -53,25 +54,12 @@ async function loadFiles (file) {
   ]);
 }
 
-export async function disguiseFile (file) {
+export function disguiseFile (file) {
   const observers = prepare();
-
-  if (await file.hasValidMimeType()) {
-    if (await file.hasValidLength()) {
-      if (file.hasValidSize()) {
-        observers.ready.subscribe((worker) => {
-          observers.info.next('load file');
-          run(worker, file);
-        });
-      } else {
-        observers.error.next('file is too big');
-      }
-    } else {
-      observers.error.next('your video is too long');
-    }
-  } else {
-    observers.error.next('wrong file format');
-  }
+  observers.ready.subscribe((worker) => {
+    observers.info.next('load file');
+    run(worker, file);
+  });
   return observers;
 }
 

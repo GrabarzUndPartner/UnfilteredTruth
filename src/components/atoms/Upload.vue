@@ -1,15 +1,57 @@
 <template>
-  <div class="atom-upload">
+  <div
+    class="atom-upload"
+    :class="{highlight}"
+    @dragenter="hover(true)"
+    @dragover="hover(true)"
+    @dragleave="hover(false)"
+    @drop="hover(false)"
+  >
     <input type="file" @change="onChange">
-    <span>Drag &amp; Drop File</span>
+    <div>
+      <span>Drag &amp; Drop File</span>
+      <atom-text-toggle :text="error" />
+    </div>
   </div>
 </template>
 
 <script>
+import File from '@/classes/File';
+import AtomTextToggle from '@/components/atoms/TextToggle';
+
 export default {
+  components: {
+    AtomTextToggle
+  },
+
+  data () {
+    return {
+      error: null,
+      highlight: false
+    };
+  },
+
   methods: {
     onChange ({ target: { files } }) {
-      this.$emit('files-change', files);
+      Array.from(files).map(file => new File(file)).map(async (file) => {
+        if (await file.hasValidMimeType()) {
+          if (await file.hasValidLength()) {
+            if (file.hasValidSize()) {
+              this.$emit('files-change', file);
+            } else {
+              this.error = 'file is too big';
+            }
+          } else {
+            this.error = 'your video is too long';
+          }
+        } else {
+          this.error = 'wrong file format';
+        }
+      });
+    },
+
+    hover (value) {
+      this.highlight = value;
     }
   }
 };
@@ -25,7 +67,8 @@ export default {
   height: 200px;
   background-color: lightgray;
 
-  &:hover {
+  &:hover,
+  &.highlight {
     background-color: gray;
   }
 
@@ -37,6 +80,10 @@ export default {
     height: 100%;
     cursor: pointer;
     opacity: 0;
+  }
+
+  & span {
+    display: block;
   }
 }
 </style>

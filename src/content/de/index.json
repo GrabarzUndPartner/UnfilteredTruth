@@ -10,8 +10,33 @@
   "title": "Home",
   "components": [
     {
+      "component": "AnimatedHeadline",
+      "data": {
+        "text": "HEADLINE"
+      }
+    },
+    {
       "component": "AudioModifier",
       "data": {}
+    },
+    {
+      "component": "QuoteFader",
+      "data": {
+        "list": [
+          {
+            "headline": "We noticed:​",
+            "text": "Officials abuse copyright regulations to stop the spread of videos of possible misconduct.​"
+          },
+          {
+            "headline": "We believe:​",
+            "text": "Everybody should be able to share video evidence with the world. Unobstructed by content filter."
+          },
+          {
+            "headline": "We want to help:​​",
+            "text": "We provide this simple tool. It processes video footage to reduce the risk of getting detected on upload.​"
+          }
+        ]
+      }
     }
   ]
 }
