@@ -2,7 +2,7 @@
   <div class="molecule_upload-modifier">
     <div class="container">
       <atom-upload @files-change="onFilesChange" />
-      <atom-progress v-if="process" class="progress" :stroke="5" :radius="60" :progress="stats.progress" />
+      <atom-progress v-if="stats.progress" class="progress" :stroke="5" :radius="60" :progress="stats.progress" />
       <video
         v-if="stats.blob"
         ref="video"
@@ -12,8 +12,9 @@
         playsinline
       />
     </div>
-    <span>{{ stats.info }}</span>
-    <a v-if="stats.blob" :href="stats.blob" :download="stats.name">Download</a>
+    <span v-if="!stats.progress">{{ stats.info }}</span>
+    <span>{{ stats.error }}</span>
+    <a v-if="stats.blob" :href="stats.blob" :download="stats.upload.name">Download</a>
   </div>
 </template>
 
@@ -22,6 +23,7 @@ import AtomUpload from '@/components/atoms/Upload';
 import AtomProgress from '@/components/atoms/Progress';
 // import { disguiseFile } from '@/service/ffmpeg';
 import { disguiseFile } from '@/service/ffmpegVideoConverter';
+import File from '@/classes/File';
 
 export default {
   components: {
@@ -39,32 +41,42 @@ export default {
   data () {
     return {
       process: false,
-      stats: {
-        name: null,
-        blob: null,
-        info: null,
-        progress: 0,
-        video: null
-      }
+      stats: this.resetStats()
     };
   },
 
   methods: {
+    resetStats () {
+      return {
+        blob: null,
+        info: null,
+        error: null,
+        progress: 0,
+        upload: null
+      };
+    },
+
     async onFilesChange (files) {
       this.process = true;
-      const result = await Promise.all(Array.from(files).map(async (file) => {
-        this.stats.name = file.name;
-        return this.observeConversion(await disguiseFile(file));
+      await Promise.all(Array.from(files).map(async (file) => {
+        const upload = new File(file);
+        this.stats.upload = await upload.getObjectUrl();
+        return this.observeConversion(await disguiseFile(upload));
       }));
-      result.video = this.$refs.video;
-      this.$emit('ready', { id: this.id, stats: result });
+      this.$emit('ready', { id: this.id, stats: this.stats });
     },
 
     observeConversion (observers) {
       observers.start.subscribe(e => console.log(e));
-      observers.stdout.subscribe((progress) => {
+      observers.progress.subscribe((progress) => {
         this.stats.progress = progress * 100;
         console.log(progress);
+      });
+      observers.info.subscribe((info) => {
+        this.stats.info = info;
+      });
+      observers.error.subscribe((e) => {
+        this.stats.error = e;
       });
       return new Promise((resolve) => {
         observers.done.subscribe((blob) => {

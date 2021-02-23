@@ -1,19 +1,19 @@
-export function getVideoLength (file) {
+export function getVideoLength (objectUrl) {
   return new Promise((resolve) => {
     const video = global.document.createElement('video');
     video.preload = 'metadata';
-    video.src = URL.createObjectURL(file);
+    video.src = objectUrl;
     video.onloadedmetadata = (e) => {
       resolve(video.duration);
     };
   });
 }
 
-export function getVideoDimension (file) {
+export function getVideoDimension (objectUrl) {
   return new Promise((resolve) => {
     const video = global.document.createElement('video');
     video.preload = 'metadata';
-    video.src = URL.createObjectURL(file);
+    video.src = objectUrl;
     video.onloadedmetadata = () => {
       resolve({ x: video.videoWidth, y: video.videoHeight });
     };

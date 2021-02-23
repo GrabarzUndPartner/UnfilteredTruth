@@ -1,19 +1,14 @@
 <template>
   <div>
-    <button @click="togglePlay">
-      {{ buttonText }}
-    </button>
-    <div ref="waveform">
-      <div id="wave-timeline" />
-    </div>
+    <div ref="waveform" />
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    video: {
-      type: global.HTMLElement,
+    stats: {
+      type: Object,
       default () {
         return null;
       }
@@ -22,6 +17,7 @@ export default {
 
   data () {
     return {
+      list: [],
       wavesurfer: null,
       playing: false
     };
@@ -37,36 +33,36 @@ export default {
     }
   },
 
-  async mounted () {
-    this.wavesurfer = await this.initializeWavesurfer();
-    this.wavesurfer.load(this.video);
-    this.wavesurfer.on('play', () => { this.playing = true; });
-    this.wavesurfer.on('pause', () => { this.playing = false; });
+  mounted () {
+    [
+      createVideoElement(this.stats.upload), createVideoElement(this.stats.blob)
+    ].forEach(async (el) => {
+      const wavesurfer = await this.initializeWavesurfer();
+      wavesurfer.load(el);
+      this.list.push(wavesurfer);
+    });
   },
 
   methods: {
     async initializeWavesurfer () {
       const WaveSurfer = (await import('wavesurfer.js')).default;
-      const TimelinePlugin = (await import('wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js')).default;
       return WaveSurfer.create({
         container: this.$refs.waveform,
-        plugins: [
-          TimelinePlugin.create({
-            container: '#wave-timeline'
-          })
-        ],
         waveColor: '#A8DBA8',
         progressColor: '#3B8686',
-        splitChannels: true,
+        splitChannels: false,
+        interact: false,
         backend: 'MediaElement'
       });
-    },
-
-    togglePlay () {
-      this.wavesurfer.playPause();
     }
   }
 };
+
+function createVideoElement (blob) {
+  const video = global.document.createElement('video');
+  video.src = blob;
+  return video;
+}
 </script>
 
 <style>

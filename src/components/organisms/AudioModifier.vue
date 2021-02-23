@@ -3,7 +3,7 @@
     <ul>
       <li v-for="({id, stats}, index) in conversions" :key="index">
         <molecule-upload-modifier :id="id" @ready="onReady" />
-        <molecule-wavesurfer v-if="stats && stats.video" :video="stats.video" />
+        <molecule-wavesurfer v-if="stats" :stats="stats" />
       </li>
     </ul>
   </div>
@@ -30,6 +30,7 @@ export default {
 
   methods: {
     onReady (result) {
+      console.log(result);
       this.conversions.find(({ id }) => id === result.id).stats = result.stats;
       this.conversions.push({ id: getRandomString(), stats: null });
     }
