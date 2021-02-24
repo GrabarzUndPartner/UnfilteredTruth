@@ -13,6 +13,13 @@
  */
 
 /*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*!
  * Vue.js v2.6.12
  * (c) 2014-2020 Evan You
  * Released under the MIT License.
@@ -37,6 +44,12 @@
  * @license MIT
  */
 
+/*!
+ * wavesurfer.js 4.5.0 (2021-02-14)
+ * https://wavesurfer-js.org
+ * @license BSD-3-Clause
+ */
+
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -52,6 +65,48 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
+/*! ./absMax */
+
+/*! ./clamp */
+
+/*! ./drawer */
+
+/*! ./drawer.canvasentry */
+
+/*! ./drawer.multicanvas */
+
+/*! ./fetch */
+
+/*! ./frame */
+
+/*! ./get-id */
+
+/*! ./max */
+
+/*! ./mediaelement */
+
+/*! ./mediaelement-webaudio */
+
+/*! ./min */
+
+/*! ./observer */
+
+/*! ./peakcache */
+
+/*! ./prevent-click */
+
+/*! ./request-animation-frame */
+
+/*! ./style */
+
+/*! ./util */
+
+/*! ./util/get-id */
+
+/*! ./util/style */
+
+/*! ./webaudio */
+
 /*! Gecko-Picture - v1.0
  * https://github.com/scottjehl/picturefill/tree/3.0/src/plugins/gecko-picture
  * Firefox's early picture implementation (prior to FF41) is static and does
@@ -64,9 +119,99 @@ PERFORMANCE OF THIS SOFTWARE.
  *  License: MIT
  */
 
+/*! debounce */
+
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
 /*! npm.im/object-fit-images 3.2.4 */
 
 /*! picturefill - v3.0.2 - 2016-02-12
  * https://scottjehl.github.io/picturefill/
  * Copyright (c) 2016 https://github.com/scottjehl/picturefill/blob/master/Authors.txt; Licensed MIT
  */
+
+/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+/*!***********************!*\
+  !*** ./src/drawer.js ***!
+  \***********************/
+
+/*!*************************!*\
+  !*** ./src/util/max.js ***!
+  \*************************/
+
+/*!*************************!*\
+  !*** ./src/util/min.js ***!
+  \*************************/
+
+/*!*************************!*\
+  !*** ./src/webaudio.js ***!
+  \*************************/
+
+/*!**************************!*\
+  !*** ./src/peakcache.js ***!
+  \**************************/
+
+/*!***************************!*\
+  !*** ./src/util/clamp.js ***!
+  \***************************/
+
+/*!***************************!*\
+  !*** ./src/util/fetch.js ***!
+  \***************************/
+
+/*!***************************!*\
+  !*** ./src/util/frame.js ***!
+  \***************************/
+
+/*!***************************!*\
+  !*** ./src/util/index.js ***!
+  \***************************/
+
+/*!***************************!*\
+  !*** ./src/util/style.js ***!
+  \***************************/
+
+/*!***************************!*\
+  !*** ./src/wavesurfer.js ***!
+  \***************************/
+
+/*!****************************!*\
+  !*** ./src/util/absMax.js ***!
+  \****************************/
+
+/*!****************************!*\
+  !*** ./src/util/get-id.js ***!
+  \****************************/
+
+/*!*****************************!*\
+  !*** ./src/mediaelement.js ***!
+  \*****************************/
+
+/*!******************************!*\
+  !*** ./src/util/observer.js ***!
+  \******************************/
+
+/*!***********************************!*\
+  !*** ./src/drawer.canvasentry.js ***!
+  \***********************************/
+
+/*!***********************************!*\
+  !*** ./src/drawer.multicanvas.js ***!
+  \***********************************/
+
+/*!***********************************!*\
+  !*** ./src/util/prevent-click.js ***!
+  \***********************************/
+
+/*!**************************************!*\
+  !*** ./src/mediaelement-webaudio.js ***!
+  \**************************************/
+
+/*!****************************************!*\
+  !*** ./node_modules/debounce/index.js ***!
+  \****************************************/
+
+/*!*********************************************!*\
+  !*** ./src/util/request-animation-frame.js ***!
+  \*********************************************/
