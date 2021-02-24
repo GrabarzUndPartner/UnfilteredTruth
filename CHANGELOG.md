@@ -1,5 +1,20 @@
 # Project Changelog
 
+## [1.0.1](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.0.0...v1.0.1) (2021-02-24)
+
+
+### Bug Fixes
+
+* **cleanup:** cleanup ([a690531](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/a69053106e19d7e2783e605aaf98ef70f067c48f))
+* **cleanup:** cleanup ([a16c2be](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/a16c2be920bc3549c52c89706bb7147b8ed74491))
+* **components:** added additional components and refactorings ([256e54e](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/256e54e5a0d26a4ddb924933c35ff810029edb20))
+* **ffmpeg:** cross browser compatible ([87dbdfc](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/87dbdfc2749ef438b7e41036bf429c61f44d5e5f))
+* **headline:** animated by canvas ([7fc026f](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/7fc026f0266947fe6f886c410824497d30843f4c))
+* **headline:** removed unused css ([caeb059](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/caeb059c9f74d8b06f98e08ee9c76bede9e15b79))
+* **progress:** show percentage value ([5546695](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/554669561adf8c0856ee2ef2926cc70cae41dc39))
+* **structure:** optimized workflow ([fd54c30](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/fd54c302c8c53feae2983ac766071adcb5213042))
+* **wavform:** integrated audio visualizer ([ed3a732](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/ed3a73222505e2b56e4f015417754550e382cdde))
+
 # 1.0.0 (2021-02-20)
 
 
