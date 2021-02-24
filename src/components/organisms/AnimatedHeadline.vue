@@ -23,71 +23,106 @@ export default {
 
   data () {
     return {
-      context: null,
       currentPos: {
-        x: this.width / 2,
-        y: this.height / 2
-      },
-      centerPos: {
-        x: this.width / 2,
-        y: this.height / 2
+        x: 0,
+        y: 0
       },
       direction: {
-        x: 0.3,
-        y: 0.3
-      },
-      dimension: null
+        x: 0.1,
+        y: 0.1
+      }
     };
   },
 
   mounted () {
     const ctx = this.$el.getContext('2d');
-    ctx.font = '48px Raleway';
-    const metrics = ctx.measureText(this.text);
-    this.dimension = {
-      x: metrics.width,
-      y: metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent
+    const prerendered = this.prerender();
+    const origin = {
+      x: (this.$el.width - prerendered.fillText.width) / 2,
+      y: (this.$el.height - prerendered.fillText.height) / 2
     };
-
-    this.draw(ctx);
+    ctx.translate(origin.x, origin.y);
+    this.draw(this.$el, ctx, prerendered, origin);
   },
 
   methods: {
-    draw (ctx) {
-      ctx.clearRect(0, 0, this.$el.width, this.$el.height);
+    prerender (font = '48px Raleway') {
+      return {
+        fillText: prerenderFillText(this.text, font),
+        strokeText: prerenderStrokeText(this.text, font)
+      };
+    },
 
-      const origin = {
-        x: this.currentPos.x - this.dimension.x / 2,
-        y: this.currentPos.y + this.dimension.y / 2
+    draw (canvas, ctx, prerendered, origin) {
+      ctx.clearRect(-origin.x, -origin.y, canvas.width, canvas.height);
+
+      const diff = {
+        x: this.currentPos.x / origin.x,
+        y: this.currentPos.y / origin.y
       };
 
+      ctx.filter = `blur(${Math.hypot(diff.x, diff.y) * 5}px)`;
+      ctx.drawImage(prerendered.fillText, 0, 0);
       ctx.filter = 'none';
-      ctx.strokeText(this.text, origin.x, this.currentPos.y + this.dimension.y / 2);
+      ctx.drawImage(prerendered.strokeText, this.currentPos.x, this.currentPos.y);
 
-      const diffX = this.currentPos.x - this.centerPos.x;
-      const diffY = this.currentPos.y - this.centerPos.y;
-
-      ctx.filter = `blur(${Math.hypot(diffX, diffY) / 20}px)`;
-      ctx.strokeStyle = 'black';
-      ctx.lineWidth = 2;
-
-      const x = this.centerPos.x - this.dimension.x / 2;
-      const y = this.centerPos.y + this.dimension.y / 2;
-      ctx.fillText(this.text, x, y);
-
-      if (origin.x < 0 || origin.x > this.width - this.dimension.x) {
+      if (this.currentPos.x < -origin.x || this.currentPos.x > origin.x) {
         this.direction.x = -this.direction.x;
       }
-      if (origin.y < 0 + this.dimension.y || origin.y > this.height) {
+
+      if (this.currentPos.y < -origin.y || this.currentPos.y > origin.y) {
         this.direction.y = -this.direction.y;
       }
 
       this.currentPos.x += this.direction.x;
       this.currentPos.y += this.direction.y;
-      global.requestAnimationFrame(() => this.draw(ctx));
+
+      global.requestAnimationFrame(() => this.draw(canvas, ctx, prerendered, origin));
     }
   }
 };
+
+function getTextDimension (text, font = '48px Raleway') {
+  const { ctx } = createCanvas();
+  ctx.font = font;
+  const metrics = ctx.measureText(text);
+  return {
+    x: metrics.width,
+    y: metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent
+  };
+}
+
+function createCanvas () {
+  const canvas = global.document.createElement('canvas');
+  return { canvas, ctx: canvas.getContext('2d') };
+}
+
+function prerenderFillText (text, font = '48px Raleway') {
+  const { canvas, ctx } = prepareTextCanvas(text, font);
+  ctx.fillText(text, 0, 0);
+  return canvas;
+}
+
+function prerenderStrokeText (text, font = '48px Raleway') {
+  const { canvas, ctx } = prepareTextCanvas(text, font);
+  ctx.strokeStyle = 'red';
+  ctx.lineWidth = 1;
+  ctx.strokeText(text, 0, 0);
+  return canvas;
+}
+
+function prepareTextCanvas (text, font) {
+  const { canvas, ctx } = createCanvas();
+  const dimension = getTextDimension(text, font);
+
+  canvas.width = dimension.x;
+  canvas.height = dimension.y;
+  ctx.font = font;
+  ctx.textBaseline = 'middle';
+  ctx.textAlign = 'center';
+  ctx.translate(dimension.x / 2, dimension.y / 2);
+  return { canvas, ctx };
+}
 
 // global.requestAnimationFrame(() => this.draw(ctx));
 </script>
