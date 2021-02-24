@@ -128,30 +128,5 @@ function prepareTextCanvas (text, font) {
 </script>
 
 <style lang="postcss" scoped>
-div {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 300px;
-
-  & h2 {
-    position: absolute;
-    margin: 0;
-    font-size: 7em;
-
-    &.filled {
-      filter: blur(3px);
-    }
-
-    &.outline {
-      color: black;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: 1px red;
-    }
-  }
-}
-
 /* css */
 </style>
