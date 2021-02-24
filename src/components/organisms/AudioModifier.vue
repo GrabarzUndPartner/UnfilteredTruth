@@ -1,8 +1,9 @@
 <template>
   <div>
     <ul>
-      <li v-for="({id}, index) in conversions" :key="index">
+      <li v-for="({id, stats}, index) in conversions" :key="index">
         <molecule-upload-modifier :id="id" @ready="onReady" />
+        <molecule-wavesurfer v-if="stats" :stats="stats" />
       </li>
     </ul>
   </div>
@@ -10,31 +11,31 @@
 
 <script>
 import MoleculeUploadModifier from '@/components/molecules/UploadModifier';
+import MoleculeWavesurfer from '@/components/molecules/Wavesurfer';
+import { getRandomString } from '@/utils/random';
 
 export default {
   components: {
-    MoleculeUploadModifier
+    MoleculeUploadModifier,
+    MoleculeWavesurfer
   },
 
   data () {
     return {
       conversions: [
-        { id: getRandomString() }
+        { id: getRandomString(), stats: null }
       ]
     };
   },
 
   methods: {
     onReady (result) {
+      console.log(result);
       this.conversions.find(({ id }) => id === result.id).stats = result.stats;
-      this.conversions.push({ id: getRandomString() });
+      this.conversions.push({ id: getRandomString(), stats: null });
     }
   }
 };
-
-function getRandomString () {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-}
 </script>
 
 <style lang="postcss" scoped>

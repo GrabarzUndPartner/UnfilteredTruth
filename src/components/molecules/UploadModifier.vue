@@ -1,25 +1,34 @@
 <template>
   <div class="molecule_upload-modifier">
     <div class="container">
-      <atom-upload @files-change="onFilesChange" />
-      <atom-progress v-if="process" class="progress" :stroke="5" :radius="60" :progress="stats.progress" />
-      <video v-if="stats.blob" class="preview" :src="stats.blob" controls autoplay />
+      <atom-upload v-if="!stats.upload" class="upload" @files-change="onFilesChange" />
+      <atom-text-toggle v-if="!stats.progress" :text="stats.info" />
+      <atom-progress v-if="stats.progress" class="progress" :stroke="5" :radius="60" :progress="stats.progress" />
+      <video
+        v-if="stats.blob"
+        ref="video"
+        class="preview"
+        :src="stats.blob"
+        controls
+        playsinline
+      />
     </div>
-    <span>{{ stats.info }}</span>
-    <a v-if="stats.blob" :href="stats.blob" :download="stats.name">Download</a>
+    <a v-if="stats.blob" :href="stats.blob" :download="stats.upload.name">Download</a>
   </div>
 </template>
 
 <script>
 import AtomUpload from '@/components/atoms/Upload';
 import AtomProgress from '@/components/atoms/Progress';
-import { disguiseFile } from '@/service/ffmpeg';
-// import { disguise } from '@/service/ffmpegTest';
+import AtomTextToggle from '@/components/atoms/TextToggle';
+// import { disguiseFile } from '@/service/ffmpeg';
+import { disguiseFile } from '@/service/ffmpegVideoConverter';
 
 export default {
   components: {
     AtomUpload,
-    AtomProgress
+    AtomProgress,
+    AtomTextToggle
   },
 
   props: {
@@ -31,26 +40,41 @@ export default {
 
   data () {
     return {
-      process: false,
-      stats: {
-        name: null,
-        blob: null,
-        info: null,
-        progress: 0
-      }
+      stats: this.resetStats()
     };
   },
 
   methods: {
-    async onFilesChange (files) {
-      this.process = true;
-      const result = await Promise.all(Array.from(files).map((file) => {
-        this.stats.name = file.name;
-        return disguiseFile(file, this.stats);
-        // return disguise(file, this.stats);
-      }));
-      this.process = false;
-      this.$emit('ready', { id: this.id, stats: result });
+    resetStats (error) {
+      return {
+        blob: null,
+        info: null,
+        error,
+        progress: 0,
+        upload: null
+      };
+    },
+
+    async onFilesChange (file) {
+      const stats = this.stats = this.resetStats();
+      stats.upload = await file.getObjectUrl();
+      const updateStats = await this.observeConversion(await disguiseFile(file), stats);
+      this.$emit('ready', { id: this.id, stats: updateStats });
+    },
+
+    observeConversion (observers, stats) {
+      observers.start.subscribe((e) => { console.log(e); });
+      observers.progress.subscribe((progress) => { stats.progress = progress * 100; });
+      observers.info.subscribe((info) => { stats.info = info; });
+      observers.error.subscribe((error) => {
+        this.stats = this.resetStats(error);
+      });
+      return new Promise((resolve) => {
+        observers.done.subscribe((blob) => {
+          stats.blob = blob;
+          resolve(stats);
+        });
+      });
     }
   }
 };
@@ -60,25 +84,28 @@ export default {
 .molecule_upload-modifier {
   & .container {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    background-color: black;
+    border: 2px solid red;
+    border-radius: 20px;
   }
 
   & .progress {
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
+
   }
 
   & .preview {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
+    transform: translateY(-100%);
+    object-fit: cover;
   }
 }
 

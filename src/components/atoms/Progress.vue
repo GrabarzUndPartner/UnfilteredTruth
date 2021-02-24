@@ -1,18 +1,19 @@
 <template>
-  <svg
-    :viewBox="viewBox"
-  >
-    <circle
-      stroke="white"
-      fill="transparent"
-      :stroke-dasharray="circumference + ' ' + circumference"
-      :style="{ strokeDashoffset }"
-      :stroke-width="stroke"
-      :r="normalizedRadius"
-      :cx="radius"
-      :cy="radius"
-    />
-  </svg>
+  <div>
+    <svg :viewBox="viewBox">
+      <circle
+        stroke="white"
+        fill="transparent"
+        :stroke-dasharray="circumference + ' ' + circumference"
+        :style="{ strokeDashoffset }"
+        :stroke-width="stroke"
+        :r="normalizedRadius"
+        :cx="radius"
+        :cy="radius"
+      />
+    </svg>
+    <span>{{ percentage }}%</span>
+  </div>
 </template>
 
 <script>
@@ -42,21 +43,40 @@ export default {
     viewBox () {
       return `0 0 ${this.radius * 2} ${this.radius * 2}`;
     },
+
     strokeDashoffset () {
       return this.circumference - this.progress / 100 * this.circumference;
+    },
+
+    percentage () {
+      return this.progress.toFixed(2);
     }
   }
 };
 </script>
 
 <style lang="postcss" scoped>
-svg {
+div {
+  position: relative;
   background-color: black;
+
+  & svg {
+    height: inherit;
+  }
+
+  & circle {
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+
+  & span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
+  }
 }
 
-circle {
-  transition: stroke-dashoffset 0.35s;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-}
 </style>

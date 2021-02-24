@@ -1,45 +1,47 @@
-async function getInstance (stats) {
-  stats.info = 'initialize';
+import { Subject } from 'rxjs';
+import { createSineBuffer } from '@/utils/sine';
+import { getVideoLength } from '@/utils/video';
+import { getBlobUrlOfBuffer } from '@/utils/file';
+
+async function getObservers () {
+  const ready = new Subject();
+  const start = new Subject();
+  const done = new Subject();
+  const stdout = new Subject();
+
   const { createFFmpeg } = await import('@ffmpeg/ffmpeg');
   const ffmpeg = createFFmpeg({
     corePath: '/ffmpeg/ffmpeg-core.js',
     log: true
   });
-  await ffmpeg.load();
-  ffmpeg.setProgress(({ ratio }) => {
-    stats.progress = Number((ratio * 100.0).toFixed(2));
-  });
-  return ffmpeg;
+  ffmpeg.load().then(() => ready.next(ffmpeg)).catch((e) => { throw new Error(e); });
+  ffmpeg.setProgress(({ ratio }) => { stdout.next(ratio); });
+  return { ready, start, done, stdout };
 }
 
-async function loadFile (file, stats) {
-  const ffmpeg = await getInstance(stats);
+async function loadFile (ffmpeg, file, stats) {
   const { fetchFile } = await import('@ffmpeg/ffmpeg');
   ffmpeg.FS('writeFile', file.name, await fetchFile(file));
-  return ffmpeg;
+  ffmpeg.FS('writeFile', `${file.name}.wav`, await getVideoLength(file).then(duration => createSineBuffer(duration)));
 }
 
-function getBlobUrl (ffmpeg, { name }, stats) {
-  return URL.createObjectURL(new Blob([
-    ffmpeg.FS('readFile', 'output.mp4').buffer
-  ], { type: 'video/mp4' }));
-}
-
-export async function disguiseFile (file, stats) {
-  const ffmpeg = await loadFile(file, stats);
-  stats.info = 'start transcoding';
-  await ffmpeg.run(
-    '-i', file.name,
-    '-f', 'lavfi',
-    '-i', 'sine=frequency=1:duration=600:sample_rate=48000',
-    '-ac', '2',
-    '-preset', 'ultrafast',
-    '-filter_complex', '[0:v]setpts=0.98*PTS[v];[0:a]volume=1[a0];[1:a]volume=20[a1];[a0]atempo=1.02[a00];[a00][a1]amix=inputs=2:duration=first:dropout_transition=2[a]',
-    '-map', '[v]',
-    '-map', '[a]',
-    'output.mp4'
-  );
-  stats.info = 'finished transcoding';
-  stats.blob = getBlobUrl(ffmpeg, file, stats);
-  return stats;
+export async function disguiseFile (file) {
+  const observers = await getObservers();
+  observers.ready.subscribe(async (ffmpeg) => {
+    await loadFile(ffmpeg, file);
+    await ffmpeg.run(
+      '-i', file.name,
+      '-i', `${file.name}.wav`,
+      '-ac', '2',
+      '-preset', 'ultrafast',
+      '-map_metadata:s:v', '0:s:v',
+      '-map_metadata:s:a', '0:s:a',
+      '-filter_complex', '[0:v]setpts=0.98*PTS,scale=iw/2:ih/2,showinfo[v];[0:a]volume=1[a0];[1:a]volume=1.75[a1];[a0]atempo=1.02[a00];[a00][a1]amix=inputs=2:duration=first:dropout_transition=2[a]',
+      '-map', '[v]',
+      '-map', '[a]',
+      'output.mp4'
+    );
+    observers.done.next(getBlobUrlOfBuffer(ffmpeg.FS('readFile', 'output.mp4').buffer));
+  });
+  return observers;
 }

@@ -21,6 +21,9 @@
     "plugin:security/recommended",
     "plugin:promise/recommended"
   ],
+  "ignorePatterns": [
+    "src/static/**/*.js"
+  ],
   "rules": {
     "block-spacing": "error",
     "no-debugger": "off",
