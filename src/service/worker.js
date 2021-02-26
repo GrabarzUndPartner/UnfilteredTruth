@@ -34,10 +34,7 @@ transferable.subscribe((files) => {
 sendInfo('ready', null);
 
 function sendInfo (type, data) {
-  postMessage({
-    type,
-    data
-  });
+  postMessage({ type, data });
 }
 
 function print (text) {

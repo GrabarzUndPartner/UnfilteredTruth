@@ -5,8 +5,8 @@ import { filter, map } from 'rxjs/operators';
 import parseProgress from '@ffmpeg/ffmpeg/src/utils/parseProgress';
 import File from '@/classes/File';
 import Sine from '@/classes/Sine';
-import { getVideoLength } from '@/utils/video';
 import Transferable from '@/classes/Transferable';
+import { getVideoLength } from '@/utils/video';
 
 function createOberservers () {
   const ready = new ReplaySubject(1);
