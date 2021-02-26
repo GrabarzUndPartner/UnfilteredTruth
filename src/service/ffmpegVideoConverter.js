@@ -6,6 +6,7 @@ import parseProgress from '@ffmpeg/ffmpeg/src/utils/parseProgress';
 import File from '@/classes/File';
 import Sine from '@/classes/Sine';
 import { getVideoLength } from '@/utils/video';
+import Transferable from '@/classes/Transferable';
 
 function createOberservers () {
   const ready = new ReplaySubject(1);
@@ -33,23 +34,16 @@ function prepare () {
     observers.start.next(data);
     observers.info.next('start conversion');
   });
-  messages.pipe(filter(data => data.type === 'done')).subscribe(async ({ data }) => {
-    worker.terminate();
-    observers.info.next('finished conversion');
-    observers.done.next(await new File(new Blob([
-      data[0].data
-    ])).getObjectUrl());
-  });
   return observers;
 }
 
 async function loadFiles (file) {
   return Promise.all([
-    file.getBuffer().then((data) => {
-      return { name: file.name, data };
+    file.getBuffer().then(async (data) => {
+      return { name: file.name, type: await file.getMimeType(), data };
     }),
     getVideoLength(await file.getObjectUrl()).then((duration) => {
-      return { name: `${file.name}.wav`, data: new Sine(duration).getBuffer() };
+      return { name: 'sine.wav', type: 'audio/wav', data: new Sine(duration).getBuffer() };
     })
   ]);
 }
@@ -58,28 +52,19 @@ export function disguiseFile (file) {
   const observers = prepare();
   observers.ready.subscribe((worker) => {
     observers.info.next('load file');
-    run(worker, file);
+    run(worker, file, observers);
   });
   return observers;
 }
 
-async function run (worker, file) {
+async function run (worker, file, observers) {
   const files = await loadFiles(file);
-  worker.postMessage({
-    type: 'command',
-    arguments: [
-      '-i', file.name,
-      '-i', `${file.name}.wav`,
-      '-strict', '-2',
-      '-ac', '2',
-      '-preset', 'ultrafast',
-      '-map_metadata:s:v', '0:s:v',
-      '-map_metadata:s:a', '0:s:a',
-      '-filter_complex', '[0:v]setpts=0.98*PTS,scale=iw/2:ih/2,showinfo[v];[0:a]volume=1[a0];[1:a]volume=1.75[a1];[a0]atempo=1.02[a00];[a00][a1]amix=inputs=2:duration=first:dropout_transition=2[a]',
-      '-map', '[v]',
-      '-map', '[a]',
-      'output.mp4'
-    ],
-    files
+  const transferable = new Transferable(worker);
+  transferable.publish(files);
+  transferable.subscribe(async (e) => {
+    transferable.destroy();
+    observers.done.next(await new File(new Blob([
+      e[0].data
+    ])).getObjectUrl());
   });
 }

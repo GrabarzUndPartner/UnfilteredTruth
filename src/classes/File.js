@@ -5,7 +5,10 @@ const VALID_MIMETYPES = [
   'video/quicktime',
   'video/mp4'
 ];
-const MAX_FILE_SIZE = 188743680;
+const MAX_FILE_SIZE = {
+  mobile: 188743680,
+  desktop: 188743680
+};
 
 export default class File {
   constructor (data) {
@@ -14,7 +17,11 @@ export default class File {
   }
 
   hasValidSize () {
-    return this.data.size < MAX_FILE_SIZE;
+    if (isMobileDevice()) {
+      return this.data.size < MAX_FILE_SIZE.mobile;
+    } else {
+      return this.data.size < MAX_FILE_SIZE.desktop;
+    }
   }
 
   async hasValidMimeType () {
@@ -31,7 +38,7 @@ export default class File {
   }
 
   async getMimeType () {
-    const buffer = await this.getBuffer();
+    const buffer = new Uint8Array(await this.getBuffer());
     return (await FileType.fromBuffer(buffer)).mime;
   }
 
@@ -41,7 +48,7 @@ export default class File {
 
   async getBlob () {
     return new Blob([
-      await this.getBuffer()
+      new Uint8Array(await this.getBuffer())
     ], this.getMimeType());
   }
 
@@ -49,9 +56,13 @@ export default class File {
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.addEventListener('load', function () {
-        resolve(new Uint8Array(reader.result));
+        resolve(reader.result);
       }, false);
       reader.readAsArrayBuffer(this.data);
     });
   }
 }
+
+function isMobileDevice () {
+  return (typeof window.orientation !== 'undefined') || (navigator.userAgent.includes('IEMobile'));
+};

@@ -35,15 +35,16 @@ export default {
     onChange ({ target: { files } }) {
       Array.from(files).map(file => new File(file)).map(async (file) => {
         if (await file.hasValidMimeType()) {
-          if (await file.hasValidLength()) {
-            if (file.hasValidSize()) {
-              this.$emit('files-change', file);
-            } else {
-              this.error = 'file is too big';
-            }
-          } else {
-            this.error = 'your video is too long';
-          }
+          // if (await file.hasValidLength()) {
+          // if (file.hasValidSize()) {
+
+          this.$emit('files-change', file);
+          // } else {
+          //   this.error = 'file is too big';
+          // }
+          // } else {
+          //   this.error = 'your video is too long';
+          // }
         } else {
           this.error = 'wrong file format';
         }
