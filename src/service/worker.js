@@ -1,16 +1,7 @@
 import Transferable from '@/classes/Transferable';
 global.importScripts('/videoconverter/ffmpeg-all-codecs.js');
 
-const now = Date.now;
 const transferable = new Transferable(self);
-
-function print (text) {
-  postMessage({
-    type: 'stdout',
-    data: text
-  });
-}
-
 transferable.subscribe((files) => {
   const Module = {
     print,
@@ -34,32 +25,24 @@ transferable.subscribe((files) => {
     TOTAL_MEMORY: 268435456
   };
 
-  postMessage({
-    type: 'start',
-    data: Module.arguments.join(' ')
-  });
+  sendInfo('start', Module.arguments.join(' '));
 
-  postMessage({
-    type: 'stdout',
-    data: 'Received command: ' +
-        Module.arguments.join(' ') +
-        ((Module.TOTAL_MEMORY) ? '.  Processing with ' + Module.TOTAL_MEMORY + ' bits.' : '')
-  });
-
-  const time = now();
   const result = global.ffmpeg_run(Module);
   transferable.publish(result);
+});
 
-  const totalTime = now() - time;
+sendInfo('ready', null);
+
+function sendInfo (type, data) {
   postMessage({
-    type: 'stdout',
-    data: 'Finished processing (took ' + totalTime + 'ms)'
+    type,
+    data
   });
-});
+}
 
-postMessage({
-  type: 'ready'
-});
+function print (text) {
+  sendInfo('stdout', text);
+}
 
 function getAudioFileName (files) {
   return files.find(file => file.mimeType.startsWith('audio')).name;

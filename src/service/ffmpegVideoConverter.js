@@ -20,8 +20,8 @@ function createOberservers () {
 
 function prepare () {
   const observers = createOberservers();
-
   observers.info.next('initialize');
+
   const worker = new Worker();
   const messages = fromEvent(worker, 'message').pipe(map(e => e.data));
   messages.pipe(filter(data => data.type === 'ready')).subscribe((e) => {

@@ -5,10 +5,7 @@ const VALID_MIMETYPES = [
   'video/quicktime',
   'video/mp4'
 ];
-const MAX_FILE_SIZE = {
-  mobile: 188743680,
-  desktop: 188743680
-};
+const MAX_FILE_SIZE = 188743680;
 
 export default class File {
   constructor (data) {
@@ -17,11 +14,7 @@ export default class File {
   }
 
   hasValidSize () {
-    if (isMobileDevice()) {
-      return this.data.size < MAX_FILE_SIZE.mobile;
-    } else {
-      return this.data.size < MAX_FILE_SIZE.desktop;
-    }
+    return this.data.size < MAX_FILE_SIZE;
   }
 
   async hasValidMimeType () {
@@ -62,7 +55,3 @@ export default class File {
     });
   }
 }
-
-function isMobileDevice () {
-  return (typeof window.orientation !== 'undefined') || (navigator.userAgent.includes('IEMobile'));
-};
