@@ -37,8 +37,8 @@ function createTransferableFiles (files) {
   });
 }
 
-function receiveFiles (data) {
-  return Promise.all(data.map((data) => {
+function receiveFiles (metadataList) {
+  return Promise.all(metadataList.map((data) => {
     return new Promise((resolve) => {
       const file = new BDC(data);
       file.onCompleted = () => {

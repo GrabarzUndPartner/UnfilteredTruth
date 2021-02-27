@@ -1,5 +1,4 @@
 import FileType from 'file-type/browser';
-import { getVideoLength } from '@/utils/video';
 
 const VALID_MIMETYPES = [
   'video/quicktime',
@@ -8,9 +7,10 @@ const VALID_MIMETYPES = [
 const MAX_FILE_SIZE = 188743680;
 
 export default class File {
-  constructor (data) {
+  constructor (data, duration = null) {
     this.data = data;
     this.name = data.name;
+    this.duration = duration;
   }
 
   hasValidSize () {
@@ -20,14 +20,6 @@ export default class File {
   async hasValidMimeType () {
     const mime = await this.getMimeType();
     return VALID_MIMETYPES.includes(mime);
-  }
-
-  async hasValidLength () {
-    if (await this.hasValidMimeType()) {
-      return await getVideoLength(await this.getObjectUrl()) < 60;
-    } else {
-      return false;
-    }
   }
 
   async getMimeType () {

@@ -12,6 +12,14 @@
       <span>Drag &amp; Drop File</span>
       <atom-text-toggle :text="error" />
     </div>
+    <video
+      v-for="(file, index) in files"
+      :key="index"
+      :src="getObjectUrl(file)"
+      autoplay
+      muted
+      @loadedmetadata="({target}) => onLoad(target, file)"
+    />
   </div>
 </template>
 
@@ -26,24 +34,32 @@ export default {
 
   data () {
     return {
+      files: [],
       error: null,
       highlight: false
     };
   },
 
   methods: {
+    getObjectUrl (file) {
+      return global.URL.createObjectURL(file);
+    },
+
     onChange ({ target: { files } }) {
-      Array.from(files).map(file => new File(file)).map(async (file) => {
-        if (await file.hasValidMimeType()) {
-          if (await file.hasValidLength()) {
-            this.$emit('files-change', file);
-          } else {
-            this.error = 'your video is too long';
-          }
+      this.files = files;
+    },
+
+    async onLoad ({ duration }, uploadedFile) {
+      const file = new File(uploadedFile, duration);
+      if (await file.hasValidMimeType()) {
+        if (duration <= 120) {
+          this.$emit('files-change', file);
         } else {
-          this.error = 'wrong file format';
+          this.error = 'your video is too long';
         }
-      });
+      } else {
+        this.error = 'wrong file format';
+      }
     },
 
     hover (value) {
@@ -80,6 +96,10 @@ export default {
 
   & span {
     display: block;
+  }
+
+  & video {
+    visibility: hidden;
   }
 }
 </style>

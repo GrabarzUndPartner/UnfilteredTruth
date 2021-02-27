@@ -3,12 +3,10 @@ import Worker from 'worker-loader!./worker.js';
 import { fromEvent, Subject, ReplaySubject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import parseProgress from '@ffmpeg/ffmpeg/src/utils/parseProgress';
-import File from '@/classes/File';
 import Sine from '@/classes/Sine';
 import Transferable from '@/classes/Transferable';
-import { getVideoLength } from '@/utils/video';
 
-function createOberservers () {
+function createObservers () {
   const ready = new ReplaySubject(1);
   const start = new Subject();
   const done = new Subject();
@@ -19,7 +17,7 @@ function createOberservers () {
 }
 
 function prepare () {
-  const observers = createOberservers();
+  const observers = createObservers();
   observers.info.next('initialize');
 
   const worker = new Worker();
@@ -37,14 +35,12 @@ function prepare () {
   return observers;
 }
 
-async function loadFiles (file) {
+function loadFiles (file) {
   return Promise.all([
     file.getBuffer().then(async (data) => {
       return { name: file.name, type: await file.getMimeType(), data };
     }),
-    getVideoLength(await file.getObjectUrl()).then((duration) => {
-      return { name: 'sine.wav', type: 'audio/wav', data: new Sine(duration).getBuffer() };
-    })
+    { name: 'sine.wav', type: 'audio/wav', data: new Sine(file.duration).getBuffer() }
   ]);
 }
 
@@ -61,10 +57,12 @@ async function run (worker, file, observers) {
   const files = await loadFiles(file);
   const transferable = new Transferable(worker);
   transferable.publish(files);
-  transferable.subscribe(async (e) => {
+  transferable.subscribe(([
+    file
+  ]) => {
     transferable.destroy();
-    observers.done.next(await new File(new Blob([
-      e[0].data
-    ])).getObjectUrl());
+    observers.done.next(URL.createObjectURL(new Blob([
+      file.data
+    ], { type: 'video/mp4' })));
   });
 }

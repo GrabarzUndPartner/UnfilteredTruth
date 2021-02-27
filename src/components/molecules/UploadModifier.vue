@@ -57,7 +57,7 @@ export default {
 
     async onFilesChange (file) {
       const stats = this.stats = this.resetStats();
-      stats.upload = await file.getObjectUrl();
+      stats.upload = file;
       const updateStats = await this.observeConversion(await disguiseFile(file), stats);
       this.$emit('ready', { id: this.id, stats: updateStats });
     },
