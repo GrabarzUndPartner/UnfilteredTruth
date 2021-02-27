@@ -16,6 +16,8 @@
       v-for="(file, index) in files"
       :key="index"
       :src="getObjectUrl(file)"
+      width="0"
+      height="0"
       autoplay
       muted
       @loadedmetadata="({target}) => onLoad(target, file)"
@@ -30,6 +32,13 @@ import AtomTextToggle from '@/components/atoms/TextToggle';
 export default {
   components: {
     AtomTextToggle
+  },
+
+  props: {
+    maxLength: {
+      type: Number,
+      default: 10
+    }
   },
 
   data () {
@@ -52,7 +61,7 @@ export default {
     async onLoad ({ duration }, uploadedFile) {
       const file = new File(uploadedFile, duration);
       if (await file.hasValidMimeType()) {
-        if (duration <= 120) {
+        if (duration <= this.maxLength) {
           this.$emit('files-change', file);
         } else {
           this.error = 'your video is too long';

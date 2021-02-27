@@ -1,7 +1,7 @@
 <template>
   <div class="molecule_upload-modifier">
     <div class="container">
-      <atom-upload v-if="!stats.upload" class="upload" @files-change="onFilesChange" />
+      <atom-upload v-if="!stats.upload" class="upload" :max-length="120" @files-change="onFilesChange" />
       <atom-text-toggle v-if="!stats.progress" :text="stats.info" />
       <atom-progress v-if="stats.progress" class="progress" :stroke="5" :radius="60" :progress="stats.progress" />
       <video
@@ -21,7 +21,6 @@
 import AtomUpload from '@/components/atoms/Upload';
 import AtomProgress from '@/components/atoms/Progress';
 import AtomTextToggle from '@/components/atoms/TextToggle';
-// import { disguiseFile } from '@/service/ffmpeg';
 import { disguiseFile } from '@/service/ffmpegVideoConverter';
 
 export default {

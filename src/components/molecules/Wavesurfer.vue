@@ -33,10 +33,11 @@ export default {
     }
   },
 
-  mounted () {
-    [
-      createVideoElement(this.stats.upload), createVideoElement(this.stats.blob)
-    ].forEach(async (el) => {
+  async mounted () {
+    const videos = await Promise.all([
+      createVideoElement(await this.stats.upload.getObjectUrl()), createVideoElement(this.stats.blob)
+    ]);
+    videos.forEach(async (el) => {
       const wavesurfer = await this.initializeWavesurfer();
       wavesurfer.load(el);
       this.list.push(wavesurfer);
