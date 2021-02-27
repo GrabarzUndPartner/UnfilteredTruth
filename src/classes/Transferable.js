@@ -55,11 +55,7 @@ function publishMetdata (worker, files) {
   console.log('publish meta');
   worker.postMessage({
     type: 'metadata',
-    data: files.map((file) => {
-      const m = file.getMetadata();
-      console.log(m);
-      return m;
-    })
+    data: files.map(file => file.getMetadata())
   });
 }
 
@@ -69,7 +65,9 @@ function publishChunks (worker, files) {
     const to = file.getTransferObject();
     let chunk = to.getChunk();
     while (chunk) {
-      worker.postMessage({ type: 'chunk', data: chunk });
+      worker.postMessage({ type: 'chunk', data: chunk }, [
+        chunk
+      ]);
       chunk = to.getChunk();
     }
   });
