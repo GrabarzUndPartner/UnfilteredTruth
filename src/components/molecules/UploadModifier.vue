@@ -14,7 +14,7 @@
                 </transition>
               </div>
 
-              <atom-info-box v-if="stats.progress" class="upload-modifier__progress" style-type="upload-modifier" :foot="info">
+              <atom-info-box v-if="stats.progress && !stats.blob" class="upload-modifier__progress" style-type="upload-modifier" :foot="info">
                 <atom-progress :progress="stats.progress" />
               </atom-info-box>
             </transition>
@@ -28,8 +28,8 @@
         </div>
       </div>
       <div v-if="stats.blob" class="upload-modifier__complete">
-        <atom-link-button :url="stats.blob" :download="stats.upload.name" label="Save to disk" />
-        <atom-text-button label="Start Over" @click="onClickRetry" />
+        <atom-link-button :url="stats.blob" :download="stats.upload.name" :label="saveButton" />
+        <atom-text-button :label="resetButton" @click="onClickRetry" />
       </div>
     </lost-container>
   </div>
@@ -37,7 +37,12 @@
 
 <script>
 
-import MoleculeUpload from '@/components/molecules/Upload';
+import MoleculeUpload, {
+  ERROR_UNSUPPORTED_BROWSER,
+  ERROR_FILE_SIZE,
+  ERROR_VIDEO_LENGTH,
+  ERROR_FILE_FORMAT
+} from '@/components/molecules/Upload';
 import MoleculeVideoAnalyze from '@/components/molecules/VideoAnalyze';
 import AtomInfoBox from '@/components/atoms/InfoBox';
 import AtomProgress from '@/components/atoms/Progress';
@@ -72,36 +77,80 @@ export default {
     id: {
       type: String,
       default: null
+    },
+
+    text: {
+      type: String,
+      default: 'Drop video or tap here.'
+    },
+    saveButton: {
+      type: String,
+      default: 'Save to disk'
+    },
+    resetButton: {
+      type: String,
+      default: 'Start over'
+    },
+    errorMessages: {
+      type: Object,
+      default () {
+        return {
+          [ERROR_UNSUPPORTED_BROWSER]: {
+            headline: 'Browser not supported.',
+            text: 'This tool currently supports Google Chrome, Microsoft Edge, Firefox, Safari (on desktop), Safari (iOS) and some versions of Google Chrome (Android)'
+          },
+          [ERROR_FILE_SIZE]: {
+            headline: 'File to large',
+            text: 'File Size is to large…',
+            foot: 'Try again'
+          },
+          [ERROR_VIDEO_LENGTH]: {
+            headline: 'Video too long.',
+            text: 'We are sorry. Videos are currently limited to 60 seconds.',
+            foot: 'Try again'
+          },
+          [ERROR_FILE_FORMAT]: {
+            headline: 'Wrong video format.',
+            text: 'We are currently only able to convert MP4 or mov files.',
+            foot: 'Try again'
+          }
+        };
+      }
+    },
+    statsMessages: {
+      type: Object,
+      default () {
+        return {
+          [INITIALIZE]: {
+            fade: true,
+            styleType: null,
+            headline: 'Initializing',
+            text: null
+          },
+          [LOADING]: {
+            fade: true,
+            styleType: null,
+            headline: 'Loading',
+            text: null
+          },
+          [CONVERSION_START]: {
+            styleType: 'upload-modifier-sucess',
+            headline: 'Success!',
+            text: 'Video conversion started.'
+          },
+          [CONVERSION_COMPLETE]: {
+            fade: true,
+            headline: 'Starting',
+            text: null
+          }
+        };
+      }
     }
   },
 
   data () {
     return {
       stats: this.resetStats(),
-      statsMessages: {
-        [INITIALIZE]: {
-          fade: true,
-          styleType: null,
-          headline: 'Initializing',
-          text: null
-        },
-        [LOADING]: {
-          fade: true,
-          styleType: null,
-          headline: 'Loading',
-          text: null
-        },
-        [CONVERSION_START]: {
-          styleType: 'upload-modifier-sucess',
-          headline: 'Success!',
-          text: 'Video conversion started.'
-        },
-        [CONVERSION_COMPLETE]: {
-          fade: true,
-          headline: 'Starting',
-          text: null
-        }
-      },
       showInfo: false
     };
   },
@@ -112,7 +161,8 @@ export default {
         'js--state-initialize': this.stats && this.stats.info === INITIALIZE,
         'js--state-loading': this.stats && this.stats.info === LOADING,
         'js--state-conversion-start': this.stats && this.stats.info === CONVERSION_START,
-        'js--state-conversion-complete': this.stats && this.stats.info === CONVERSION_COMPLETE
+        'js--state-conversion-complete': this.stats && !this.stats.blob && this.stats.info === CONVERSION_COMPLETE,
+        'js--state-complete': this.stats.blob
       };
     },
     message () {
@@ -124,14 +174,14 @@ export default {
 
   watch: {
     'stats.info' (info) {
-      this.onStateChange(info);
+      this.onChangeInfo(info);
     }
   },
 
   methods: {
 
-    onStateChange (state) {
-      switch (state) {
+    onChangeInfo (info) {
+      switch (info) {
         case INITIALIZE:
           this.showInfo = true;
           break;
@@ -139,7 +189,7 @@ export default {
           this.showInfo = false;
           break;
       }
-      this.$emit('state', state);
+      this.$emit('info', info);
     },
 
     onClickRetry () {
@@ -188,11 +238,9 @@ export default {
 .molecule-upload-modifier {
   position: relative;
 
-  & .upload-modifier__container__inner,
   & .upload-modifier__container > div,
-  & .upload-modifier__upload,
-  & .upload-modifier__message,
-  & .upload-modifier__progress {
+  & .upload-modifier__container__inner,
+  & .upload-modifier__container__inner::before {
     overflow: hidden;
     border-radius: calc(20 / 320 * 100vw);
 
@@ -203,8 +251,21 @@ export default {
 
   & .upload-modifier__container__inner {
     color: var(--color-tertiary);
-    background-color: var(--color-secondary);
+  }
 
+  &:not(.js--state-complete) {
+    & .upload-modifier__container__inner {
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        content: "";
+        background-color: var(--color-secondary);
+      }
+    }
   }
 
   & .upload-modifier__upload,
@@ -231,9 +292,19 @@ export default {
     lost-offset: 1/12 0 0;
     lost-column: 10/12 0 0;
 
+    @media (--xs) {
+      lost-offset: 2/12;
+      lost-column: 8/12;
+    }
+
     @media (--sm) {
       lost-offset: 2/12;
       lost-column: 8/12;
+    }
+
+    @media (--md) {
+      lost-offset: 3/12;
+      lost-column: 6/12;
     }
 
     position: relative;
@@ -248,12 +319,6 @@ export default {
       & > div {
         position: relative;
         height: 100%;
-        background: var(--color-secondary);
-
-        & > div {
-          position: relative;
-          height: 100%;
-        }
       }
 
       position: absolute;
@@ -282,15 +347,17 @@ export default {
   }
 
   & .upload-modifier__preview {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    transform: translateY(-100%);
-    object-fit: cover;
   }
 
   & .upload-modifier__complete {
     display: flex;
     flex-direction: column;
+    align-items: center;
     lost-column: 6/12;
     lost-offset: 3/12;
     margin-top: calc(40 / 320 * 100vw);

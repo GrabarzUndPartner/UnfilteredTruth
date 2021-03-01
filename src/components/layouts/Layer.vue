@@ -8,13 +8,15 @@
     >
       <div>
         <div class="layer__close">
-          <button
-            v-if="closeButton"
-            class="close"
-            @click="onClickClose"
-          >
-            <svg-icon-close />
-          </button>
+          <div>
+            <button
+              v-if="closeButton"
+              class="close"
+              @click="onClickClose"
+            >
+              <svg-icon-close />
+            </button>
+          </div>
         </div>
         <slot />
       </div>
@@ -78,7 +80,7 @@ export default {
   height: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  background: var(--color-white);
+  background: var(--color-tertiary);
 
   & >>> .lost-flex-container {
     position: relative;
@@ -96,10 +98,16 @@ export default {
     position: sticky;
     top: 0;
     padding-top: calc(25 / 320 * 100%);
+    padding-bottom: calc(25 / 320 * 100%);
     clear: fix;
+
+    @media (--default-max) {
+      background: rgb(255 255 255 / 80%);
+    }
 
     @media (--xs) {
       padding-top: 25px;
+      padding-bottom: 25px;
     }
 
     @media (--sm) {
@@ -107,8 +115,10 @@ export default {
     }
 
     @media (--xs-max) {
-      lost-column: 10/12;
-      lost-offset: 1/12;
+      & > div {
+        lost-column: 10/12;
+        lost-offset: 1/12;
+      }
     }
 
     & button {
@@ -119,21 +129,19 @@ export default {
       background: transparent;
       border: none;
       outline: none;
-      appearance: none;
       opacity: 1;
-      transition: opacity 0.2s linear, transform 0.2s linear;
+      transition: filter 0.2s linear;
+      appearance: none;
 
       @media (hover: none) {
         &:active {
-          opacity: 0.8;
-          transform: scale(0.9);
+          filter: blur(3px);
         }
       }
 
       @media (hover: hover) {
         &:hover {
-          opacity: 0.8;
-          transform: scale(0.9);
+          filter: blur(3px);
         }
       }
     }

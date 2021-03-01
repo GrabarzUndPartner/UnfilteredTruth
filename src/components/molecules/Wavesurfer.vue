@@ -42,11 +42,13 @@ export default {
   methods: {
     getHeight () {
       if (global.matchMedia('(min-width: 1200px)').matches) {
-        return 200;
+        return 120;
       } else if (global.matchMedia('(min-width: 992px)').matches) {
         return 70;
       } else if (global.matchMedia('(min-width: 768px)').matches) {
-        return 70;
+        return 80;
+      } else if (global.matchMedia('(min-width: 576px)').matches) {
+        return 80;
       } else {
         return (40 / 320 * window.innerWidth);
       }
@@ -56,7 +58,7 @@ export default {
       return WaveSurfer.create({
         cursorColor: 'transparent',
         container: this.$refs.waveform,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#ebefff',
         waveColor: '#230ce5',
         progressColor: 'transparent',
         splitChannels: false,

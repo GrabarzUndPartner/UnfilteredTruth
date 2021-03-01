@@ -27,7 +27,7 @@
     "start:static": "node ./env/static-server.js",
     "production": "npm run build && npm run start",
     "lint": "npm run lint:es && npm run lint:css",
-    "lint:es": "eslint --fix --ext .js,.vue --ext .json ./",
+    "lint:es": "eslint --ext .js,.vue .",
     "lint:css": "stylelint \"src/**/*.vue\"",
     "audit": "npm audit --json | npx npm-audit-html --output .reports/audit.html",
     "semantic-release": "semantic-release",
@@ -72,7 +72,6 @@
     "vue-svg-loader": "0.16.0"
   },
   "dependencies": {
-    "@ffmpeg/core": "^0.8.5",
     "@ffmpeg/ffmpeg": "^0.9.7",
     "@fullhuman/postcss-purgecss": "4.0.2",
     "@js-basics/vector": "1.56.10",

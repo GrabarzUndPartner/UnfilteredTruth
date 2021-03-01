@@ -88,12 +88,22 @@ export default {
   }
 
   &.rich-text--audio-check {
+    color: var(--color-secondary);
     text-align: center;
 
     & h3,
     & >>> h3 {
-      margin-bottom: calc(10 / 320 * 100vw);
+      margin-bottom: calc(18 / 320 * 100vw);
+      font-size: calc(16 / 320 * 100vw);
       text-transform: uppercase;
+
+      @media (--xs) {
+        font-size: 18px;
+      }
+
+      @media (--sm) {
+        font-size: 32px;
+      }
 
       @media (--xs) {
         margin-bottom: 10px;
@@ -101,7 +111,11 @@ export default {
 
       @media (--sm) {
         padding: 0 10%;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+      }
+
+      @media (--lg) {
+        padding: 0;
       }
     }
 

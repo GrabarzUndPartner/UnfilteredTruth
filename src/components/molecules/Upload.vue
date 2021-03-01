@@ -40,10 +40,10 @@ import File from '@/classes/File';
 import SvgIconUpload from '@/assets/svg/icons/upload.svg?vue-template';
 import InfoBox from '../atoms/InfoBox';
 
-const ERROR_UNSUPPORTED_BROWSER = Symbol('errorBrowserUnsupported');
-const ERROR_FILE_SIZE = Symbol('errorFileSize');
-const ERROR_VIDEO_LENGTH = Symbol('errorFileSize');
-const ERROR_FILE_FORMAT = Symbol('errorFileFormat');
+export const ERROR_UNSUPPORTED_BROWSER = Symbol('errorBrowserUnsupported');
+export const ERROR_FILE_SIZE = Symbol('errorFileSize');
+export const ERROR_VIDEO_LENGTH = Symbol('errorFileSize');
+export const ERROR_FILE_FORMAT = Symbol('errorFileFormat');
 
 export default {
   components: {

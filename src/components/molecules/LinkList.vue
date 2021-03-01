@@ -1,6 +1,6 @@
 <template>
   <ul
-    v-font="$getFont('Roboto')"
+    v-font="$getFont('Roboto', 700, 'normal', {selector: 'a, button'})"
     class="molecule-link-list"
   >
     <slot>
@@ -66,6 +66,7 @@ export default {
     background: none;
     border: none;
     appearance: none;
+    transition: filter 0.2s linear;
 
     @media (--xs) {
       font-size: 12px;
@@ -73,6 +74,18 @@ export default {
 
     @media (--sm) {
       font-size: 18px;
+    }
+
+    @media (hover: none) {
+      &:active {
+        filter: blur(3px);
+      }
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        filter: blur(3px);
+      }
     }
   }
 

@@ -22,6 +22,7 @@
       }
     ],
     "block-closing-brace-empty-line-before": null,
-    "max-empty-lines": null
+    "max-empty-lines": null,
+    "no-duplicate-selectors": null
   }
 }
