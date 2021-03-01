@@ -1,7 +1,7 @@
 <template>
   <div class="molecule-info-slider">
     <transition name="fade" mode="out-in">
-      <info-box :key="index" v-bind="item" />
+      <info-box :key="index" v-bind="item" style-type="info-slider" />
     </transition>
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
 <style lang="postcss" scoped>
 
 .molecule-info-slider {
-  /* emprty */
+  background: var(--color-secondary);
 }
 
 .fade-enter-active,

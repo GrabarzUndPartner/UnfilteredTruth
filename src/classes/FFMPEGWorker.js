@@ -10,6 +10,7 @@ export const INITIALIZE = Symbol('initialize');
 export const CONVERSION_START = Symbol('conversion_start');
 export const CONVERSION_COMPLETE = Symbol('conversion_complete');
 export const LOADING = Symbol('loading');
+export const ERROR = Symbol('error');
 export default class FFMPEGWorker {
   constructor () {
     this.ready = new ReplaySubject(1);
@@ -28,6 +29,9 @@ export default class FFMPEGWorker {
     });
     messages.pipe(filter(data => data.type === 'stdout')).subscribe(({ data }) => {
       parseProgress(data, ({ ratio }) => { this.progress.next(ratio); });
+    });
+    messages.pipe(filter(data => data.type === 'error')).subscribe(({ data }) => {
+      this.info.next(ERROR);
     });
     messages.pipe(filter(data => data.type === 'start')).subscribe(({ data }) => {
       this.start.next(data);
