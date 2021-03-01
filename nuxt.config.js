@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const isDev = process.env.NODE_ENV === 'development';
 
-const DEFAULT_LANG = 'en';
+// const DEFAULT_LANG = 'en';
 
 module.exports = {
   dev: isDev,
@@ -221,8 +221,9 @@ module.exports = {
     'nuxt-speedkit',
     '@/modules/codesandbox',
     '@/modules/svg',
-    // '@/modules/analyzer',
+    '@/modules/analyzer',
     '@nuxtjs/axios',
+    /*
     [
       'nuxt-i18n', {
         locales: [
@@ -248,7 +249,7 @@ module.exports = {
           }
         }
       }
-    ],
+    ], */
     [
       '@/modules/licence', {
         perChunkOutput: false,

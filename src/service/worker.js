@@ -1,7 +1,7 @@
 import Transferable from '@/classes/Transferable';
-global.importScripts(process.env.BASE_PATH + 'videoconverter/ffmpeg-all-codecs.js');
+self.importScripts(process.env.BASE_PATH + 'videoconverter/ffmpeg-all-codecs.js');
 
-const PITCHING = 0.2;
+const PITCHING = 0.02;
 
 const transferable = new Transferable(self);
 transferable.subscribe((files) => {

@@ -98,15 +98,16 @@ export default {
       text-transform: uppercase;
 
       @media (--xs) {
+        margin-bottom: 10px;
         font-size: 18px;
+      }
+
+      @media (--xs-max) {
+        white-space: nowrap;
       }
 
       @media (--sm) {
         font-size: 32px;
-      }
-
-      @media (--xs) {
-        margin-bottom: 10px;
       }
 
       @media (--sm) {

@@ -238,9 +238,7 @@ export default {
 .molecule-upload-modifier {
   position: relative;
 
-  & .upload-modifier__container > div,
-  & .upload-modifier__container__inner,
-  & .upload-modifier__container__inner::before {
+  & .upload-modifier__container > div {
     overflow: hidden;
     border-radius: calc(20 / 320 * 100vw);
 
@@ -249,8 +247,19 @@ export default {
     }
   }
 
+  & .upload-modifier__container__inner,
+  & .upload-modifier__container__inner::before {
+    overflow: hidden;
+    border-radius: calc(10 / 320 * 100vw);
+
+    @media (--xs) {
+      border-radius: 10px;
+    }
+  }
+
   & .upload-modifier__container__inner {
     color: var(--color-tertiary);
+    will-change: transform;
   }
 
   &:not(.js--state-complete) {
