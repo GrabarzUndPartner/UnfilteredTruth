@@ -1,5 +1,4 @@
 import FileType from 'file-type/browser';
-import { getVideoLength } from '@/utils/video';
 
 const VALID_MIMETYPES = [
   'video/quicktime',
@@ -8,9 +7,10 @@ const VALID_MIMETYPES = [
 const MAX_FILE_SIZE = 188743680;
 
 export default class File {
-  constructor (data) {
+  constructor (data, duration = null) {
     this.data = data;
     this.name = data.name;
+    this.duration = duration;
   }
 
   hasValidSize () {
@@ -22,16 +22,8 @@ export default class File {
     return VALID_MIMETYPES.includes(mime);
   }
 
-  async hasValidLength () {
-    if (await this.hasValidMimeType()) {
-      return await getVideoLength(await this.getObjectUrl()) < 60;
-    } else {
-      return false;
-    }
-  }
-
   async getMimeType () {
-    const buffer = await this.getBuffer();
+    const buffer = new Uint8Array(await this.getBuffer());
     return (await FileType.fromBuffer(buffer)).mime;
   }
 
@@ -41,7 +33,7 @@ export default class File {
 
   async getBlob () {
     return new Blob([
-      await this.getBuffer()
+      new Uint8Array(await this.getBuffer())
     ], this.getMimeType());
   }
 
@@ -49,7 +41,7 @@ export default class File {
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.addEventListener('load', function () {
-        resolve(new Uint8Array(reader.result));
+        resolve(reader.result);
       }, false);
       reader.readAsArrayBuffer(this.data);
     });

@@ -7,9 +7,12 @@
 <script>
 export default {
   props: {
-    src: {
-      type: [Object, String],
-      default: null
+
+    video: {
+      type: global.HTMLElement,
+      default () {
+        return null;
+      }
     }
   },
 
@@ -32,9 +35,8 @@ export default {
   },
 
   async mounted () {
-    const wavesurfer = await this.initializeWavesurfer();
-    wavesurfer.load(createVideoElement(this.src));
-    this.list.push(wavesurfer);
+    this.wavesurfer = await this.initializeWavesurfer();
+    this.wavesurfer.load(this.video);
   },
 
   methods: {
@@ -66,13 +68,4 @@ export default {
   }
 };
 
-function createVideoElement (blob) {
-  const video = global.document.createElement('video');
-  video.src = blob;
-  return video;
-}
 </script>
-
-<style>
-
-</style>

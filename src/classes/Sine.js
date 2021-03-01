@@ -16,7 +16,7 @@ export default class Sine {
       float32Array[Number(sampleNumber)] = generateSample(sampleNumber, this.hz, angularFrequency);
     }
 
-    return new Uint8Array(toWav(audioBuffer));
+    return toWav(audioBuffer);
   }
 }
 

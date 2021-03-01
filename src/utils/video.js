@@ -3,9 +3,11 @@ export function getVideoLength (objectUrl) {
     const video = global.document.createElement('video');
     video.preload = 'metadata';
     video.src = objectUrl;
+    // TODO: safari doesnt receive onloadedmetadata
     video.onloadedmetadata = (e) => {
       resolve(video.duration);
     };
+    // resolve(10);
   });
 }
 
