@@ -1,5 +1,25 @@
 # Project Changelog
 
+# [1.1.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.0.1...v1.1.0) (2021-03-01)
+
+
+### Bug Fixes
+
+* **cleanup:** cleanup code ([33cabec](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/33cabecc4f22649fc6576ea88b4d37e64fe743d7))
+* **cleanup:** cleanup code ([cf7fee4](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/cf7fee400915be5b80da0616ea23784851f7d321))
+* **refactor:** refactored FFPMEG Worker + Safari Bug Fix ([c8f2230](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/c8f22303b8a8885fc70800962599d67e7f4bd70b))
+* **safari:** fixed video and download bugs in safari ([e3a42c9](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/e3a42c93b3d340a47abbe95f56e78654ed724ebe))
+* **wavesurfer:** fixed video sources ([1ec9ef9](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/1ec9ef97c39a4997f66781b8e9def38143a392e2))
+* **worker:** implemented transferable in postmessage ([16a1510](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/16a1510637b2e447601e1d632b8055aa88d1d1ec))
+
+
+### Features
+
+* **init:** add workflows and initial layout ([6fb9210](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/6fb92101af5ae8358dedcafc4a4c0cf5df1cc1a1))
+* **update:** replace ffmpeg worker ([c7723ba](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/c7723ba131415b69635e5393178cac2205a1c7b5))
+* **update:** update stylings ([ead25c9](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/ead25c96435fb9e88b88b0dfee58a98cd5df3ef8))
+* **worker:** implemented chunk transfer ([5b62227](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/5b622276e6db62ca8ee7433343ed7cfa62d0bb1b))
+
 ## [1.0.1](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.0.0...v1.0.1) (2021-02-24)
 
 
