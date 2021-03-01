@@ -28,7 +28,7 @@ export default {
   & .text-layer__content {
     lost-column: 10/12;
     lost-offset: 1/12;
-    padding-top: calc(70 / 320 * 100vw);
+    padding-top: calc(15 / 320 * 100vw);
     padding-bottom: calc(40 / 320 * 100vw);
 
     @media (--xs) {

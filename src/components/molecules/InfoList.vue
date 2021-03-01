@@ -33,7 +33,7 @@ export default {
 <style lang="postcss" scoped>
 .molecule-info-list {
   & > div {
-    margin: calc(30 / 320 * 100vw) 0;
+    margin: calc(20 / 320 * 100vw) 0;
 
     &:first-child {
       margin-top: 0;
@@ -44,7 +44,7 @@ export default {
     }
 
     @media (--xs) {
-      margin: 30px 0;
+      margin: 20px 0;
     }
 
     @media (--sm) {

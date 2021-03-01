@@ -60,28 +60,32 @@ export default {
 
   & .audio-check__content {
     padding: 0 calc(15 / 320 * 100vw);
-    padding-top: calc(37 / 320 * 100vw);
+    padding-top: calc(55 / 320 * 100vw);
 
     @media (--xs) {
       padding: 15px;
-      padding-top: 37px;
+      padding-top: 63px;
     }
 
-    @media (--xs) {
+    @media (--sm) {
       padding: 30px;
-      padding-top: 60px;
+      padding-top: 80px;
     }
 
     @media (--md) {
       padding: 30px;
       padding-top: 90px;
     }
+
+    @media (--lg) {
+      padding-top: 110px;
+    }
   }
 
   & .audio-check__close {
     position: absolute;
-    top: calc(5 / 320 * 100vw);
-    right: calc(8 / 320 * 100vw);
+    top: calc(11 / 320 * 100vw);
+    right: calc(13 / 320 * 100vw);
     width: calc(18 / 320 * 100vw);
     height: calc(18 / 320 * 100vw);
     padding: calc(10 / 320 * 100vw);
@@ -89,20 +93,24 @@ export default {
     fill: var(--color-primary);
 
     @media (--xs) {
-      top: 5px;
-      right: 5px;
-      width: 15px;
-      height: 15px;
+      top: 11px;
+      right: 13px;
+      width: 18px;
+      height: 18px;
       padding: 10px;
     }
 
     @media (--sm) {
+      top: 18px;
+      right: 23px;
       width: 30px;
       height: 30px;
       padding: 15px;
     }
 
     @media (--md) {
+      top: -1px;
+      right: 5px;
       width: 40px;
       height: 40px;
       padding: 30px;

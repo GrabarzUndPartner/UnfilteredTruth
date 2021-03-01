@@ -31,7 +31,7 @@ export default {
   data () {
     return {
       layerControl,
-      disclaimerContent: '<h2>Disclaimer</h2><p>This tool changes your video as carefully as possible. The audio information is hidden in an infrasound frequency, then the pitch is changed a little so it is less easily recognised by automated upload filters. However, it cannot be 100 per cent guaranteed that the processed video will not be blocked by upload filters and the platform&rsquo;s filtering software might learn to recognise any such modifications.</p><h2>How it processes your video</h2><p>Social media upload filters compare your content against a database of copyrighted media for similar patterns. By modifying the waveform, we change the audio patterns with minimal impact on the sound you hear.</p><h2>Please consider before uploading</h2><p>Even if you hide copyrighted material, it remains copyrighted. Please be aware of applicable legislation and the relevant social media platform&rsquo;s terms of use and only modify content that is not violating or infringing applicable law and/or any third-party rights .</p><p>This tool is made to share video documents that you have created yourself. You must not, and may not, use this tool to modify, use or distribute copyrighted media under infringement of third-party rights or for any other illegal purposes whatsoever.</p>',
+      disclaimerContent: '<h2>Disclaimer</h2><p>This tool changes your video as carefully as possible. The audio information is hidden in an infrasound frequency, then the pitch is changed a little so it is less easily recognised by automated upload filters. However, it cannot be 100 per cent guaranteed that the processed video will not be blocked by upload filters and the platform&rsquo;s filtering software might learn to recognise any such modifications.</p><h3>How it processes your video</h3><p>Social media upload filters compare your content against a database of copyrighted media for similar patterns. By modifying the waveform, we change the audio patterns with minimal impact on the sound you hear.</p><h3>Please consider before uploading</h3><p>Even if you hide copyrighted material, it remains copyrighted. Please be aware of applicable legislation and the relevant social media platform&rsquo;s terms of use and only modify content that is not violating or infringing applicable law and/or any third-party rights .</p><p>This tool is made to share video documents that you have created yourself. You must not, and may not, use this tool to modify, use or distribute copyrighted media under infringement of third-party rights or for any other illegal purposes whatsoever.</p>',
       privacyPromiseContent: '<h2>Privacy promise</h2><h3>No trackers,&nbsp;no cookies.</h3><p>We don&rsquo;t want you to disclose more information than needed. ?Consequently, this page doesn&rsquo;t track your use or behaviour.</p><h3>Video data is processed in you browser</h3><p>Your video documentation should be confident as long as possible. No video data is sent to external servers. Everything is processed on your computer.</p><h3>Check the code, it&rsquo;s open source</h3><p>You don&rsquo;t have to trust the code. You can control it. The source code for this tool is published under MIT License. Visit github for more details.</p><h3>Feel free to improve</h3><p>This tool is a first quick take on the problem. Do you have a better, more reliable solution? We are happy if you improve and submit the code.&nbsp;</p><p>&nbsp;</p>'
     };
   },
@@ -55,13 +55,13 @@ export default {
 <style lang="postcss">
 body {
   margin: 0;
-  margin-left: calc(100vw - 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 html[data-prevent-scrolling="true"] {
   & body {
+    margin-left: calc(100vw - 100%);
     overflow: hidden;
   }
 }

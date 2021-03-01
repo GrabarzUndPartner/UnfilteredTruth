@@ -1,6 +1,6 @@
 <template>
   <div>
-    <intro critical />
+    <intro critical v-bind="intro" />
     <audio-modifier critical v-bind="audioModifier" />
     <info v-bind="info" />
   </div>
@@ -18,7 +18,13 @@ export default {
   asyncData () {
     return {
 
-      intro: {},
+      intro: {
+        headline: {
+          primary: '#Unfiltered',
+          secondary: 'Truth'
+        },
+        subline: 'A basic tool to protect a basic right.'
+      },
       info: {
 
         tickerContent: 'We don’t track you. No video data is sent out. This tool is open-source.',

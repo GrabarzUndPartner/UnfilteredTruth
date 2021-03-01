@@ -174,14 +174,14 @@ export default {
 
   watch: {
     'stats.info' (info) {
-      this.onStateChange(info);
+      this.onChangeInfo(info);
     }
   },
 
   methods: {
 
-    onStateChange (state) {
-      switch (state) {
+    onChangeInfo (info) {
+      switch (info) {
         case INITIALIZE:
           this.showInfo = true;
           break;
@@ -189,7 +189,7 @@ export default {
           this.showInfo = false;
           break;
       }
-      this.$emit('state', state);
+      this.$emit('info', info);
     },
 
     onClickRetry () {
@@ -292,9 +292,19 @@ export default {
     lost-offset: 1/12 0 0;
     lost-column: 10/12 0 0;
 
+    @media (--xs) {
+      lost-offset: 2/12;
+      lost-column: 8/12;
+    }
+
     @media (--sm) {
       lost-offset: 2/12;
       lost-column: 8/12;
+    }
+
+    @media (--md) {
+      lost-offset: 3/12;
+      lost-column: 6/12;
     }
 
     position: relative;
@@ -347,6 +357,7 @@ export default {
   & .upload-modifier__complete {
     display: flex;
     flex-direction: column;
+    align-items: center;
     lost-column: 6/12;
     lost-offset: 3/12;
     margin-top: calc(40 / 320 * 100vw);

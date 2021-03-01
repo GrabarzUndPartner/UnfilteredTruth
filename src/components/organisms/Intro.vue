@@ -1,6 +1,6 @@
 <template>
   <lost-container tag="h1" class="organisms-intro" direction="column">
-    <animated-text class="intro__headline" />
+    <animated-text class="intro__headline" v-bind="headline" />
     <padded-text class="intro__subline" :content="subline" />
   </lost-container>
 </template>
@@ -14,9 +14,12 @@ export default {
   components: { LostContainer, AnimatedText, PaddedText },
   props: {
     headline: {
-      type: Array,
+      type: Object,
       default () {
-        return ['#Unfiltered', 'Truth'];
+        return {
+          primary: '#Unfiltered',
+          secondary: 'Truth'
+        };
       }
     },
     subline: {
@@ -32,6 +35,13 @@ export default {
   & .intro__headline {
     lost-column: 10/12;
     lost-offset: 1/12;
+    margin-top: calc(90 / 320 * 100vw);
+    margin-bottom: calc(44 / 320 * 100vw);
+
+    @media (--xs) {
+      margin-top: 90px;
+      margin-bottom: 44px;
+    }
 
     @media (--sm) {
       lost-column: 12/12;

@@ -24,6 +24,7 @@ export default {
 .atom-animated-text {
   position: relative;
   color: var(--color-primary);
+  text-align: center;
 
   & span {
     line-height: 1;
@@ -32,19 +33,6 @@ export default {
   @media (--xs-max) {
     & span {
       display: block;
-    }
-
-    &::before {
-      display: block;
-      padding-top: calc(3 / 4 * 100%);
-      content: "";
-    }
-
-    & > * {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
     }
   }
 
@@ -80,15 +68,9 @@ export default {
     @media (--xs) {
       font-size: 67px;
     }
-
-    & span {
-      transform: translateY(75%);
-    }
   }
 
   @media (--sm) {
-    text-align: center;
-
     & .animated-text__primary,
     & .animated-text__secondary {
       font-size: 71px;
@@ -141,7 +123,7 @@ export default {
   }
 
   75% {
-    filter: blur(2px);
+    filter: blur(3px);
   }
 
   100% {
