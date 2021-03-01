@@ -1,9 +1,9 @@
 <template>
   <div>
     <ul>
-      <li v-for="({id, stats}, index) in conversions" :key="index">
+      <li v-for="({id, stats, video}, index) in conversions" :key="index">
         <molecule-upload-modifier :id="id" @ready="onReady" />
-        <molecule-wavesurfer v-if="stats" :stats="stats" />
+        <molecule-wavesurfer v-if="stats" :stats="stats" :video="video" />
       </li>
     </ul>
   </div>
@@ -23,7 +23,7 @@ export default {
   data () {
     return {
       conversions: [
-        { id: getRandomString(), stats: null }
+        { id: getRandomString(), stats: null, video: null }
       ]
     };
   },
@@ -31,7 +31,9 @@ export default {
   methods: {
     onReady (result) {
       console.log(result);
-      this.conversions.find(({ id }) => id === result.id).stats = result.stats;
+      const entry = this.conversions.find(({ id }) => id === result.id);
+      entry.stats = result.stats;
+      entry.video = result.video;
       this.conversions.push({ id: getRandomString(), stats: null });
     }
   }

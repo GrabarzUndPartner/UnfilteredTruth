@@ -12,6 +12,13 @@ export default {
       default () {
         return null;
       }
+    },
+
+    video: {
+      type: global.HTMLElement,
+      default () {
+        return null;
+      }
     }
   },
 
@@ -34,8 +41,9 @@ export default {
   },
 
   async mounted () {
+    console.log(this.video);
     const videos = await Promise.all([
-      createVideoElement(await this.stats.upload.getObjectUrl()), createVideoElement(this.stats.blob)
+      this.video, createVideoElement(this.stats.blob)
     ]);
     videos.forEach(async (el) => {
       const wavesurfer = await this.initializeWavesurfer();

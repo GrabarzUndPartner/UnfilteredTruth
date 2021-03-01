@@ -58,11 +58,11 @@ export default {
       this.files = files;
     },
 
-    async onLoad ({ duration }, uploadedFile) {
-      const file = new File(uploadedFile, duration);
+    async onLoad (target, uploadedFile) {
+      const file = new File(uploadedFile, target.duration);
       if (await file.hasValidMimeType()) {
-        if (duration <= this.maxLength) {
-          this.$emit('files-change', file);
+        if (target.duration <= this.maxLength) {
+          this.$emit('files-change', { file, target });
         } else {
           this.error = 'your video is too long';
         }

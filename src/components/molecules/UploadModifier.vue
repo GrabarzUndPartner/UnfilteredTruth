@@ -21,7 +21,8 @@
 import AtomUpload from '@/components/atoms/Upload';
 import AtomProgress from '@/components/atoms/Progress';
 import AtomTextToggle from '@/components/atoms/TextToggle';
-import { disguiseFile } from '@/service/ffmpegVideoConverter';
+import FFMPEGWorker from '@/classes/FFMPEGWorker';
+// import { disguiseFile } from '@/service/ffmpegVideoConverter';
 
 export default {
   components: {
@@ -54,11 +55,11 @@ export default {
       };
     },
 
-    async onFilesChange (file) {
+    async onFilesChange ({ file, target }) {
       const stats = this.stats = this.resetStats();
       stats.upload = file;
-      const updateStats = await this.observeConversion(await disguiseFile(file), stats);
-      this.$emit('ready', { id: this.id, stats: updateStats });
+      const updateStats = await this.observeConversion((new FFMPEGWorker()).run(file), stats);
+      this.$emit('ready', { id: this.id, stats: updateStats, video: target });
     },
 
     observeConversion (observers, stats) {
