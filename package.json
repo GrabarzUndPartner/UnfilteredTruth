@@ -84,6 +84,7 @@
     "@nuxtjs/storybook": "^3.3.1",
     "@storybook/addon-a11y": "6.1.19",
     "audiobuffer-to-wav": "^1.0.0",
+    "binary-data-chunking": "^3.0.1",
     "core-js": "3.9.0",
     "css-loader": "5.0.2",
     "file-type": "^16.2.0",

@@ -6,9 +6,9 @@
     <rich-text class="audio-check__content" style-type="audio-check">
       <h3>{{ headline }}</h3>
       <p>{{ before }}</p>
-      <wavesurfer v-if="source" :src="source" />
+      <wavesurfer :video="stats.video" />
       <p>{{ after }}</p>
-      <wavesurfer v-if="destination" :src="destination" />
+      <wavesurfer :video="createVideoElement(stats.blob)" />
     </rich-text>
   </div>
 </template>
@@ -33,21 +33,24 @@ export default {
       type: String,
       default: 'After conversion'
     },
-    source: {
-      type: String,
-      required: true
-    },
-    destination: {
-      type: String,
+    stats: {
+      type: Object,
       required: true
     }
   },
+
   methods: {
     onClickClose (e) {
       this.$emit('close', e);
+    },
+    createVideoElement (blob) {
+      const video = global.document.createElement('video');
+      video.src = blob;
+      return video;
     }
   }
 };
+
 </script>
 
 <style lang="postcss">

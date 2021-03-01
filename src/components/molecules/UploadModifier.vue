@@ -5,25 +5,24 @@
       <div class="upload-modifier__container">
         <div>
           <div class="upload-modifier__container__inner">
-            <molecule-upload v-if="!stats.upload" class="upload-modifier__upload" @files-change="onFilesChange" />
+            <molecule-upload v-if="!stats.upload" class="upload-modifier__upload" :max-length="120" @files-change="onFilesChange" />
 
             <transition name="fade" mode="out-in">
               <div v-if="message && !stats.progress" class="upload-modifier__message">
                 <transition name="fade" mode="out-in">
-                  <info-box :key="String(stats.info)" v-bind="message" />
+                  <atom-info-box :key="String(stats.info)" v-bind="message" />
                 </transition>
               </div>
 
-              <info-box v-if="stats.progress" class="upload-modifier__progress" style-type="upload-modifier" :foot="info">
+              <atom-info-box v-if="stats.progress" class="upload-modifier__progress" style-type="upload-modifier" :foot="info">
                 <atom-progress :progress="stats.progress" />
-              </info-box>
+              </atom-info-box>
             </transition>
 
             <molecule-video-analyze
               v-if="stats.blob"
               class="upload-modifier__preview"
-              :source="stats.upload"
-              :destination="stats.blob"
+              :stats="stats"
             />
           </div>
         </div>
@@ -36,20 +35,23 @@
   </div>
 </template>
 
-<script>/* eslint-disable vue/no-unused-components */
+<script>
+
 import MoleculeUpload from '@/components/molecules/Upload';
 import MoleculeVideoAnalyze from '@/components/molecules/VideoAnalyze';
 import AtomInfoBox from '@/components/atoms/InfoBox';
 import AtomProgress from '@/components/atoms/Progress';
-import AtomRichText from '@/components/atoms/RichText';
-// eslint-disable-next-line no-unused-vars
-import { CONVERSION_COMPLETE, CONVERSION_START, disguiseFile, INITIALIZE, LOADING } from '@/service/ffmpegVideoConverter';
+import FFMPEGWorker, {
+  INITIALIZE,
+  LOADING,
+  CONVERSION_START,
+  CONVERSION_COMPLETE
+} from '@/classes/FFMPEGWorker';
+
 import LostContainer from '../layouts/LostContainer';
-// import { disguiseFile } from '@/service/ffmpeg';
 
 import AtomLinkButton from '../atoms/LinkButton';
 import AtomTextButton from '../atoms/TextButton';
-import InfoBox from '../atoms/InfoBox';
 
 export default {
   components: {
@@ -59,9 +61,7 @@ export default {
     AtomProgress,
     AtomInfoBox,
     AtomLinkButton,
-    AtomTextButton,
-    AtomRichText,
-    InfoBox
+    AtomTextButton
   },
 
   props: {
@@ -153,14 +153,16 @@ export default {
         info: null,
         error,
         progress: 0,
-        upload: null
+        upload: null,
+        video: null
       };
     },
 
-    async onFilesChange (file) {
+    async onFilesChange ({ file, target }) {
       const stats = this.stats = this.resetStats();
-      stats.upload = await file.getObjectUrl();
-      const updateStats = await this.observeConversion(await disguiseFile(file), stats);
+      stats.upload = file;
+      stats.video = target;
+      const updateStats = await this.observeConversion((new FFMPEGWorker()).run(file), stats);
       this.$emit('ready', { id: this.id, stats: updateStats });
     },
 
