@@ -81,6 +81,8 @@ export default {
 
 <style lang="postcss">
 .atom-video-analyze {
+  background: var(--color-tertiary);
+
   & video {
     width: 100%;
     height: 100%;
@@ -97,7 +99,9 @@ export default {
     height: calc(17 / 22 * ((21 / 320 * 100vw)));
     padding: calc(10 / 320 * 100vw);
     cursor: pointer;
+    opacity: 0.8;
     fill: var(--color-tertiary);
+    transition: transform 0.3s ease-out, opacity 0.3s linear;
 
     @media (--xs) {
       width: 21px;
@@ -111,6 +115,10 @@ export default {
       padding: 20px;
     }
 
+    &:hover {
+      opacity: 1;
+    }
+
   }
 
   & .video-analyze__play-button,
@@ -120,12 +128,6 @@ export default {
 
     @media (--xs) {
       border-radius: 20px;
-    }
-  }
-
-  &.js--show-audio-check {
-    & video {
-      opacity: 0;
     }
   }
 
@@ -147,6 +149,7 @@ export default {
     height: 100%;
     cursor: pointer;
     background: rgb(0 0 0 / 30%);
+    transition: transform 0.3s ease-out, opacity 0.3s linear;
 
     & > * {
       position: absolute;
@@ -154,7 +157,9 @@ export default {
       left: 50%;
       width: calc(31 / 320 * 100vw);
       height: calc((63 / 50) * (31 / 320 * 100vw));
+      opacity: 0.8;
       fill: var(--color-tertiary);
+      transition: opacity 0.3s linear;
       transform: translate(-50%, -50%);
 
       @media (--xs) {
@@ -167,11 +172,30 @@ export default {
         height: calc(63 / 50 * 48px);
       }
     }
+
+    &:hover {
+      & > * {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.js--show-audio-check {
+    & .video-analyze__audio-check-button {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+
+    & .video-analyze__play-button,
+    & video {
+      opacity: 0;
+    }
   }
 
   &.js--playing {
     & .video-analyze__play-button {
       opacity: 0;
+      transform: scale(0.6);
     }
   }
 

@@ -44,9 +44,11 @@ export default {
       if (global.matchMedia('(min-width: 1200px)').matches) {
         return 200;
       } else if (global.matchMedia('(min-width: 992px)').matches) {
-        return 70;
+        return 160;
       } else if (global.matchMedia('(min-width: 768px)').matches) {
-        return 70;
+        return 80;
+      } else if (global.matchMedia('(min-width: 576px)').matches) {
+        return 80;
       } else {
         return (40 / 320 * window.innerWidth);
       }

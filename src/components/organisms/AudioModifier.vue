@@ -1,6 +1,6 @@
 <template>
   <div class="organism-audio-modifier">
-    <upload-modifier class="audio-modifier__upload" @reset="onReset" @ready="onReady" @state="onChangeState" />
+    <upload-modifier class="audio-modifier__upload" v-bind="uploadModifier" @reset="onReset" @ready="onReady" @state="onChangeState" />
     <lost-container v-if="!complete" class="audio-modifier" direction="column">
       <info-slider v-if="processing" class="audio-modifier__info-slider" :items="infoSliderItems" />
       <info-list v-if="!processing" class="audio-modifier__info-list" :items="infoListItems" />
@@ -25,6 +25,16 @@ export default {
   },
 
   props: {
+
+    uploadModifier: {
+      type: Object,
+      default () {
+        return {
+          info: 'Do not leave your browser or close this tab'
+        };
+      }
+    },
+
     infoListItems: {
       type: Array,
       default: InfoSlider.props.items.default

@@ -80,14 +80,17 @@ export default {
 
   & .audio-check__close {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: calc(5 / 320 * 100vw);
+    right: calc(8 / 320 * 100vw);
     width: calc(18 / 320 * 100vw);
     height: calc(18 / 320 * 100vw);
-    padding: calc(20 / 320 * 100vw);
+    padding: calc(10 / 320 * 100vw);
+    cursor: pointer;
     fill: var(--color-primary);
 
     @media (--xs) {
+      top: 5px;
+      right: 5px;
       width: 15px;
       height: 15px;
       padding: 10px;

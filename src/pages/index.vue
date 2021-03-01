@@ -3,8 +3,6 @@
     <intro critical />
     <audio-modifier critical v-bind="audioModifier" />
     <info v-bind="info" />
-    <!-- <animated-headline v-bind="animatedHeadline" />
-    <quote-fader v-bind="QuoteFader" /> -->
   </div>
 </template>
 
@@ -15,7 +13,6 @@ export default {
     Intro: () => import('@/components/organisms/Intro'),
     AudioModifier: () => import('@/components/organisms/AudioModifier'),
     Info: () => import('@/components/organisms/Info')
-    // QuoteFader: () => import('@/components/organisms/QuoteFader')
   },
 
   asyncData () {
@@ -24,7 +21,7 @@ export default {
       intro: {},
       info: {
 
-        tickerContent: 'We don’t track you. No video or data is sent out. This tool is open source. We don’t track you. No video or data is sent out.',
+        tickerContent: 'We don’t track you. No video data is sent out. This tool is open-source.',
         buttonLabel: 'Our privacy promise…',
         buttonLayer: 'privacyPromise'
 
@@ -35,44 +32,28 @@ export default {
         infoListItems: [
           {
             headline: null,
-            text: 'Recently, police officers started to play music while their actions were filmed. Thus, trying to trigger social media’s copyright filters to block these documents from being viewed and shared.'
+            text: 'Recently, US police officers started to play music to prevent citizens from documenting and sharing their actions.'
           },
           {
             headline: null,
-            text: 'This tool provides a fast and simple way to hide the video’s soundtrack from these filters. For fast and simple sharing.'
+            text: 'The music triggers social media copyright filters and prevents recordings from being shared. This tool provides a fast and simple way to hide the video’s soundtrack from these filters – for fast and simple sharing.'
           }
         ],
         infoSliderItems: [
           {
-            headline: 'We noticed:​',
-            text: 'Officials abuse copyright regulations to stop the spread of videos of possible misconduct.​'
+            headline: 'We heard the news:',
+            text: 'Officials abuse copyright regulations to stop videos of possible misconduct being shared.'
           },
           {
-            headline: 'We believe:​',
-            text: 'Everybody should be able to share video evidence with the world. Unobstructed by content filter.'
+            headline: 'We believe:',
+            text: 'Everybody should be able to share video evidence with the world – unobstructed by copyright filters.'
           },
           {
-            headline: 'We want to help:​​',
-            text: 'We provide this simple tool. It processes video footage to reduce the risk of getting detected on upload.​'
+            headline: 'We want to help:',
+            text: 'We provide this simple tool. It processes video footage to reduce the risk of it getting blocked.'
           }
         ]
 
-      },
-      QuoteFader: {
-        list: [
-          {
-            headline: 'We noticed:​',
-            text: 'Officials abuse copyright regulations to stop the spread of videos of possible misconduct.​'
-          },
-          {
-            headline: 'We believe:​',
-            text: 'Everybody should be able to share video evidence with the world. Unobstructed by content filter.'
-          },
-          {
-            headline: 'We want to help:​​',
-            text: 'We provide this simple tool. It processes video footage to reduce the risk of getting detected on upload.​'
-          }
-        ]
       }
     };
   }

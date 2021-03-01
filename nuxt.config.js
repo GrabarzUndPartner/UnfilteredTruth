@@ -11,7 +11,9 @@ module.exports = {
   target: 'static',
   srcDir: 'src/',
   css: [],
-  env: {},
+  env: {
+    BASE_PATH: getBasePath()
+  },
 
   features: {
     store: true,
@@ -219,7 +221,7 @@ module.exports = {
     'nuxt-speedkit',
     '@/modules/codesandbox',
     '@/modules/svg',
-    '@/modules/analyzer',
+    // '@/modules/analyzer',
     '@nuxtjs/axios',
     [
       'nuxt-i18n', {
