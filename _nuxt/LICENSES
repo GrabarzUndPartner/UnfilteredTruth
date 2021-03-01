@@ -1,53 +1,38 @@
 /*!
-  * vue-router v3.5.1
-  * (c) 2021 Evan You
-  * @license MIT
-  */
-
-/*!
- * JavaScript Cookie v2.2.1
- * https://github.com/js-cookie/js-cookie
+ * array-keys
+ *   version 2.3.1
+ *   http://github.com/silverbucket/array-keys
  *
- * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
- * Released under the MIT license
- */
-
-/*!
- * The buffer module from node.js, for the browser.
+ * Developed and Maintained by:
+ *   Nick Jennings <nick@silverbucket.net> copyright 2015
  *
- * @author   Feross Aboukhadijeh <http://feross.org>
- * @license  MIT
+ * array-keys is released under the MIT license (see LICENSE).
+ *
+ * You don't have to do anything special to choose one license or the other
+ * and you don't have to notify anyone which license you are using.
+ * Please see the corresponding license file for details of these licenses.
+ * You are free to use, modify and distribute this software, but all copyright
+ * information must remain.
+ *
  */
 
-/*!
- * Vue.js v2.6.12
- * (c) 2014-2020 Evan You
- * Released under the MIT License.
- */
 
 /*!
- * cookie
- * Copyright(c) 2012-2014 Roman Shtylman
- * Copyright(c) 2015 Douglas Christopher Wilson
- * MIT Licensed
- */
-
-/*!
- * vue-client-only v2.0.0
- * (c) 2019-present egoist <0x142857@gmail.com>
- * Released under the MIT License.
- */
-
-/*!
- * vuex v3.6.2
- * (c) 2021 Evan You
- * @license MIT
- */
-
-/*!
- * wavesurfer.js 4.5.0 (2021-02-14)
- * https://wavesurfer-js.org
- * @license BSD-3-Clause
+ * array-keys
+ *   version 2.3.1
+ *   http://github.com/silverbucket/array-keys
+ *
+ * Developed and Maintained by:
+ *   Nick Jennings <nick@silverbucket.net> copyright 2015
+ *
+ * array-keys is released under the MIT license (see LICENSE).
+ *
+ * You don't have to do anything special to choose one license or the other
+ * and you don't have to notify anyone which license you are using.
+ * Please see the corresponding license file for details of these licenses.
+ * You are free to use, modify and distribute this software, but all copyright
+ * information must remain.
+ *
  */
 
 /*! *****************************************************************************
@@ -65,153 +50,39 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
-/*! ./absMax */
-
-/*! ./clamp */
-
-/*! ./drawer */
-
-/*! ./drawer.canvasentry */
-
-/*! ./drawer.multicanvas */
-
-/*! ./fetch */
-
-/*! ./frame */
-
-/*! ./get-id */
-
-/*! ./max */
-
-/*! ./mediaelement */
-
-/*! ./mediaelement-webaudio */
-
-/*! ./min */
-
-/*! ./observer */
-
-/*! ./peakcache */
-
-/*! ./prevent-click */
-
-/*! ./request-animation-frame */
-
-/*! ./style */
-
-/*! ./util */
-
-/*! ./util/get-id */
-
-/*! ./util/style */
-
-/*! ./webaudio */
-
-/*! Gecko-Picture - v1.0
- * https://github.com/scottjehl/picturefill/tree/3.0/src/plugins/gecko-picture
- * Firefox's early picture implementation (prior to FF41) is static and does
- * not react to viewport changes. This tiny module fixes this.
- */
-
-/*! Picturefill - v3.0.2
- * http://scottjehl.github.io/picturefill
- * Copyright (c) 2015 https://github.com/scottjehl/picturefill/blob/master/Authors.txt;
- *  License: MIT
- */
-
-/*! debounce */
-
-/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
-
-/*! npm.im/object-fit-images 3.2.4 */
-
-/*! picturefill - v3.0.2 - 2016-02-12
- * https://scottjehl.github.io/picturefill/
- * Copyright (c) 2016 https://github.com/scottjehl/picturefill/blob/master/Authors.txt; Licensed MIT
- */
-
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
-/*!***********************!*\
-  !*** ./src/drawer.js ***!
-  \***********************/
 
-/*!*************************!*\
-  !*** ./src/util/max.js ***!
-  \*************************/
+/*!
+  * vue-router v3.5.1
+  * (c) 2021 Evan You
+  * @license MIT
+  */
 
-/*!*************************!*\
-  !*** ./src/util/min.js ***!
-  \*************************/
+/*!
+ * Vue.js v2.6.12
+ * (c) 2014-2020 Evan You
+ * Released under the MIT License.
+ */
 
-/*!*************************!*\
-  !*** ./src/webaudio.js ***!
-  \*************************/
+/*!
+ * vuex v3.6.2
+ * (c) 2021 Evan You
+ * @license MIT
+ */
 
-/*!**************************!*\
-  !*** ./src/peakcache.js ***!
-  \**************************/
 
-/*!***************************!*\
-  !*** ./src/util/clamp.js ***!
-  \***************************/
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
 
-/*!***************************!*\
-  !*** ./src/util/fetch.js ***!
-  \***************************/
+/*!
+ * vue-client-only v2.0.0
+ * (c) 2019-present egoist <0x142857@gmail.com>
+ * Released under the MIT License.
+ */
 
-/*!***************************!*\
-  !*** ./src/util/frame.js ***!
-  \***************************/
-
-/*!***************************!*\
-  !*** ./src/util/index.js ***!
-  \***************************/
-
-/*!***************************!*\
-  !*** ./src/util/style.js ***!
-  \***************************/
-
-/*!***************************!*\
-  !*** ./src/wavesurfer.js ***!
-  \***************************/
-
-/*!****************************!*\
-  !*** ./src/util/absMax.js ***!
-  \****************************/
-
-/*!****************************!*\
-  !*** ./src/util/get-id.js ***!
-  \****************************/
-
-/*!*****************************!*\
-  !*** ./src/mediaelement.js ***!
-  \*****************************/
-
-/*!******************************!*\
-  !*** ./src/util/observer.js ***!
-  \******************************/
-
-/*!***********************************!*\
-  !*** ./src/drawer.canvasentry.js ***!
-  \***********************************/
-
-/*!***********************************!*\
-  !*** ./src/drawer.multicanvas.js ***!
-  \***********************************/
-
-/*!***********************************!*\
-  !*** ./src/util/prevent-click.js ***!
-  \***********************************/
-
-/*!**************************************!*\
-  !*** ./src/mediaelement-webaudio.js ***!
-  \**************************************/
-
-/*!****************************************!*\
-  !*** ./node_modules/debounce/index.js ***!
-  \****************************************/
-
-/*!*********************************************!*\
-  !*** ./src/util/request-animation-frame.js ***!
-  \*********************************************/
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
