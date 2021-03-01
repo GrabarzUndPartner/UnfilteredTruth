@@ -102,7 +102,7 @@ export default {
     clear: fix;
 
     @media (--default-max) {
-      background: rgb(255 255 255 / 80%);
+      background: rgb(235 239 255 / 80%);
     }
 
     @media (--xs) {

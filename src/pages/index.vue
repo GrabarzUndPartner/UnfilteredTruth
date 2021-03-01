@@ -1,6 +1,7 @@
 <template>
   <div>
     <intro critical v-bind="intro" />
+    <text-fade />
     <audio-modifier critical v-bind="audioModifier" />
     <info v-bind="info" />
   </div>
@@ -8,8 +9,11 @@
 
 <script>
 
+import TextFade from '@/components/atoms/TextFade';
+
 export default {
   components: {
+    TextFade,
     Intro: () => import('@/components/organisms/Intro'),
     AudioModifier: () => import('@/components/organisms/AudioModifier'),
     Info: () => import('@/components/organisms/Info')

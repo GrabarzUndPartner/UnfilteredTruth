@@ -37,7 +37,7 @@ export default {
   },
 
   head () {
-    const seo = this.$nuxtI18nSeo();
+    const seo = (this.$nuxtI18nSeo && this.$nuxtI18nSeo()) || { htmlAttrs: {} };
     seo.htmlAttrs[String(DATA_ATTR_PREVENT_SCROLLING)] = this.preventScrolling;
     return seo;
   },

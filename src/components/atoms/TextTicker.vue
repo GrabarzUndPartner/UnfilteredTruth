@@ -21,6 +21,7 @@ export default {
 .atoms-text-ticker {
   width: 100%;
   overflow: hidden;
+  will-change: transform;
 
   & > div {
     width: max-content;
