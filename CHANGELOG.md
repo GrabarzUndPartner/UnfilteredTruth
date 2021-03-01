@@ -1,5 +1,12 @@
 # Project Changelog
 
+## [1.1.1](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.0...v1.1.1) (2021-03-01)
+
+
+### Bug Fixes
+
+* **styling:** fix styles ([c02cdf7](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/c02cdf7cdd21082fa255b3620b68248504c82ede))
+
 # [1.1.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.0.1...v1.1.0) (2021-03-01)
 
 
