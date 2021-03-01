@@ -43,6 +43,7 @@ function receiveFiles (metadataList) {
       const file = new BDC(data);
       file.onCompleted = () => {
         file.getFile((buffer) => {
+          // file.clearData();
           resolve({ name: file.name, mimeType: file.mimeType, data: new Uint8Array(buffer) });
           console.log('complete', file);
         });

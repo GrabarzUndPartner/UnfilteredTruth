@@ -1,7 +1,7 @@
 <template>
   <div v-font="$getFont('Alfa Slab One')" class="atoms-text-ticker">
     <div>
-      <span>{{ content }}</span><span>{{ content }}</span>
+      <span>{{ content }}</span><span>{{ content }}</span><span>{{ content }}</span>
     </div>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
     font-size: 0;
     white-space: nowrap;
     animation-name: tickerAnimation;
-    animation-duration: 20s;
+    animation-duration: 16s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     will-change: transform;
@@ -56,7 +56,7 @@ export default {
   }
 
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% / 3));
   }
 }
 

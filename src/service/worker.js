@@ -29,8 +29,12 @@ transferable.subscribe((files) => {
 
   sendInfo('start', Module.arguments.join(' '));
 
-  const result = global.ffmpeg_run(Module);
-  transferable.publish(result);
+  try {
+    const result = global.ffmpeg_run(Module);
+    transferable.publish(result);
+  } catch (e) {
+    sendInfo('error', e);
+  }
 });
 
 sendInfo('ready', null);

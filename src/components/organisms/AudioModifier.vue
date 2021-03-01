@@ -2,8 +2,10 @@
   <div class="organism-audio-modifier">
     <upload-modifier class="audio-modifier__upload" v-bind="uploadModifier" @reset="onReset" @ready="onReady" @info="onChangeInfo" />
     <lost-container v-if="!complete" class="audio-modifier" direction="column">
-      <info-slider v-if="processing" class="audio-modifier__info-slider" :items="infoSliderItems" />
-      <info-list v-if="!processing" class="audio-modifier__info-list" :items="infoListItems" />
+      <transition name="fade" mode="out-in">
+        <info-slider v-if="processing" class="audio-modifier__info-slider" :items="infoSliderItems" />
+        <info-list v-if="!processing" class="audio-modifier__info-list" :items="infoListItems" />
+      </transition>
     </lost-container>
   </div>
 </template>
@@ -110,4 +112,15 @@ div {
   }
 
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
 </style>

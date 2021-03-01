@@ -5,8 +5,10 @@
       <div class="upload-modifier__container">
         <div>
           <div class="upload-modifier__container__inner">
+            <!-- upload -->
             <molecule-upload v-if="!stats.upload" class="upload-modifier__upload" :max-length="120" @files-change="onFilesChange" />
 
+            <!-- preparing -->
             <transition name="fade" mode="out-in">
               <div v-if="message && !stats.progress" class="upload-modifier__message">
                 <transition name="fade" mode="out-in">
@@ -14,23 +16,29 @@
                 </transition>
               </div>
 
+              <!-- progress -->
               <atom-info-box v-if="stats.progress && !stats.blob" class="upload-modifier__progress" style-type="upload-modifier" :foot="info">
                 <atom-progress :progress="stats.progress" />
               </atom-info-box>
             </transition>
 
-            <molecule-video-analyze
-              v-if="stats.blob"
-              class="upload-modifier__preview"
-              :stats="stats"
-            />
+            <!-- result -->
+            <transition name="fade" mode="out-in">
+              <molecule-video-analyze
+                v-if="stats.blob"
+                class="upload-modifier__preview"
+                :stats="stats"
+              />
+            </transition>
           </div>
         </div>
       </div>
-      <div v-if="stats.blob" class="upload-modifier__complete">
-        <atom-link-button :url="stats.blob" :download="stats.upload.name" :label="saveButton" />
-        <atom-text-button :label="resetButton" @click="onClickRetry" />
-      </div>
+      <transition name="fade" mode="out-in">
+        <div v-if="stats.blob" class="upload-modifier__complete">
+          <atom-link-button :url="stats.blob" :download="stats.upload.name" :label="saveButton" />
+          <atom-text-button :label="resetButton" @click="onClickRetry" />
+        </div>
+      </transition>
     </lost-container>
   </div>
 </template>
@@ -50,7 +58,8 @@ import FFMPEGWorker, {
   INITIALIZE,
   LOADING,
   CONVERSION_START,
-  CONVERSION_COMPLETE
+  CONVERSION_COMPLETE,
+  ERROR
 } from '@/classes/FFMPEGWorker';
 
 import LostContainer from '../layouts/LostContainer';
@@ -121,6 +130,13 @@ export default {
       type: Object,
       default () {
         return {
+          [ERROR]: {
+            error: true,
+            styleType: null,
+            headline: 'Sorry',
+            text: 'Your device is not supported.',
+            foot: ''
+          },
           [INITIALIZE]: {
             fade: true,
             styleType: null,
@@ -167,7 +183,7 @@ export default {
     },
     message () {
       return this.stats.info && Object.assign({
-        foot: this.info
+        foot: this.statsMessages[this.stats.info].foot || this.info
       }, this.statsMessages[this.stats.info]);
     }
   },
