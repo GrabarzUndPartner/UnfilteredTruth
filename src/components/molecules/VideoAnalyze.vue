@@ -2,7 +2,7 @@
   <div class="atom-video-analyze" :class="styleClasses">
     <video
       ref="video"
-      :src="destination"
+      :src="stats.blob"
       :controls="controls"
       playsinline
       v-on="$listeners"
@@ -19,8 +19,7 @@
       <molecule-audio-check
         v-if="showAudioCheck"
         class="video-analyze__audio-check"
-        :source="source"
-        :destination="destination"
+        :stats="stats"
         @close="showAudioCheck = false"
       />
     </transition>
@@ -37,12 +36,8 @@ export default {
   components: { SvgIconUpload, SvgIconAudioCheck, MoleculeAudioCheck },
   props: {
 
-    source: {
-      type: String,
-      required: true
-    },
-    destination: {
-      type: String,
+    stats: {
+      type: Object,
       required: true
     }
 

@@ -6,6 +6,10 @@ import parseProgress from '@ffmpeg/ffmpeg/src/utils/parseProgress';
 import Sine from '@/classes/Sine';
 import Transferable from '@/classes/Transferable';
 
+export const INITIALIZE = Symbol('initialize');
+export const CONVERSION_START = Symbol('conversion_start');
+export const CONVERSION_COMPLETE = Symbol('conversion_complete');
+export const LOADING = Symbol('loading');
 export default class FFMPEGWorker {
   constructor () {
     this.ready = new ReplaySubject(1);
@@ -27,14 +31,14 @@ export default class FFMPEGWorker {
     });
     messages.pipe(filter(data => data.type === 'start')).subscribe(({ data }) => {
       this.start.next(data);
-      this.info.next('start conversion');
+      this.info.next(CONVERSION_START);
     });
   }
 
   run (file) {
-    this.info.next('initialize');
+    this.info.next(INITIALIZE);
     this.ready.subscribe(async (worker) => {
-      this.info.next('load file');
+      this.info.next(LOADING);
       const files = await loadFiles(file);
       const transferable = new Transferable(worker);
       transferable.publish(files);
@@ -42,6 +46,7 @@ export default class FFMPEGWorker {
         file
       ]) => {
         transferable.destroy();
+        this.info.next(CONVERSION_COMPLETE);
         this.done.next(URL.createObjectURL(new Blob([
           file.data
         ], { type: 'video/mp4' })));

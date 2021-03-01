@@ -22,6 +22,16 @@
         @click.native="onClickInfoBox"
       />
     </transition>
+    <video
+      v-for="(file, index) in files"
+      :key="index"
+      :src="getObjectUrl(file)"
+      width="0"
+      height="0"
+      autoplay
+      muted
+      @loadedmetadata="({target}) => onLoad(target, file)"
+    />
   </div>
 </template>
 
@@ -42,6 +52,10 @@ export default {
   },
 
   props: {
+    maxLength: {
+      type: Number,
+      default: 10
+    },
     text: {
       type: String,
       default: 'Drop video or tap here.'
@@ -76,42 +90,49 @@ export default {
 
   data () {
     return {
+      files: [],
       error: null,
       highlight: false
     };
   },
 
   methods: {
-    onClickInfoBox () {
-      this.error = null;
-      this.$refs.input.value = '';
+
+    getObjectUrl (file) {
+      return global.URL.createObjectURL(file);
     },
+
     onChange ({ target: { files } }) {
-      Array.from(files).map(file => new File(file)).map(async (file) => {
-        if (await file.hasValidMimeType()) {
-          if (await file.hasValidLength()) {
-            if (file.hasValidSize()) {
-              this.$emit('files-change', file);
-            } else {
-              this.error = ERROR_FILE_SIZE;
-            }
-          } else {
-            this.error = ERROR_VIDEO_LENGTH;
-          }
+      this.files = files;
+    },
+
+    async onLoad (target, uploadedFile) {
+      const file = new File(uploadedFile, target.duration);
+      if (await file.hasValidMimeType()) {
+        if (target.duration <= this.maxLength) {
+          this.$emit('files-change', { file, target });
         } else {
-          this.error = ERROR_FILE_FORMAT;
+          this.error = ERROR_VIDEO_LENGTH;
         }
-      });
+      } else {
+        this.error = ERROR_FILE_FORMAT;
+      }
     },
 
     hover (value) {
       this.highlight = value;
+    },
+
+    onClickInfoBox () {
+      this.error = null;
+      this.$refs.input.value = '';
     }
   }
 };
 </script>
 
 <style lang="postcss" scoped>
+
 .molecule-upload {
   position: relative;
   display: flex;
