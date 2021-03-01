@@ -11,16 +11,16 @@ export default {
   props: {
     tag: {
       type: String,
-      default: null
+      default: 'div'
     },
     text: {
       type: String,
-      default: null
+      default: 'Text Fade'
     }
   },
   data () {
     return {
-      delay: 0.2,
+      delay: 0.5,
       duration: 0.2,
       running: false
     };
@@ -31,13 +31,15 @@ export default {
     }
   },
   mounted () {
-    this.running = true;
+    global.requestAnimationFrame(() => {
+      this.running = true;
+    });
   },
   methods: {
     getCharStyle (index) {
       return {
         'transition-duration': `${this.duration}s`,
-        'transition-delay': `${this.delay + index * (this.duration / 2) + 0.35}s`
+        'transition-delay': `${(this.delay + index * (this.duration / 2) + 0.35).toFixed(2)}s`
       };
     }
   }
@@ -51,8 +53,11 @@ export default {
   justify-content: center;
   width: 100%;
   height: 100%;
-  font-size: 22px;
-  color: white;
+  font-size: calc(22 / 320 * 100vw);
+
+  @media (--xs) {
+    font-size: 22px;
+  }
 
   & > span {
     filter: blur(2px);
@@ -60,7 +65,7 @@ export default {
 
   &.js--running {
     & > span {
-      filter: blur(0.1px);
+      filter: blur(0);
       transition: filter 0.2s linear;
     }
   }
