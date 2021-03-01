@@ -1,38 +1,66 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="({id, stats}, index) in conversions" :key="index">
-        <molecule-upload-modifier :id="id" @ready="onReady" />
-        <molecule-wavesurfer v-if="stats" :stats="stats" />
-      </li>
-    </ul>
+  <div class="organism-audio-modifier">
+    <upload-modifier class="audio-modifier__upload" @reset="onReset" @ready="onReady" @state="onChangeState" />
+    <lost-container v-if="!complete" class="audio-modifier" direction="column">
+      <info-slider v-if="processing" class="audio-modifier__info-slider" :items="infoSliderItems" />
+      <info-list v-if="!processing" class="audio-modifier__info-list" :items="infoListItems" />
+    </lost-container>
   </div>
 </template>
 
 <script>
-import MoleculeUploadModifier from '@/components/molecules/UploadModifier';
-import MoleculeWavesurfer from '@/components/molecules/Wavesurfer';
-import { getRandomString } from '@/utils/random';
+import UploadModifier from '@/components/molecules/UploadModifier';
+import InfoList from '@/components/molecules/InfoList';
+import InfoSlider from '@/components/molecules/InfoSlider';
+// import { getRandomString } from '@/utils/random';
+import { CONVERSION_COMPLETE, CONVERSION_START } from '@/service/ffmpegVideoConverter';
+import LostContainer from '../layouts/LostContainer';
 
 export default {
   components: {
-    MoleculeUploadModifier,
-    MoleculeWavesurfer
+    LostContainer,
+    UploadModifier,
+    InfoList,
+    InfoSlider
+  },
+
+  props: {
+    infoListItems: {
+      type: Array,
+      default: InfoSlider.props.items.default
+    },
+    infoSliderItems: {
+      type: Array,
+      default: InfoList.props.items.default
+    }
   },
 
   data () {
     return {
-      conversions: [
-        { id: getRandomString(), stats: null }
-      ]
+      complete: false,
+      processing: false,
+      stats: null
+
     };
   },
 
   methods: {
-    onReady (result) {
-      console.log(result);
-      this.conversions.find(({ id }) => id === result.id).stats = result.stats;
-      this.conversions.push({ id: getRandomString(), stats: null });
+    onChangeState (state) {
+      console.log();
+      switch (state) {
+        case CONVERSION_START:
+          this.processing = true;
+          break;
+        case CONVERSION_COMPLETE:
+          this.processing = false;
+          break;
+      }
+    },
+    onReset () {
+      this.complete = false;
+    },
+    onReady () {
+      this.complete = true;
     }
   }
 };
@@ -40,12 +68,38 @@ export default {
 
 <style lang="postcss" scoped>
 div {
-  margin-top: 100px;
-
   & ul {
     padding: 0;
     margin: 0;
     list-style: none;
   }
+
+  & .audio-modifier__upload + * {
+    margin-top: calc(40 / 320 * 100vw);
+
+    @media (--xs) {
+      margin-top: 40px;
+    }
+
+    @media (--sm) {
+      margin-top: 60px;
+    }
+  }
+
+  /* & .audio-modifier__upload {
+
+  } */
+
+  & .audio-modifier__info-slider,
+  & .audio-modifier__info-list {
+    lost-offset: 1/12;
+    lost-column: 10/12;
+
+    @media (--md) {
+      lost-offset: 1.4/12;
+      lost-column: 9.2/12;
+    }
+  }
+
 }
 </style>

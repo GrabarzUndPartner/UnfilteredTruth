@@ -11,4 +11,5 @@
 /w3c/
 
 # Files
+src/static/**/*.js
 src/static/sw.js

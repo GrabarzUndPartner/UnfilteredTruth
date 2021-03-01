@@ -1,18 +1,20 @@
 <template>
-  <div>
-    <svg :viewBox="viewBox">
-      <circle
-        stroke="white"
-        fill="transparent"
-        :stroke-dasharray="circumference + ' ' + circumference"
-        :style="{ strokeDashoffset }"
-        :stroke-width="stroke"
-        :r="normalizedRadius"
-        :cx="radius"
-        :cy="radius"
-      />
-    </svg>
-    <span>{{ percentage }}%</span>
+  <div class="atom-progress">
+    <div v-font="$getFont('Alfa Slab One')">
+      <svg :viewBox="viewBox">
+        <circle
+          stroke="white"
+          fill="transparent"
+          :stroke-dasharray="circumference + ' ' + circumference"
+          :style="{ strokeDashoffset }"
+          :stroke-width="stroke"
+          :r="normalizedRadius"
+          :cx="radius"
+          :cy="radius"
+        />
+      </svg>
+      <span>{{ percentage }}%</span>
+    </div>
   </div>
 </template>
 
@@ -21,7 +23,7 @@ export default {
   props: {
     radius: {
       type: Number,
-      default: 1
+      default: 70
     },
     progress: {
       type: Number,
@@ -29,7 +31,7 @@ export default {
     },
     stroke: {
       type: Number,
-      default: 1
+      default: 6
     }
   },
 
@@ -49,22 +51,43 @@ export default {
     },
 
     percentage () {
-      return this.progress.toFixed(2);
+      return Math.round(this.progress);
     }
   }
 };
 </script>
 
 <style lang="postcss" scoped>
-div {
+.atom-progress {
   position: relative;
   background-color: black;
 
+  & > div {
+    height: 100%;
+  }
+
   & svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(160 / 320 * 100vw);
     height: inherit;
+    height: calc(160 / 320 * 100vw);
+    transform: translate(-50%, -50%);
+
+    @media (--xs) {
+      width: 160px;
+      height: 160px;
+    }
+
+    @media (--md) {
+      width: 200px;
+      height: 200px;
+    }
   }
 
   & circle {
+    stroke: var(--color-primary);
     transition: stroke-dashoffset 0.35s;
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
@@ -74,8 +97,18 @@ div {
     position: absolute;
     top: 50%;
     left: 50%;
-    color: white;
+    font-size: calc(22 / 320 * 100vw);
+    color: var(--color-tertiary);
     transform: translate(-50%, -50%);
+
+    @media (--xs) {
+      font-size: 22px;
+    }
+
+    @media (--sm) {
+      font-size: 32px;
+    }
+
   }
 }
 

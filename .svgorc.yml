@@ -13,7 +13,7 @@ plugins:
   - removeHiddenElems: false
   - removeEmptyText: true
   - removeEmptyContainers: true
-  - removeViewBox: true
+  - removeViewBox: false
   - cleanupEnableBackground: true
   - minifyStyles: true
   - convertStyleToAttrs: true

@@ -1,24 +1,23 @@
 <template>
-  <layout-default-container
+  <layout-lost-container
     class="page-footer"
     tag="footer"
   >
     <nav>
       <link-list
         :list="navigation"
-        type="page-footer"
       />
     </nav>
-  </layout-default-container>
+  </layout-lost-container>
 </template>
 
 <script>
-import LayoutDefaultContainer from '@/components/layouts/DefaultContainer';
-import LinkList from '~/components/molecules/LinkList';
+import LayoutLostContainer from '@/components/layouts/LostContainer';
+import LinkList from '@/components/molecules/LinkList';
 
 export default {
   components: {
-    LayoutDefaultContainer,
+    LayoutLostContainer,
     LinkList
   },
   props: {
@@ -31,7 +30,16 @@ export default {
     navigation: {
       type: Array,
       default () {
-        return [];
+        return [
+          {
+            layer: 'disclaimer',
+            title: 'Disclaimer'
+          },
+          {
+            url: 'imprint',
+            title: 'Imprint'
+          }
+        ];
       }
     }
   }
@@ -40,13 +48,25 @@ export default {
 
 <style lang="postcss">
 .page-footer {
-  padding: calc(20 / 375 * 100%) 0;
+  padding: 0;
+  padding-bottom: calc(40 / 375 * 100%);
   margin: 0;
 
   @media (--xs) {
     padding: 20px 0;
   }
 
+  @media (--md) {
+    padding-top: 25px;
+    padding-bottom: 100px;
+  }
+
   background: var(--color-light-grey);
+
+  & nav {
+    lost-column: 6/12;
+    lost-offset: 3/12;
+  }
+
 }
 </style>

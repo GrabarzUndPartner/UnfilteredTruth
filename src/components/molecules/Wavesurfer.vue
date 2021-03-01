@@ -7,11 +7,9 @@
 <script>
 export default {
   props: {
-    stats: {
-      type: Object,
-      default () {
-        return null;
-      }
+    src: {
+      type: [Object, String],
+      default: null
     }
   },
 
@@ -33,26 +31,36 @@ export default {
     }
   },
 
-  mounted () {
-    [
-      createVideoElement(this.stats.upload), createVideoElement(this.stats.blob)
-    ].forEach(async (el) => {
-      const wavesurfer = await this.initializeWavesurfer();
-      wavesurfer.load(el);
-      this.list.push(wavesurfer);
-    });
+  async mounted () {
+    const wavesurfer = await this.initializeWavesurfer();
+    wavesurfer.load(createVideoElement(this.src));
+    this.list.push(wavesurfer);
   },
 
   methods: {
+    getHeight () {
+      if (global.matchMedia('(min-width: 1200px)').matches) {
+        return 200;
+      } else if (global.matchMedia('(min-width: 992px)').matches) {
+        return 70;
+      } else if (global.matchMedia('(min-width: 768px)').matches) {
+        return 70;
+      } else {
+        return (40 / 320 * window.innerWidth);
+      }
+    },
     async initializeWavesurfer () {
       const WaveSurfer = (await import('wavesurfer.js')).default;
       return WaveSurfer.create({
+        cursorColor: 'transparent',
         container: this.$refs.waveform,
-        waveColor: '#A8DBA8',
-        progressColor: '#3B8686',
+        backgroundColor: '#ffffff',
+        waveColor: '#230ce5',
+        progressColor: 'transparent',
         splitChannels: false,
         interact: false,
-        backend: 'MediaElement'
+        backend: 'MediaElement',
+        height: this.getHeight()
       });
     }
   }

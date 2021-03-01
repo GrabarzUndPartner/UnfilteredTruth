@@ -7,6 +7,11 @@ import File from '@/classes/File';
 import Sine from '@/classes/Sine';
 import { getVideoLength } from '@/utils/video';
 
+export const INITIALIZE = Symbol('initialize');
+export const CONVERSION_START = Symbol('conversion_start');
+export const CONVERSION_COMPLETE = Symbol('conversion_complete');
+export const LOADING = Symbol('loading');
+
 function createOberservers () {
   const ready = new ReplaySubject(1);
   const start = new Subject();
@@ -20,7 +25,7 @@ function createOberservers () {
 function prepare () {
   const observers = createOberservers();
 
-  observers.info.next('initialize');
+  observers.info.next(INITIALIZE);
   const worker = new Worker();
   const messages = fromEvent(worker, 'message').pipe(map(e => e.data));
   messages.pipe(filter(data => data.type === 'ready')).subscribe((e) => {
@@ -31,11 +36,11 @@ function prepare () {
   });
   messages.pipe(filter(data => data.type === 'start')).subscribe(({ data }) => {
     observers.start.next(data);
-    observers.info.next('start conversion');
+    observers.info.next(CONVERSION_START);
   });
   messages.pipe(filter(data => data.type === 'done')).subscribe(async ({ data }) => {
     worker.terminate();
-    observers.info.next('finished conversion');
+    observers.info.next(CONVERSION_COMPLETE);
     observers.done.next(await new File(new Blob([
       data[0].data
     ])).getObjectUrl());
@@ -57,7 +62,7 @@ async function loadFiles (file) {
 export function disguiseFile (file) {
   const observers = prepare();
   observers.ready.subscribe((worker) => {
-    observers.info.next('load file');
+    observers.info.next(LOADING);
     run(worker, file);
   });
   return observers;

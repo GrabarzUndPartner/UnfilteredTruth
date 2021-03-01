@@ -1,5 +1,9 @@
 {
   "--color-black": "#000",
   "--color-white": "#fff",
-  "--color-light-grey": "#EEE"
+  "--color-primary": "#230ce5",
+  "--color-secondary": "#050015",
+  "--color-tertiary": "#ebefff",
+  "--color-valid": "#3eac52",
+  "--color-invalid": "#ff853d"
 }

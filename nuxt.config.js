@@ -82,8 +82,18 @@ module.exports = {
         ];
       }
     },
+
     postcss: {
       plugins: {
+        'postcss-preset-env': {
+          preserve: false,
+          stage: 0,
+          features: {
+            'custom-media-queries': false,
+            'nesting-rules': false
+          },
+          importFrom: 'src/globals/postcss.js'
+        },
         'postcss-custom-media': {
           importFrom: [
             'src/globals/postcss.js'
@@ -99,11 +109,8 @@ module.exports = {
             'src/layouts/**/*.vue',
             'src/components/**/*.vue'
           ],
-          whitelist: [
-            'html', 'body'
-          ],
-          whitelistPatterns: [
-            /nuxt-/
+          safelist: [
+            'html', 'body', /nuxt-/
           ]
         },
         'postcss-momentum-scrolling': [
@@ -115,15 +122,6 @@ module.exports = {
           flexbox: 'flex',
           cycle: 'auto'
         }
-      },
-      preset: {
-        preserve: false,
-        stage: 0,
-        features: {
-          'custom-media-queries': false,
-          'nesting-rules': false
-        },
-        importFrom: 'src/globals/postcss.js'
       }
     },
 
@@ -159,79 +157,66 @@ module.exports = {
 
   plugins: [],
 
-  modules: [
-    '@nuxt/content',
-
-    [
-      'nuxt-font-loader-strategy', {
-        ignoredEffectiveTypes: [
-          '2g', 'slow-2g'
+  speedkit: {
+    fonts: [
+      {
+        family: 'Alfa Slab One',
+        fallback: [
+          'display'
         ],
-        fonts: [
+        variances: [
           {
-            fileExtensions: [
-              'woff2', 'woff'
-            ],
-            fontFamily: 'Amatic SC',
-            fontFaces: [
-              {
-                preload: true,
-                localSrc: [
-                  'Amatic SC Regular',
-                  'AmaticSC-Regular'
-                ],
-                src: '@/assets/fonts/amatic-sc-v12-latin-regular',
-                fontWeight: 400,
-                fontStyle: 'normal'
-              },
-              // Font-Face
-              {
-                localSrc: [
-                  'Amatic SC Bold', 'AmaticSC-Bold'
-                ],
-                src: '@/assets/fonts/amatic-sc-v12-latin-700',
-                fontWeight: 700,
-                fontStyle: 'normal'
-              }
+            style: 'normal',
+            weight: 400,
+            sources: [
+              { src: '@/assets/fonts/alfa-slab-one-v10-latin/alfa-slab-one-v10-latin-regular.woff2', type: 'woff' },
+              { src: '@/assets/fonts/alfa-slab-one-v10-latin/alfa-slab-one-v10-latin-regular.woff2', type: 'woff2' }
             ]
-          },
+          }
+        ]
+      },
+      {
+        family: 'Roboto',
+        fallback: [
+          'sans-serif'
+        ],
+        variances: [
           {
-            fileExtensions: [
-              'woff2', 'woff'
-            ],
-            fontFamily: 'Raleway',
-            fontFaces: [
-              {
-                preload: true,
-                localSrc: [
-                  'Raleway', 'Raleway-Regular'
-                ],
-                src: '@/assets/fonts/raleway-v13-latin-regular',
-                fontWeight: 400,
-                fontStyle: 'normal'
-              },
-              {
-                localSrc: [
-                  'Raleway Medium', 'Raleway-Medium'
-                ],
-                src: '@/assets/fonts/raleway-v13-latin-500',
-                fontWeight: 500,
-                fontStyle: 'normal'
-              },
-              {
-                localSrc: [
-                  'Raleway SemiBold', 'Raleway-SemiBold'
-                ],
-                src: '@/assets/fonts/raleway-v13-latin-600',
-                fontWeight: 600,
-                fontStyle: 'normal'
-              }
+            style: 'normal',
+            weight: 400,
+            sources: [
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-regular.woff', type: 'woff' },
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-regular.woff2', type: 'woff2' }
+            ]
+          }, {
+            style: 'italic',
+            weight: 400,
+            sources: [
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-italic.woff', type: 'woff' },
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-italic.woff2', type: 'woff2' }
+            ]
+          }, {
+            style: 'normal',
+            weight: 700,
+            sources: [
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-700.woff', type: 'woff' },
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-700.woff2', type: 'woff2' }
+            ]
+          }, {
+            style: 'italic',
+            weight: 700,
+            sources: [
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-700italic.woff', type: 'woff' },
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-700italic.woff2', type: 'woff2' }
             ]
           }
         ]
       }
-    ],
+    ]
+  },
 
+  modules: [
+    'nuxt-speedkit',
     '@/modules/codesandbox',
     '@/modules/svg',
     '@/modules/analyzer',
@@ -260,46 +245,6 @@ module.exports = {
             de: require('./src/globals/locales/de.json')
           }
         }
-      }
-    ],
-    [
-      'nuxt-polyfill', {
-        features: [
-          {
-            require: 'object-fit-images',
-            detect: () => 'objectFit' in document.documentElement.style,
-            install: objectFitImages => (window.objectFitImages = objectFitImages)
-          },
-          {
-            require: 'picturefill',
-            detect: () => 'HTMLPictureElement' in window || 'picturefill' in window
-          },
-          {
-            require: 'picturefill/dist/plugins/mutation/pf.mutation.js',
-            detect: () => 'HTMLPictureElement' in window || 'picturefill' in window
-          },
-          {
-            require: 'custom-event-polyfill',
-            detect: () => 'CustomEvent' in window &&
-              // In Safari, typeof CustomEvent == 'object' but it otherwise works fine
-              (typeof window.CustomEvent === 'function' ||
-                (window.CustomEvent.toString().includes('CustomEventConstructor')))
-          },
-          {
-            require: 'intersection-observer',
-            detect: () => 'IntersectionObserver' in window
-          },
-          {
-            require: 'domtokenlist-shim',
-            detect: () => 'DOMTokenList' in window && (function (x) {
-              return 'classList' in x ? !x.classList.toggle('x', false) && !x.className : true;
-            })(document.createElement('x'))
-          },
-          {
-            require: 'requestidlecallback',
-            detect: () => 'requestIdleCallback' in window
-          }
-        ]
       }
     ],
     [
@@ -341,6 +286,8 @@ module.exports = {
   ],
 
   buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/stylelint-module',
 
     // [
     //   '@nuxtjs/pwa', {
