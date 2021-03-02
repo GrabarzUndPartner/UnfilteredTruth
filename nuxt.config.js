@@ -42,7 +42,9 @@ module.exports = {
       const key = path.join(dir, 'server.key');
       const crt = path.join(dir, 'server.crt');
 
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       if (fs.existsSync(key) && fs.existsSync(crt)) {
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
         return { key: fs.readFileSync(key), cert: fs.readFileSync(crt) };
       } else {
         return null;
@@ -133,14 +135,12 @@ module.exports = {
   },
 
   generate: {
-    dir: 'dist',
-    crawler: true
+    dir: 'dist'
   },
 
   render: {
     crossorigin: 'anonymous',
-    resourceHints: true,
-    http2: { push: true }
+    resourceHints: true
   },
 
   router: {
@@ -221,37 +221,8 @@ module.exports = {
   modules: [
     '@/modules/device-detection',
     'nuxt-speedkit',
-    '@/modules/codesandbox',
     '@/modules/svg',
     '@/modules/analyzer',
-    '@nuxtjs/axios',
-    /*
-    [
-      'nuxt-i18n', {
-        locales: [
-          {
-            code: 'en',
-            iso: 'en-US'
-          },
-          {
-            code: 'de',
-            iso: 'de-DE'
-          }
-        ],
-        parsePages: true,
-        defaultLocale: DEFAULT_LANG,
-        strategy: 'prefix_except_default',
-        seo: false,
-        vueI18nLoader: false,
-        vueI18n: {
-          fallbackLocale: DEFAULT_LANG,
-          messages: {
-            en: require('./src/globals/locales/en.json'),
-            de: require('./src/globals/locales/de.json')
-          }
-        }
-      }
-    ], */
     [
       '@/modules/licence', {
         perChunkOutput: false,
