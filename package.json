@@ -71,7 +71,7 @@
     "vue-svg-loader": "0.16.0"
   },
   "dependencies": {
-    "@ffmpeg/ffmpeg": "^0.9.7",
+    "@ffmpeg/ffmpeg": "0.9.7",
     "@fullhuman/postcss-purgecss": "4.0.2",
     "@js-basics/vector": "1.56.10",
     "@nuxt/content": "1.13.1",
@@ -79,18 +79,18 @@
     "@nuxtjs/pwa": "3.3.5",
     "@nuxtjs/robots": "2.4.2",
     "@nuxtjs/sitemap": "2.4.0",
-    "@nuxtjs/storybook": "^3.3.1",
+    "@nuxtjs/storybook": "3.3.1",
     "@storybook/addon-a11y": "6.1.19",
-    "audiobuffer-to-wav": "^1.0.0",
-    "binary-data-chunking": "^3.0.1",
+    "audiobuffer-to-wav": "1.0.0",
+    "binary-data-chunking": "3.0.1",
     "core-js": "3.9.0",
     "css-loader": "5.0.2",
-    "file-type": "^16.2.0",
+    "file-type": "16.2.0",
     "license-webpack-plugin": "2.3.14",
     "lost": "8.3.1",
     "nuxt": "2.15.2",
     "nuxt-i18n": "6.20.2",
-    "nuxt-speedkit": "^1.1.21",
+    "nuxt-speedkit": "1.1.21",
     "object-fit-images": "github:StephanGerbeth/object-fit-images",
     "postcss-custom-media": "8.0.0",
     "postcss-import": "14.0.0",
@@ -104,8 +104,8 @@
     "rucksack-css": "1.0.2",
     "rxjs": "6.6.3",
     "snyk": "1.458.0",
-    "wavesurfer.js": "^4.5.0",
-    "worker-loader": "^3.0.8"
+    "wavesurfer.js": "4.5.0",
+    "worker-loader": "3.0.8"
   },
   "peerDependencies": {
     "postcss": "8.2.6"
