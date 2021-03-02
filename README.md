@@ -3,6 +3,7 @@
 # Unfiltered Truth
 
 [![main][github-workflow-main-src]][github-workflow-main-href]
+[![develop][github-workflow-develop-src]][github-workflow-develop-href]
 
 [![Renovate - Status][renovate-status-src]][renovate-status-href]
 
@@ -42,3 +43,5 @@ Learn more about [NuxtJS](https://nuxtjs.org/)
 
 [github-workflow-main-src]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/workflows/Main/badge.svg?branch=main>
 [github-workflow-main-href]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/actions?query=workflow%3AMain>
+[github-workflow-develop-src]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/workflows/Test/badge.svg?branch=develop>
+[github-workflow-develop-href]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/actions?query=workflow%3ATest>
