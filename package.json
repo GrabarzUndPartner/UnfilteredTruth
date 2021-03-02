@@ -35,8 +35,7 @@
     "storybook": "npx nuxt storybook",
     "storybook:static": "npx nuxt storybook build",
     "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect",
-    "packtracker": "packtracker-upload --stats=.reports/webpack/stats/modern.json --output-path=dist/_nuxt/"
+    "prepare": "npm run snyk-protect"
   },
   "devDependencies": {
     "@commitlint/cli": "11.0.0",
@@ -105,7 +104,6 @@
     "rucksack-css": "1.0.2",
     "rxjs": "6.6.3",
     "snyk": "1.458.0",
-    "videoconverter": "^0.1.0",
     "wavesurfer.js": "^4.5.0",
     "worker-loader": "^3.0.8"
   },
