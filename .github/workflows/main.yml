@@ -112,6 +112,6 @@ jobs:
           name: artifact
           path: public
       - name: Deploy to Baqend
-        run: npx baqend deploy -f public -b www pagespeed
+        run: npx baqend deploy -f public -b www unfiltered-truth
         env:
           BAQEND_TOKEN: ${{ secrets.BAQEND_TOKEN }}
