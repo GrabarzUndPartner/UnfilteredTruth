@@ -62,7 +62,7 @@
     "eslint-plugin-xss": "0.1.10",
     "express": "4.17.1",
     "husky": "5.1.3",
-    "lint-staged": "10.5.3",
+    "lint-staged": "10.5.4",
     "stylelint": "13.8.0",
     "stylelint-config-css-modules": "2.2.0",
     "stylelint-config-lost": "0.0.3",
