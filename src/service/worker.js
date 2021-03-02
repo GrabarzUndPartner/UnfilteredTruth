@@ -1,6 +1,6 @@
 import Transferable from '@/classes/Transferable';
 // eslint-disable-next-line no-undef
-importScripts(process.env.BASE_PATH + 'videoconverter/ffmpeg-all-codecs.js');
+importScripts(process.env.BASE_PATH + 'ffmpeg-all-codecs.js');
 
 const PITCHING = 0.02;
 
@@ -25,7 +25,7 @@ transferable.subscribe((files) => {
     ],
     // TOTAL_MEMORY: message.TOTAL_MEMORY || false
     // Can play around with this option - must be a power of 2
-    TOTAL_MEMORY: 268435456
+    TOTAL_MEMORY: 128 * 1024 * 1024// 268435456
   };
 
   sendInfo('start', Module.arguments.join(' '));

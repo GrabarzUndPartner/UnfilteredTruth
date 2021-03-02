@@ -1,5 +1,26 @@
 # Project Changelog
 
+## [1.1.3](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.2...v1.1.3) (2021-03-02)
+
+
+### Bug Fixes
+
+* **cleanup:** cleanup ([e6e3b07](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/e6e3b0724ce00484cd509be31e98d00db39b6d0a))
+
+## [1.1.2](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.1...v1.1.2) (2021-03-02)
+
+
+### Bug Fixes
+
+* **memory:** limited memory and clear unused arraybuffers ([c276283](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/c276283c996f3808f354593e620c2f1e5f5637bc))
+
+## [1.1.1](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.0...v1.1.1) (2021-03-01)
+
+
+### Bug Fixes
+
+* **styling:** fix styles ([c02cdf7](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/c02cdf7cdd21082fa255b3620b68248504c82ede))
+
 # [1.1.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.0.1...v1.1.0) (2021-03-01)
 
 
