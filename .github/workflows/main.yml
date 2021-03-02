@@ -99,7 +99,7 @@ jobs:
 
   deploy-baqend:
     name: Deploy (BAQEND-Pages)
-    needs: build-baqend-pages
+    needs: build
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
