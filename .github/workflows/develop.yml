@@ -36,7 +36,6 @@ jobs:
 
   build:
     name: Build
-    needs: semantic-version
     runs-on: ${{ matrix.os }}
 
     strategy:
