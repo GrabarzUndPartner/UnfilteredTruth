@@ -36,6 +36,7 @@ jobs:
 
   build:
     name: Build
+    needs: install
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -74,7 +75,7 @@ jobs:
 
   deploy-ghpages:
     name: Deploy (GH-Pages)
-    needs: [build]
+    needs: build
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
