@@ -1,7 +1,7 @@
 <template>
   <div v-font="$getFont('Alfa Slab One')" class="atoms-text-ticker">
     <div>
-      <span>{{ content }}</span><span>{{ content }}</span><span>{{ content }}</span>
+      <span>&nbsp;{{ content }}</span><span>&nbsp;{{ content }}</span><span>&nbsp;{{ content }}</span>
     </div>
   </div>
 </template>

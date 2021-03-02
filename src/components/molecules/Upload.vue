@@ -11,7 +11,7 @@
     <input ref="input" type="file" @change="onChange">
     <div>
       <transition name="fade" mode="out-in">
-        <span v-if="infoText" v-font="$getFont('Roboto', 700, 'italic')" class="molecule-upload__info">{{ infoText }}</span>
+        <span v-if="infoText" v-font="$getFont('Roboto', 700, 'italic')" class="molecule-upload__info" v-html="infoText" />
       </transition>
       <span class="molecule-upload__text">{{ text }}</span>
       <svg-icon-upload />
@@ -62,7 +62,11 @@ export default {
     },
     maxLengthText: {
       type: String,
-      default: 'Max Video length is 60 Seconds!'
+      default: 'Max. video length: %length% seconds.'
+    },
+    androidExperimentalText: {
+      type: String,
+      default: 'Support for Android is currently experimental.'
     },
     errorMessages: {
       type: Object,
@@ -79,7 +83,7 @@ export default {
           },
           [ERROR_VIDEO_LENGTH]: {
             headline: 'Video too long.',
-            text: 'We are sorry. Videos are currently limited to %length% seconds.',
+            text: 'Sorry. Video uploads are currently limited to %length% seconds.',
             foot: 'Try again'
           },
           [ERROR_FILE_FORMAT]: {
@@ -114,9 +118,15 @@ export default {
     console.log(this.$isDeviceAndroid(), this.$isDeviceIos());
     if (!this.$isBrowserSupported()) {
       this.error = ERROR_UNSUPPORTED_BROWSER;
-    } else if (this.$isDeviceAndroid() || this.$isDeviceIos()) {
-      this.infoText = this.maxLengthText;
     }
+
+    const text = [
+      this.maxLengthText.replace('%length%', this.getMaxLength())
+    ];
+    if (this.$isDeviceAndroid()) {
+      text.push(this.androidExperimentalText);
+    }
+    this.infoText = text.join('<br>');
   },
 
   methods: {
@@ -159,8 +169,10 @@ export default {
     },
 
     onClickInfoBox () {
-      this.error = null;
-      this.$refs.input.value = '';
+      if (this.error !== ERROR_UNSUPPORTED_BROWSER) {
+        this.error = null;
+        this.$refs.input.value = '';
+      }
     }
   }
 };

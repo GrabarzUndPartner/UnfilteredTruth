@@ -1,9 +1,9 @@
 
 <template>
   <div class="molecule-upload-modifier" :class="styleClasses">
-    <atom-ball-background />
     <lost-container direction="column">
       <div class="upload-modifier__container">
+        <atom-ball-background class="upload-modifier__background" />
         <div>
           <div class="upload-modifier__container__inner">
             <!-- upload -->
@@ -136,9 +136,9 @@ export default {
           [ERROR]: {
             error: true,
             styleType: null,
-            headline: 'Sorry, something went wrong.  ',
-            text: 'Conversion stopped with the message ‘xyz’.',
-            foot: ''
+            headline: 'Conversion failed.',
+            text: 'Sorry! Please, try another browser or device.',
+            foot: null
           },
           [INITIALIZE]: {
             fade: true,
@@ -257,15 +257,6 @@ export default {
 .molecule-upload-modifier {
   position: relative;
 
-  & .upload-modifier__container > div {
-    overflow: hidden;
-    border-radius: calc(20 / 320 * 100vw);
-
-    @media (--xs) {
-      border-radius: 20px;
-    }
-  }
-
   & .upload-modifier__container__inner,
   & .upload-modifier__container__inner::before {
     overflow: hidden;
@@ -343,12 +334,7 @@ export default {
       content: "";
     }
 
-    & > div {
-      & > div {
-        position: relative;
-        height: 100%;
-      }
-
+    & > div:not(.upload-modifier__background) {
       position: absolute;
       top: 0;
       left: 0;
@@ -356,8 +342,19 @@ export default {
       width: 100%;
       height: 100%;
       padding: calc(12 / 320 * 100vw);
+      overflow: hidden;
       background-color: var(--color-tertiary);
       border: 2px solid var(--color-primary);
+      border-radius: calc(20 / 320 * 100vw);
+
+      @media (--xs) {
+        border-radius: 20px;
+      }
+
+      & > div {
+        position: relative;
+        height: 100%;
+      }
 
       @media (--xs) {
         padding: 12px;

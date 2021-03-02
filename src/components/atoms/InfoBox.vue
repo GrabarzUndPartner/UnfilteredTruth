@@ -103,13 +103,19 @@ export default {
   &.info-box--upload-error,
   &.info-box--error {
     color: var(--color-tertiary);
+    cursor: pointer;
     background: var(--color-invalid);
+
+    & > span {
+      text-decoration: underline;
+    }
 
     & .info-box__content {
       display: flex;
       flex-direction: column;
       justify-content: center;
       height: 100%;
+      text-align: center;
     }
   }
 
