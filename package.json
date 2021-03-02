@@ -1,7 +1,7 @@
 {
   "name": "unfiltered-truth",
   "version": "1.4.0",
-  "description": "Grabarz & Partner Boilerplate",
+  "description": "A basic tool to protect a basic right: sharing video evidence with the world – unobstructed by copyright filters.",
   "author": "Stephan Gerbeth",
   "contributors": [
     {
@@ -13,7 +13,7 @@
       "email": "thorn.walli@grabarzundpartner.de"
     }
   ],
-  "license": "MIT",
+  "license": "LGPL",
   "private": true,
   "main": "index.js",
   "scripts": {
