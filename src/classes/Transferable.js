@@ -43,9 +43,8 @@ function receiveFiles (metadataList) {
       const file = new BDC(data);
       file.onCompleted = () => {
         file.getFile((buffer) => {
-          // file.clearData();
           resolve({ name: file.name, mimeType: file.mimeType, data: new Uint8Array(buffer) });
-          console.log('complete', file);
+          file.clearData();
         });
       };
     });
@@ -53,7 +52,6 @@ function receiveFiles (metadataList) {
 }
 
 function publishMetdata (worker, files) {
-  console.log('publish meta');
   worker.postMessage({
     type: 'metadata',
     data: files.map(file => file.getMetadata())
@@ -61,7 +59,6 @@ function publishMetdata (worker, files) {
 }
 
 function publishChunks (worker, files) {
-  console.log('publish chunks');
   files.forEach((file) => {
     const to = file.getTransferObject();
     let chunk = to.getChunk();
@@ -71,5 +68,6 @@ function publishChunks (worker, files) {
       ]);
       chunk = to.getChunk();
     }
+    file.clearData();
   });
 }
