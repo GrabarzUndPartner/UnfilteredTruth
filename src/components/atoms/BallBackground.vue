@@ -1,5 +1,5 @@
 <template>
-  <div class="page-background">
+  <div class="ball-background">
     <span v-for="(item, index) in items" :key="index"><span :class="`ball-${index + 1}`" /></span>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.page-background {
+.ball-background {
   position: absolute;
   top: 0;
   left: 0;

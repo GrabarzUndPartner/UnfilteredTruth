@@ -12,7 +12,8 @@ module.exports = {
   srcDir: 'src/',
   css: [],
   env: {
-    BASE_PATH: getBasePath()
+    BASE_PATH: getBasePath(),
+    GITHUB_REPO_URL: 'https://github.com/GrabarzUndPartner/UnfilteredTruth'
   },
 
   features: {
@@ -353,7 +354,7 @@ module.exports = {
   ],
 
   head: {
-    title: '#UnfilteredTruth�',
+    title: '#UnfilteredTruth',
     htmlAttrs: {
       translate: 'no',
       lang: 'en'

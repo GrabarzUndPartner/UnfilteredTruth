@@ -1,5 +1,6 @@
 <template>
   <layer class="organism-text-layer" v-bind="$attrs">
+    <github-corner />
     <rich-text style-type="text-layer" :content="content" class="text-layer__content" />
   </layer>
 </template>
@@ -7,10 +8,12 @@
 <script>
 import Layer from '@/components/layouts/Layer';
 import RichText from '@/components/atoms/RichText';
+import GithubCorner from '@/components/atoms/GithubCorner';
 export default {
   components: {
     Layer,
-    RichText
+    RichText,
+    GithubCorner
   },
   props: {
     content: {

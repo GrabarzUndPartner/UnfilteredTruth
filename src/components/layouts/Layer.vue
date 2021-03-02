@@ -83,7 +83,6 @@ export default {
   background: var(--color-tertiary);
 
   & >>> .lost-flex-container {
-    position: relative;
     min-height: 100%;
   }
 
