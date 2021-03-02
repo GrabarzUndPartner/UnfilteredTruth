@@ -1,5 +1,12 @@
 # Project Changelog
 
+# [1.2.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.3...v1.2.0) (2021-03-02)
+
+
+### Features
+
+* **update:** improve styling, add background ([5ea717d](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/5ea717d90ec5939338ae99a43ba2e0d8543b6afa))
+
 ## [1.1.3](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.2...v1.1.3) (2021-03-02)
 
 
