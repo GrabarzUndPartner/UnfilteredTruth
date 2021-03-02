@@ -1,5 +1,12 @@
 # Project Changelog
 
+## [1.1.3](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.2...v1.1.3) (2021-03-02)
+
+
+### Bug Fixes
+
+* **cleanup:** cleanup ([e6e3b07](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/e6e3b0724ce00484cd509be31e98d00db39b6d0a))
+
 ## [1.1.2](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.1...v1.1.2) (2021-03-02)
 
 
