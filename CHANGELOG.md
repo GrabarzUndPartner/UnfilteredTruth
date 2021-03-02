@@ -1,5 +1,12 @@
 # Project Changelog
 
+# [1.3.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.2.0...v1.3.0) (2021-03-02)
+
+
+### Features
+
+* **update:** update content & styling ([fe9a932](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/fe9a9328c3a7b1b5c77c67a1c6322bbd52f0d5db))
+
 # [1.2.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.3...v1.2.0) (2021-03-02)
 
 
