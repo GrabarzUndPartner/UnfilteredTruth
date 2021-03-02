@@ -1,5 +1,12 @@
 # Project Changelog
 
+## [1.1.2](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.1...v1.1.2) (2021-03-02)
+
+
+### Bug Fixes
+
+* **memory:** limited memory and clear unused arraybuffers ([c276283](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/c276283c996f3808f354593e620c2f1e5f5637bc))
+
 ## [1.1.1](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.1.0...v1.1.1) (2021-03-01)
 
 
