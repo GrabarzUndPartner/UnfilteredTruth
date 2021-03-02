@@ -7,7 +7,7 @@
         <div>
           <div class="upload-modifier__container__inner">
             <!-- upload -->
-            <molecule-upload v-if="!stats.upload" class="upload-modifier__upload" :max-length="120" @files-change="onFilesChange" />
+            <molecule-upload v-if="!stats.upload" :error-messages="uploadErrorMessages" class="upload-modifier__upload" :max-length="120" @files-change="onFilesChange" />
 
             <!-- preparing -->
             <transition name="fade" mode="out-in">
@@ -103,13 +103,13 @@ export default {
       type: String,
       default: 'Start over'
     },
-    errorMessages: {
+    uploadErrorMessages: {
       type: Object,
       default () {
         return {
           [ERROR_UNSUPPORTED_BROWSER]: {
             headline: 'Browser not supported.',
-            text: 'This tool currently supports Google Chrome, Microsoft Edge, Firefox, Safari (on desktop), Safari (iOS) and some versions of Google Chrome (Android)'
+            text: 'This tool currently supports Google Chrome, Microsoft Edge, Firefox, Safari (on desktop) and Safari (iOS). Support for Android is experimental.'
           },
           [ERROR_FILE_SIZE]: {
             headline: 'File to large',
@@ -118,7 +118,7 @@ export default {
           },
           [ERROR_VIDEO_LENGTH]: {
             headline: 'Video too long.',
-            text: 'We are sorry. Videos are currently limited to 60 seconds.',
+            text: 'We are sorry. Videos are currently limited to %length% seconds.',
             foot: 'Try again'
           },
           [ERROR_FILE_FORMAT]: {
@@ -136,8 +136,8 @@ export default {
           [ERROR]: {
             error: true,
             styleType: null,
-            headline: 'Sorry',
-            text: 'Your device is not supported.',
+            headline: 'Sorry, something went wrong.  ',
+            text: 'Conversion stopped with the message ‘xyz’.',
             foot: ''
           },
           [INITIALIZE]: {

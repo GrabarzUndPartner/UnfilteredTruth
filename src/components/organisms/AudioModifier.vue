@@ -51,7 +51,6 @@ export default {
     return {
       complete: false,
       processing: false
-
     };
   },
 

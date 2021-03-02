@@ -218,6 +218,7 @@ module.exports = {
   },
 
   modules: [
+    '@/modules/device-detection',
     'nuxt-speedkit',
     '@/modules/codesandbox',
     '@/modules/svg',

@@ -13,3 +13,7 @@
 # Files
 src/static/**/*.js
 src/static/sw.js
+
+
+
+src/modules/device-detection/plugin.js

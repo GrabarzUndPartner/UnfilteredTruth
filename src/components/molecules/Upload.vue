@@ -10,15 +10,18 @@
   >
     <input ref="input" type="file" @change="onChange">
     <div>
+      <transition name="fade" mode="out-in">
+        <span v-if="infoText" v-font="$getFont('Roboto', 700, 'italic')" class="molecule-upload__info">{{ infoText }}</span>
+      </transition>
       <span class="molecule-upload__text">{{ text }}</span>
       <svg-icon-upload />
     </div>
-    <transition>
+    <transition name="fade" mode="out-in">
       <info-box
         v-if="error"
         class="molecule-upload__error-message"
         style-type="upload-error"
-        v-bind="errorMessages[error]"
+        v-bind="errorMessage"
         @click.native="onClickInfoBox"
       />
     </transition>
@@ -53,13 +56,13 @@ export default {
   },
 
   props: {
-    maxLength: {
-      type: Number,
-      default: 10
-    },
     text: {
       type: String,
       default: 'Drop video or tap here.'
+    },
+    maxLengthText: {
+      type: String,
+      default: 'Max Video length is 60 Seconds!'
     },
     errorMessages: {
       type: Object,
@@ -76,7 +79,7 @@ export default {
           },
           [ERROR_VIDEO_LENGTH]: {
             headline: 'Video too long.',
-            text: 'We are sorry. Videos are currently limited to 60 seconds.',
+            text: 'We are sorry. Videos are currently limited to %length% seconds.',
             foot: 'Try again'
           },
           [ERROR_FILE_FORMAT]: {
@@ -91,13 +94,40 @@ export default {
 
   data () {
     return {
+      infoText: null,
       files: [],
       error: null,
-      highlight: false
+      highlight: false,
+      maxLength: 120
     };
   },
 
+  computed: {
+    errorMessage () {
+      return Object.assign(this.errorMessages[this.error], {
+        text: this.errorMessages[this.error].text.replace('%length%', this.getMaxLength())
+      });
+    }
+  },
+
+  mounted () {
+    console.log(this.$isDeviceAndroid(), this.$isDeviceIos());
+    if (!this.$isBrowserSupported()) {
+      this.error = ERROR_UNSUPPORTED_BROWSER;
+    } else if (this.$isDeviceAndroid() || this.$isDeviceIos()) {
+      this.infoText = this.maxLengthText;
+    }
+  },
+
   methods: {
+
+    getMaxLength () {
+      if (this.$isDeviceAndroid() || this.$isDeviceIos()) {
+        return 60;
+      } else {
+        return 120;
+      }
+    },
 
     getObjectUrl (file) {
       return global.URL.createObjectURL(file);
@@ -110,7 +140,7 @@ export default {
     async onLoad (target, uploadedFile) {
       const file = new File(uploadedFile, target.duration);
       if (await file.hasValidMimeType()) {
-        if (target.duration <= this.maxLength) {
+        if (target.duration <= this.getMaxLength()) {
           this.$emit('files-change', { file, target });
         } else {
           this.error = ERROR_VIDEO_LENGTH;
@@ -149,6 +179,25 @@ export default {
 
   & > div {
     text-align: center;
+  }
+
+  & .molecule-upload__info {
+    position: absolute;
+    top: calc(10 / 320 * 100vw);
+    left: 0;
+    width: 100%;
+    font-size: calc(12 / 320 * 100vw);
+    text-align: center;
+
+    @media (--xs) {
+      top: 10px;
+      font-size: 12px;
+    }
+
+    @media (--sm) {
+      top: 20px;
+      font-size: 18px;
+    }
   }
 
   & .molecule-upload__text {
@@ -210,5 +259,15 @@ export default {
   & span {
     display: block;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter,
+.fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
