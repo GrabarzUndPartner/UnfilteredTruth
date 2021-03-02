@@ -1,5 +1,13 @@
 # Project Changelog
 
+# [1.4.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.3.0...v1.4.0) (2021-03-02)
+
+
+### Features
+
+* **sharing:** add og meta fields ([b7aae44](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/b7aae44adfd2212bc082d8c9c9ad9360466fa72a))
+* **update:** update content, styling and add gh corner ([fad8ef7](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/fad8ef79c1ef4211758fa71f5f1fdf36831a8028))
+
 # [1.3.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.2.0...v1.3.0) (2021-03-02)
 
 
