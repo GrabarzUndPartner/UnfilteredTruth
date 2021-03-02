@@ -363,14 +363,47 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
+        hid: 'google',
+        name: 'google',
+        content: 'notranslate'
+      },
+      {
         hid: 'description',
         name: 'description',
         content: 'A basic tool to protect a basic right: sharing video evidence with the world – unobstructed by copyright filters.'
       },
       {
-        hid: 'google',
-        name: 'google',
-        content: 'notranslate'
+        property: 'og:type',
+        content: 'website'
+      },
+      {
+        property: 'og:sitename',
+        content: '#UnfilteredTruth'
+      },
+      {
+        property: 'og:title',
+        content: '#UnfilteredTruth'
+      },
+      {
+        property: 'og:description',
+        content:
+          'A basic tool to protect a basic right: sharing video evidence with the world – unobstructed by copyright filters.'
+      },
+      {
+        property: 'og:image',
+        content: `${getWebsiteHost()}/sharing.jpg`
+      },
+      {
+        property: 'og:image:width',
+        content: 1200
+      },
+      {
+        property: 'og:image:height',
+        content: 630
+      },
+      {
+        property: 'og:url',
+        content: getWebsiteHost()
       }
     ]
   }
