@@ -21,12 +21,6 @@ export default {
     LinkList
   },
   props: {
-    options: {
-      type: Object,
-      default () {
-        return {};
-      }
-    },
     navigation: {
       type: Array,
       default () {
@@ -36,7 +30,7 @@ export default {
             title: 'Disclaimer'
           },
           {
-            url: 'imprint',
+            layer: 'imprint',
             title: 'Imprint'
           }
         ];

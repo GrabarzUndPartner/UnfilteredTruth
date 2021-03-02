@@ -2,7 +2,8 @@
   <div
     v-font="[
       $getFont('Alfa Slab One', 400, 'normal', {selector: 'h2, h3'}),
-      $getFont('Roboto', 400, 'italic', {selector: 'p'})
+      $getFont('Roboto', 400, 'italic', {selector: 'p'}),
+      $getFont('Roboto', 700, 'normal', {selector: 'h4'})
     ]"
     class="atom-rich-text"
     :class="styleClasses"
@@ -69,6 +70,22 @@ export default {
 
     @media (--sm) {
       font-size: 32px;
+    }
+  }
+
+  & h4,
+  & >>> h4 {
+    margin: calc(20 / 320 * 100vw) 0;
+    font-size: calc(18 / 320 * 100vw);
+    text-align: center;
+
+    @media (--xs) {
+      margin: 20px 0;
+      font-size: 18px;
+    }
+
+    @media (--sm) {
+      font-size: 24px;
     }
   }
 
@@ -234,10 +251,11 @@ export default {
 
     & p,
     & >>> p {
-      margin: 0;
+      margin: calc(20 / 320 * 100vw);
       font-size: calc(18 / 320 * 100vw);
 
       @media (--xs) {
+        margin: 20px;
         font-size: 18px;
       }
 

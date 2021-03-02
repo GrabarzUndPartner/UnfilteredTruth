@@ -27,7 +27,7 @@ export default {
       },
       info: {
 
-        tickerContent: 'We don’t track you. No video data is sent out. This tool is open-source.',
+        tickerContent: 'No Trackers, no Cookies. No video data is sent out. This tool is open-source.',
         buttonLabel: 'Our privacy promise…',
         buttonLayer: 'privacyPromise'
 
@@ -58,6 +58,10 @@ export default {
 
       }
     };
+  },
+
+  mounted () {
+    console.log(this);
   }
 
 };
