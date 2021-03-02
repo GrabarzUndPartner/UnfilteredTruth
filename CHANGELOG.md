@@ -1,5 +1,12 @@
 # Project Changelog
 
+## [1.4.1](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.4.0...v1.4.1) (2021-03-02)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([b257f84](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/b257f846cbafd812297470ca336de17a5042cbde))
+
 # [1.4.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.3.0...v1.4.0) (2021-03-02)
 
 
