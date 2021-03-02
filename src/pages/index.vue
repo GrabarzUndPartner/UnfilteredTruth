@@ -20,7 +20,7 @@ export default {
 
       intro: {
         headline: {
-          primary: '#Unfiltered',
+          primary: '<span>#</span>Unfiltered',
           secondary: 'Truth'
         },
         subline: 'A basic tool to protect a basic right.'
@@ -38,11 +38,7 @@ export default {
         infoListItems: [
           {
             headline: null,
-            text: 'Recently, US police officers started to play music to prevent citizens from documenting and sharing their actions.'
-          },
-          {
-            headline: null,
-            text: 'The music triggers social media copyright filters and prevents recordings from being shared. This tool provides a fast and simple way to hide the video’s soundtrack from these filters – for fast and simple sharing.'
+            text: 'Recently, US police officers started to play music to prevent citizens from documenting and sharing their actions.<br><br>The music triggers social media copyright filters and prevents recordings from being shared. This tool provides a fast and simple way to hide the video’s soundtrack from these filters – for fast and simple sharing.'
           }
         ],
         infoSliderItems: [

@@ -1,6 +1,6 @@
 <template>
   <lost-container tag="h1" class="organisms-intro" direction="column">
-    <animated-text class="intro__headline" v-bind="headline" />
+    <animated-text class="intro__headline" style-type="intro" v-bind="headline" />
     <padded-text class="intro__subline" :content="subline" />
   </lost-container>
 </template>
@@ -17,7 +17,7 @@ export default {
       type: Object,
       default () {
         return {
-          primary: '#Unfiltered',
+          primary: '<span>#</span>Unfiltered',
           secondary: 'Truth'
         };
       }
@@ -33,8 +33,8 @@ export default {
 <style lang="postcss" scoped>
 .organisms-intro {
   & .intro__headline {
-    lost-column: 10/12;
-    lost-offset: 1/12;
+    lost-column: 10/12 0 0;
+    lost-offset: 1/12 0 0;
     margin-top: calc(90 / 320 * 100vw);
     margin-bottom: calc(44 / 320 * 100vw);
 
@@ -44,15 +44,15 @@ export default {
     }
 
     @media (--sm) {
-      lost-column: 12/12;
-      lost-offset: 0/12;
+      lost-column: 12/12 0 0;
+      lost-offset: 0/12 0 0;
       margin-top: 90px;
       margin-bottom: 32px;
     }
 
     @media (--md) {
-      lost-column: 12/12;
-      lost-offset: 0/12;
+      lost-column: 12/12 0 0;
+      lost-offset: 0/12 0 0;
       margin-top: 90px;
       margin-bottom: 32px;
     }

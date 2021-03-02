@@ -352,13 +352,23 @@ module.exports = {
   ],
 
   head: {
+    title: '#UnfilteredTruth�',
+    htmlAttrs: {
+      translate: 'no',
+      lang: 'en'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: 'My custom description'
+        content: 'A basic tool to protect a basic right: sharing video evidence with the world – unobstructed by copyright filters.'
+      },
+      {
+        hid: 'google',
+        name: 'google',
+        content: 'notranslate'
       }
     ]
   }

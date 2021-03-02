@@ -40,6 +40,7 @@ export default class File {
   getBuffer () {
     return new Promise((resolve) => {
       const reader = new FileReader();
+      // eslint-disable-next-line scanjs-rules/call_addEventListener
       reader.addEventListener('load', function () {
         resolve(reader.result);
       }, false);

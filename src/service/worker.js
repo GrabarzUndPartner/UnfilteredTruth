@@ -1,5 +1,6 @@
 import Transferable from '@/classes/Transferable';
-self.importScripts(process.env.BASE_PATH + 'videoconverter/ffmpeg-all-codecs.js');
+// eslint-disable-next-line no-undef
+importScripts(process.env.BASE_PATH + 'videoconverter/ffmpeg-all-codecs.js');
 
 const PITCHING = 0.02;
 

@@ -6,9 +6,7 @@
           {{ headline }}
         </h3>
         <text-fade v-else-if="headline" tag="h3" :text="headline" />
-        <p v-if="text">
-          {{ text }}
-        </p>
+        <p v-if="text" v-html="text" />
       </rich-text>
     </slot>
     <span v-if="foot" v-font="$getFont('Roboto', 700, 'italic')">{{ foot }}</span>

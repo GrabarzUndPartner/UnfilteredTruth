@@ -30,6 +30,7 @@
       height="0"
       autoplay
       muted
+      @error="onError"
       @loadedmetadata="({target}) => onLoad(target, file)"
     />
   </div>
@@ -117,6 +118,10 @@ export default {
       } else {
         this.error = ERROR_FILE_FORMAT;
       }
+    },
+
+    onError (e) {
+      this.error = ERROR_FILE_FORMAT;
     },
 
     hover (value) {

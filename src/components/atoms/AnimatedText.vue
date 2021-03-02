@@ -1,6 +1,6 @@
 <template>
-  <div v-font="$getFont('Alfa Slab One')" class="atom-animated-text">
-    <span class="animated-text__primary"><span>{{ primary }}</span></span>
+  <div v-font="$getFont('Alfa Slab One')" class="atom-animated-text" :class="styleClasses">
+    <span class="animated-text__primary"><span v-html="primary" /></span>
     <span class="animated-text__secondary"><span>{{ secondary }}</span></span>
   </div>
 </template>
@@ -15,6 +15,17 @@ export default {
     secondary: {
       type: String,
       default: 'Truth'
+    },
+    styleType: {
+      type: String,
+      default: null
+    }
+  },
+  computed: {
+    styleClasses () {
+      return {
+        [`animated-text--${this.styleType}`]: this.styleType
+      };
     }
   }
 };
@@ -67,6 +78,21 @@ export default {
 
     @media (--xs) {
       font-size: 67px;
+    }
+  }
+
+  @media (--sm) {
+    &.animated-text--intro {
+      & .animated-text__primary {
+        & > span {
+          position: relative;
+
+          & >>> span {
+            position: absolute;
+            transform: translateX(-100%);
+          }
+        }
+      }
     }
   }
 

@@ -1,6 +1,7 @@
 
 <template>
   <div class="molecule-upload-modifier" :class="styleClasses">
+    <atom-ball-background />
     <lost-container direction="column">
       <div class="upload-modifier__container">
         <div>
@@ -52,6 +53,7 @@ import MoleculeUpload, {
   ERROR_FILE_FORMAT
 } from '@/components/molecules/Upload';
 import MoleculeVideoAnalyze from '@/components/molecules/VideoAnalyze';
+import AtomBallBackground from '@/components/atoms/BallBackground';
 import AtomInfoBox from '@/components/atoms/InfoBox';
 import AtomProgress from '@/components/atoms/Progress';
 import FFMPEGWorker, {
@@ -71,6 +73,7 @@ export default {
   components: {
     LostContainer,
     MoleculeVideoAnalyze,
+    AtomBallBackground,
     MoleculeUpload,
     AtomProgress,
     AtomInfoBox,

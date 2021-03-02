@@ -1,7 +1,6 @@
 <template>
   <div class="layout">
     <grid />
-    <!-- <page-background /> -->
     <main>
       <nuxt />
     </main>
@@ -20,7 +19,6 @@ const DATA_ATTR_PREVENT_SCROLLING = 'data-prevent-scrolling';
 
 export default {
   speedkitComponents: {
-    PageBackground: () => import('@/components/page/Background'),
     PageFooter: () => import('@/components/page/Footer'),
     PageTextLayer: () => import('@/components/page/TextLayer')
   },
@@ -68,14 +66,15 @@ html[data-prevent-scrolling="true"] {
 
 .layout {
   position: relative;
+  overflow: hidden;
 }
 
 main {
   & > div > * {
-    margin: calc(40 / 320 * 100vw) 0;
+    margin: calc(60 / 320 * 100vw) 0;
 
     @media (--xs) {
-      margin: 40px 0;
+      margin: 60px 0;
     }
 
     &:first-child {
