@@ -188,8 +188,8 @@ module.exports = {
             style: 'normal',
             weight: 400,
             sources: [
-              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-regular.woff', type: 'woff' },
-              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-regular.woff2', type: 'woff2' }
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-regular.woff?test2222=233', type: 'woff' },
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-regular.woff2?test2222=233', type: 'woff2' }
             ]
           }, {
             style: 'italic',
@@ -330,6 +330,14 @@ module.exports = {
       translate: 'no',
       lang: 'en'
     },
+
+    links: [
+      {
+        rel: 'shortcut icon',
+        type: 'image/x-icon',
+        href: `${getBasePath()}/favicon.ico`
+      }
+    ],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -341,7 +349,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'A basic tool to protect a basic right: sharing video evidence with the world – unobstructed by copyright filters.'
+        content: 'A tool for sharing video evidence with the world – unobstructed by copyright filters.'
       },
       {
         property: 'og:type',
@@ -358,7 +366,7 @@ module.exports = {
       {
         property: 'og:description',
         content:
-          'A basic tool to protect a basic right: sharing video evidence with the world – unobstructed by copyright filters.'
+          'A tool for sharing video evidence with the world – unobstructed by copyright filters.'
       },
       {
         property: 'og:image',

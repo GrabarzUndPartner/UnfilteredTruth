@@ -2,10 +2,10 @@
   <div class="atoms-info-box" :class="styleClasses">
     <slot>
       <rich-text style-type="info-box" class="info-box__content">
-        <h3 v-if="headline && !fade">
+        <h2 v-if="headline && !fade">
           {{ headline }}
-        </h3>
-        <text-fade v-else-if="headline" tag="h3" :text="headline" />
+        </h2>
+        <text-fade v-else-if="headline" tag="h2" :text="headline" />
         <p v-if="text" v-html="text" />
       </rich-text>
     </slot>
