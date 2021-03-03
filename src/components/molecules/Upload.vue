@@ -1,6 +1,6 @@
 <template>
-  <div
-    v-font="$getFont('Alfa Slab One')"
+  <label
+    v-font="[$getFont('Alfa Slab One', 400, 'normal'), $getFont('Roboto', 700, 'italic', {selector: '.molecule-upload__info'})]"
     class="molecule-upload"
     :class="{highlight}"
     @dragenter="hover(true)"
@@ -11,7 +11,7 @@
     <input ref="input" type="file" @change="onChange">
     <div>
       <transition name="fade" mode="out-in">
-        <span v-if="infoText" v-font="$getFont('Roboto', 700, 'italic')" class="molecule-upload__info" v-html="infoText" />
+        <span v-if="infoText" class="molecule-upload__info" v-html="infoText" />
       </transition>
       <span class="molecule-upload__text">{{ text }}</span>
       <svg-icon-upload />
@@ -36,7 +36,7 @@
       @error="onError"
       @loadedmetadata="({target}) => onLoad(target, file)"
     />
-  </div>
+  </label>
 </template>
 
 <script>
@@ -115,7 +115,6 @@ export default {
   },
 
   mounted () {
-    console.log(this.$isDeviceAndroid(), this.$isDeviceIos());
     if (!this.$isBrowserSupported()) {
       this.error = ERROR_UNSUPPORTED_BROWSER;
     }
@@ -200,6 +199,7 @@ export default {
     width: 100%;
     font-size: calc(12 / 320 * 100vw);
     text-align: center;
+    pointer-events: none;
 
     @media (--xs) {
       top: 10px;
