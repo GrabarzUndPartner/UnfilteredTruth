@@ -25,6 +25,7 @@ export default {
   z-index: -1;
   width: 100%;
   height: 100%;
+  backface-visibility: hidden;
 
   & > span {
     position: absolute;
@@ -32,28 +33,36 @@ export default {
     left: 50%;
     width: calc(80 / 320 * 100vw);
     height: calc(80 / 320 * 100vw);
-    transform: translate(-50%, -50%);
+    margin-top: calc(-40 / 320 * 100vw);
+    margin-left: calc(-40 / 320 * 100vw);
 
     @media (--xs) {
       width: 80px;
       height: 80px;
-
+      margin-top: -40px;
+      margin-left: -40px;
     }
 
     @media (--sm) {
       width: 120px;
       height: 120px;
+      margin-top: -60px;
+      margin-left: -60px;
     }
 
     @media (--md) {
       width: 160px;
       height: 160px;
+      margin-top: -80px;
+      margin-left: -80px;
 
     }
 
     @media (--lg) {
       width: 200px;
       height: 200px;
+      margin-top: -100px;
+      margin-left: -100px;
 
     }
 
@@ -62,16 +71,44 @@ export default {
       display: block;
       width: 100%;
       height: 100%;
-      background: var(--color-primary);
-      filter: drop-shadow(20px 20px 6px var(--color-primary));
       border-radius: 50%;
       transition: transform 0.2s ease-in;
+      will-change: tranform, filter;
+
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        content: "";
+        background: red;
+        border-radius: 50%;
+      }
+
+      &::before {
+        top: 20px;
+        left: 20px;
+        background: yellow;
+        filter: blur(5px);
+      }
+
     }
   }
 
   & .ball-1 {
-    background: var(--color-primary);
-    filter: drop-shadow(-20px 20px 6px var(--color-primary));
+    &::after {
+      background: var(--color-primary);
+    }
+
+    &::before {
+      top: 20px;
+      left: -20px;
+      background: var(--color-primary);
+    }
+
     transform: translate(120%, -120%) scale(1.2);
 
     @media (--xs) {
@@ -89,8 +126,16 @@ export default {
   }
 
   & .ball-2 {
-    background: var(--color-primary);
-    filter: drop-shadow(20px 20px 6px var(--color-primary));
+    &::after {
+      background: var(--color-primary);
+    }
+
+    &::before {
+      top: 20px;
+      left: 20px;
+      background: var(--color-primary);
+    }
+
     transform: translate(-270%, 240%) scale(2);
 
     @media (--sm) {
@@ -99,8 +144,16 @@ export default {
   }
 
   & .ball-3 {
-    background: var(--color-primary);
-    filter: drop-shadow(-20px 20px 6px var(--color-primary));
+    &::after {
+      background: var(--color-primary);
+    }
+
+    &::before {
+      top: 20px;
+      left: -20px;
+      background: var(--color-primary);
+    }
+
     transform: translate(250%, 332%) scale(2);
 
     @media (--sm) {
@@ -109,9 +162,17 @@ export default {
   }
 
   & .ball-4 {
+    &::after {
+      background: var(--color-secondary);
+    }
+
     display: none;
-    background: var(--color-secondary);
-    filter: drop-shadow(20px -20px 6px var(--color-secondary));
+
+    &::before {
+      top: -20px;
+      left: 20px;
+      background: var(--color-secondary);
+    }
 
     @media (--sm) {
       display: block;

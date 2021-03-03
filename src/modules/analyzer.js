@@ -4,7 +4,7 @@ const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = function () {
   this.extendBuild((config) => {
-    if (!isDev) {
+    if (!isDev && hasBuildAnalyze()) {
       config.plugins.push(new BundleAnalyzerPlugin({
         reportFilename: path.resolve(`.reports/webpack/${config.name}.html`),
         statsFilename: path.resolve(`.reports/webpack/stats/${config.name}.json`),
@@ -18,3 +18,7 @@ module.exports = function () {
     }
   });
 };
+
+function hasBuildAnalyze () {
+  return process.env.npm_config_build_analyze || process.env.BUILD_ANALYZE;
+}

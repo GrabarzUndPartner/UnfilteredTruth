@@ -65,6 +65,9 @@ export default {
       };
     }
   },
+  mounted () {
+    this.$refs.video.load();
+  },
   methods: {
     onClick () {
       this.$refs.video.play();

@@ -42,7 +42,9 @@ module.exports = {
       const key = path.join(dir, 'server.key');
       const crt = path.join(dir, 'server.crt');
 
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
       if (fs.existsSync(key) && fs.existsSync(crt)) {
+      // eslint-disable-next-line security/detect-non-literal-fs-filename
         return { key: fs.readFileSync(key), cert: fs.readFileSync(crt) };
       } else {
         return null;
@@ -133,14 +135,12 @@ module.exports = {
   },
 
   generate: {
-    dir: 'dist',
-    crawler: true
+    dir: 'dist'
   },
 
   render: {
     crossorigin: 'anonymous',
-    resourceHints: true,
-    http2: { push: true }
+    resourceHints: true
   },
 
   router: {
@@ -188,8 +188,8 @@ module.exports = {
             style: 'normal',
             weight: 400,
             sources: [
-              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-regular.woff', type: 'woff' },
-              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-regular.woff2', type: 'woff2' }
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-regular.woff?test2222=233', type: 'woff' },
+              { src: '@/assets/fonts/roboto-v20-latin/roboto-v20-latin-regular.woff2?test2222=233', type: 'woff2' }
             ]
           }, {
             style: 'italic',
@@ -221,37 +221,8 @@ module.exports = {
   modules: [
     '@/modules/device-detection',
     'nuxt-speedkit',
-    '@/modules/codesandbox',
     '@/modules/svg',
     '@/modules/analyzer',
-    '@nuxtjs/axios',
-    /*
-    [
-      'nuxt-i18n', {
-        locales: [
-          {
-            code: 'en',
-            iso: 'en-US'
-          },
-          {
-            code: 'de',
-            iso: 'de-DE'
-          }
-        ],
-        parsePages: true,
-        defaultLocale: DEFAULT_LANG,
-        strategy: 'prefix_except_default',
-        seo: false,
-        vueI18nLoader: false,
-        vueI18n: {
-          fallbackLocale: DEFAULT_LANG,
-          messages: {
-            en: require('./src/globals/locales/en.json'),
-            de: require('./src/globals/locales/de.json')
-          }
-        }
-      }
-    ], */
     [
       '@/modules/licence', {
         perChunkOutput: false,
@@ -359,6 +330,14 @@ module.exports = {
       translate: 'no',
       lang: 'en'
     },
+
+    link: [
+      {
+        rel: 'shortcut icon',
+        type: 'image/x-icon',
+        href: `${getBasePath()}favicon.ico?bqpi=1`
+      }
+    ],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -370,7 +349,7 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'A basic tool to protect a basic right: sharing video evidence with the world – unobstructed by copyright filters.'
+        content: 'A tool for sharing video evidence with the world – unobstructed by copyright filters.'
       },
       {
         property: 'og:type',
@@ -387,7 +366,7 @@ module.exports = {
       {
         property: 'og:description',
         content:
-          'A basic tool to protect a basic right: sharing video evidence with the world – unobstructed by copyright filters.'
+          'A tool for sharing video evidence with the world – unobstructed by copyright filters.'
       },
       {
         property: 'og:image',

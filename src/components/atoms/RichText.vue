@@ -2,7 +2,7 @@
   <div
     v-font="[
       $getFont('Alfa Slab One', 400, 'normal', {selector: 'h2, h3'}),
-      $getFont('Roboto', 400, 'italic', {selector: 'p'}),
+      $getFont('Roboto', 400, 'italic', {selector: 'p, li'}),
       $getFont('Roboto', 700, 'normal', {selector: 'h4'})
     ]"
     class="atom-rich-text"
@@ -41,25 +41,13 @@ export default {
 
 <style lang="postcss" scoped>
 .atom-rich-text {
-  & h2,
-  & >>> h2 {
-    margin: 0;
-    font-size: calc(41 / 320 * 100vw);
-    line-height: 1;
+  & a,
+  & >>> a {
     color: var(--color-primary);
-    text-align: center;
-
-    @media (--xs) {
-      font-size: 41px;
-    }
-
-    @media (--sm) {
-      font-size: 71px;
-    }
   }
 
-  & h3,
-  & >>> h3 {
+  & h2,
+  & >>> h2 {
     margin: 0;
     font-size: calc(22 / 320 * 100vw);
     text-align: center;
@@ -108,8 +96,8 @@ export default {
     color: var(--color-secondary);
     text-align: center;
 
-    & h3,
-    & >>> h3 {
+    & h2,
+    & >>> h2 {
       margin-bottom: calc(18 / 320 * 100vw);
       font-size: calc(16 / 320 * 100vw);
       text-transform: uppercase;
@@ -171,8 +159,8 @@ export default {
   &.rich-text--upload-modifier {
     text-align: center;
 
-    & h3,
-    & >>> h3 {
+    & h2,
+    & >>> h2 {
       margin-bottom: calc(10 / 320 * 100vw);
       text-transform: uppercase;
 
@@ -201,8 +189,8 @@ export default {
   }
 
   &.rich-text--info-box {
-    & h3,
-    & >>> h3 {
+    & h2,
+    & >>> h2 {
       margin-bottom: calc(16 / 320 * 100vw);
       text-align: center;
       text-transform: uppercase;
@@ -217,19 +205,29 @@ export default {
     }
   }
 
-  &.rich-text--text-layer {
+  &.rich-text--text-layer-center {
     text-align: center;
+  }
 
+  &.rich-text--text-layer,
+  &.rich-text--text-layer-center {
     & h2,
     & >>> h2 {
+      margin: 0;
       margin-bottom: calc(30 / 320 * 100vw);
+      font-size: calc(41 / 320 * 100vw);
+      line-height: 1;
+      color: var(--color-primary);
+      text-align: center;
 
       @media (--xs) {
         margin-bottom: 30px;
+        font-size: 41px;
       }
 
       @media (--sm) {
         margin-bottom: 50px;
+        font-size: 71px;
       }
     }
 
@@ -237,22 +235,49 @@ export default {
     & >>> h3 {
       margin-top: calc(30 / 320 * 100vw);
       margin-bottom: calc(10 / 320 * 100vw);
+      font-size: calc(22 / 320 * 100vw);
+      text-align: center;
 
       @media (--xs) {
         margin-top: 30px;
         margin-bottom: 10px;
+        font-size: 22px;
       }
 
       @media (--sm) {
         margin-top: 50px;
         margin-bottom: 30px;
+        font-size: 32px;
       }
     }
 
     & p,
     & >>> p {
-      margin: calc(20 / 320 * 100vw);
+      margin: calc(20 / 320 * 100vw) 0;
       font-size: calc(18 / 320 * 100vw);
+
+      @media (--xs) {
+        margin: 20px  0;
+        font-size: 18px;
+      }
+
+      @media (--sm) {
+        font-size: 24px;
+      }
+    }
+
+    & ul,
+    & >>> ul {
+      margin: calc(20 / 320 * 100vw) 0;
+      font-size: calc(18 / 320 * 100vw);
+
+      & li {
+        margin: calc(10 / 320 * 100vw) 0;
+
+        @media (--xs) {
+          margin: 10px;
+        }
+      }
 
       @media (--xs) {
         margin: 20px;
@@ -262,7 +287,6 @@ export default {
       @media (--sm) {
         font-size: 24px;
       }
-
     }
   }
 

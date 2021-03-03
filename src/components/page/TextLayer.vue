@@ -1,7 +1,7 @@
 <template>
   <layer class="organism-text-layer" v-bind="$attrs">
     <github-corner />
-    <rich-text style-type="text-layer" :content="content" class="text-layer__content" />
+    <rich-text :style-type="center ? 'text-layer-center' : 'text-layer'" :content="content" class="text-layer__content" />
   </layer>
 </template>
 
@@ -16,6 +16,10 @@ export default {
     GithubCorner
   },
   props: {
+    center: {
+      type: Boolean,
+      default: false
+    },
     content: {
       type: String,
       default () {
@@ -29,10 +33,11 @@ export default {
 <style lang="postcss" scoped>
 .organism-text-layer {
   & .text-layer__content {
-    lost-column: 10/12;
-    lost-offset: 1/12;
     padding-top: calc(15 / 320 * 100vw);
     padding-bottom: calc(40 / 320 * 100vw);
+    word-break: break-word;
+    lost-column: 10/12;
+    lost-offset: 1/12;
 
     @media (--xs) {
       padding-top: 70px;

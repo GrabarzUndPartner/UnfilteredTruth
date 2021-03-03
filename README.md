@@ -3,11 +3,11 @@
 # Unfiltered Truth
 
 [![main][github-workflow-main-src]][github-workflow-main-href]
+[![develop][github-workflow-develop-src]][github-workflow-develop-href]
 
 [![Renovate - Status][renovate-status-src]][renovate-status-href]
 
-- [✨ &nbsp;&nbsp;**Release Notes**](./CHANGELOG.md)
-- [📖 &nbsp;&nbsp;**Documentation**](https://UnfilteredTruth.grabarzundpartner.dev/)
+[✨ &nbsp;&nbsp;**Release Notes**](./CHANGELOG.md)
 
 `#UnfilteredTruth` is a basic tool to protect a basic right. Recently, US police officers started to play music to prevent citizens from documenting and sharing their actions. The music triggers social media copyright filters and prevents recordings from being shared. This tool provides a fast and simple way to hide the video’s soundtrack from these filters – for fast and simple sharing.
 
@@ -29,7 +29,7 @@ Everybody should be able to share video evidence with the world – unobstructed
 
 Learn more about [NuxtJS](https://nuxtjs.org/)
 
-<img src="https://nuxtjs.org/logos/built-with-nuxt.svg" style="width: 240px;" />
+<img src="https://nuxtjs.org/logos/built-with-nuxt.svg" width="240" />
 
 ## License
 
@@ -43,3 +43,5 @@ Learn more about [NuxtJS](https://nuxtjs.org/)
 
 [github-workflow-main-src]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/workflows/Main/badge.svg?branch=main>
 [github-workflow-main-href]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/actions?query=workflow%3AMain>
+[github-workflow-develop-src]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/workflows/Test/badge.svg?branch=develop>
+[github-workflow-develop-href]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/actions?query=workflow%3ATest>
