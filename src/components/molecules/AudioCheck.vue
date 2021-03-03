@@ -4,7 +4,7 @@
       <svg-icon-close />
     </span>
     <rich-text class="audio-check__content" style-type="audio-check">
-      <h3>{{ headline }}</h3>
+      <h2>{{ headline }}</h2>
       <p>{{ before }}</p>
       <wavesurfer :video="stats.video" />
       <p>{{ after }}</p>
