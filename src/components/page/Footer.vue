@@ -58,8 +58,13 @@ export default {
   background: var(--color-light-grey);
 
   & nav {
-    lost-column: 6/12;
-    lost-offset: 3/12;
+    lost-column: 10/12;
+    lost-offset: 1/12;
+
+    @media (--xs) {
+      lost-column: 6/12;
+      lost-offset: 3/12;
+    }
   }
 
 }
