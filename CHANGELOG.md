@@ -1,5 +1,12 @@
 # Project Changelog
 
+## [1.5.1](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.0...v1.5.1) (2021-03-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @storybook/addon-a11y to v6.1.21 ([1e9688e](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/1e9688e0a77d5b90d9a023ecee6664363f92d2b7))
+
 # [1.5.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.4.2...v1.5.0) (2021-03-03)
 
 
