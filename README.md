@@ -7,8 +7,6 @@
 
 
 [![Renovate - Status][renovate-status-src]][renovate-status-href]
-[![Known Vulnerabilities](https://snyk.io/test/github/GrabarzUndPartner/UnfilteredTruth/badge.svg)](https://snyk.io/test/github/GrabarzUndPartner/UnfilteredTruth)
-
 [![License][license-src]][license-href]
 
 [✨ &nbsp;&nbsp;**Release Notes**](./CHANGELOG.md)
@@ -40,7 +38,7 @@ Learn more about [NuxtJS](https://nuxtjs.org/)
 
 ## License
 
-[ LGP License v2.1](./LICENSE)
+[LGPL-2.1 License](./LICENSE)
 
 <!-- Badges -->
 [logo]: https://user-images.githubusercontent.com/8287751/109680685-09c58480-7b7d-11eb-8c35-b88889559fd4.jpg
