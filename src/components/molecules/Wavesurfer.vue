@@ -1,18 +1,19 @@
 <template>
-  <div>
-    <div ref="waveform" />
-  </div>
+  <div ref="waveform" />
 </template>
 
 <script>
 export default {
   props: {
-
     video: {
       type: global.HTMLElement,
       default () {
         return null;
       }
+    },
+    height: {
+      type: Number,
+      default: 120
     }
   },
 
@@ -40,19 +41,6 @@ export default {
   },
 
   methods: {
-    getHeight () {
-      if (global.matchMedia('(min-width: 1200px)').matches) {
-        return 120;
-      } else if (global.matchMedia('(min-width: 992px)').matches) {
-        return 70;
-      } else if (global.matchMedia('(min-width: 768px)').matches) {
-        return 80;
-      } else if (global.matchMedia('(min-width: 576px)').matches) {
-        return 80;
-      } else {
-        return (40 / 320 * window.innerWidth);
-      }
-    },
     async initializeWavesurfer () {
       const WaveSurfer = (await import('wavesurfer.js')).default;
       return WaveSurfer.create({
@@ -64,7 +52,7 @@ export default {
         splitChannels: false,
         interact: false,
         backend: 'MediaElement',
-        height: this.getHeight()
+        height: this.height
       });
     }
   }

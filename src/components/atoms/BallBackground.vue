@@ -25,6 +25,7 @@ export default {
   z-index: -1;
   width: 100%;
   height: 100%;
+  backface-visibility: hidden;
 
   & > span {
     position: absolute;
@@ -32,28 +33,36 @@ export default {
     left: 50%;
     width: calc(80 / 320 * 100vw);
     height: calc(80 / 320 * 100vw);
-    transform: translate(-50%, -50%);
+    margin-top: calc(-40 / 320 * 100vw);
+    margin-left: calc(-40 / 320 * 100vw);
 
     @media (--xs) {
       width: 80px;
       height: 80px;
-
+      margin-top: -40px;
+      margin-left: -40px;
     }
 
     @media (--sm) {
       width: 120px;
       height: 120px;
+      margin-top: -60px;
+      margin-left: -60px;
     }
 
     @media (--md) {
       width: 160px;
       height: 160px;
+      margin-top: -80px;
+      margin-left: -80px;
 
     }
 
     @media (--lg) {
       width: 200px;
       height: 200px;
+      margin-top: -100px;
+      margin-left: -100px;
 
     }
 
@@ -66,6 +75,7 @@ export default {
       filter: drop-shadow(20px 20px 6px var(--color-primary));
       border-radius: 50%;
       transition: transform 0.2s ease-in;
+      will-change: tranform, filter;
     }
   }
 
