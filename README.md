@@ -31,9 +31,12 @@ Learn more about [NuxtJS](https://nuxtjs.org/)
 
 <img src="https://nuxtjs.org/logos/built-with-nuxt.svg" width="240" />
 
+## Thanks to:
+[videoconverter.js](https://github.com/bgrins/videoconverter.js/)
+
 ## License
 
-[MIT License](./LICENSE)
+[ LGP License v2.1](./LICENSE)
 
 <!-- Badges -->
 [logo]: https://user-images.githubusercontent.com/8287751/109680685-09c58480-7b7d-11eb-8c35-b88889559fd4.jpg
