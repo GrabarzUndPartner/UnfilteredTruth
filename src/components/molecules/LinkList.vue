@@ -51,8 +51,23 @@ export default {
   margin: 0;
   list-style: none;
 
+  @media (--default-max) {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: calc(-10 / 320 * 100vw) 0;
+  }
+
   & li {
-    flex: 0 0 calc(100% / 3);
+    @media (--default-max) {
+      margin: calc(10 / 320 * 100vw) 0;
+    }
+
+    flex: 0 0 calc(100% / 2);
+
+    @media (--xs) {
+      flex: 0 0 calc(100% / 3);
+    }
+
     text-align: center;
   }
 

@@ -131,7 +131,24 @@ module.exports = {
     },
 
     parallel: false,
-    transpile: []
+    transpile: [],
+
+    extend (config) {
+      config.module.rules.push({
+        test: /\.html$/,
+        oneOf: [
+          {
+            use: [
+              {
+                loader: 'raw-loader',
+                options: {}
+              }
+            ]
+          }
+        ]
+      });
+    }
+
   },
 
   generate: {
