@@ -335,7 +335,12 @@ module.exports = {
       {
         rel: 'shortcut icon',
         type: 'image/x-icon',
-        href: `${getBasePath()}/favicon.ico`
+        href: `${getBasePath()}/favicon.ico?bqpi=1`
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        href: `${getBasePath()}/icon.png?bqpi=1`
       }
     ],
     meta: [
