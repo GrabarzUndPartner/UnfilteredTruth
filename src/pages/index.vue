@@ -27,8 +27,8 @@ export default {
       },
       info: {
 
-        tickerContent: 'No Trackers, no Cookies. No video data is sent out. This tool is open-source.',
-        buttonLabel: 'Our privacy promise…',
+        tickerContent: 'No trackers, no cookies. No video data is sent out. This tool is open-source.',
+        buttonLabel: 'Our promise',
         buttonLayer: 'privacyPromise'
 
       },

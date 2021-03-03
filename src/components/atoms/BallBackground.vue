@@ -1,6 +1,6 @@
 <template>
   <div class="ball-background">
-    <span v-for="(item, index) in items" :key="index"><span :class="`ball-${index + 1}`" /></span>
+    <span v-for="(item, index) in items" :key="index"><span :class="`ball-${index + 1}`"><span /></span></span>
   </div>
 </template>
 
@@ -75,38 +75,51 @@ export default {
       transition: transform 0.2s ease-in;
       will-change: tranform, filter;
 
-      &::before,
-      &::after {
-        position: absolute;
-        top: 0;
-        left: 0;
+      & > span {
+        position: relative;
         display: block;
         width: 100%;
         height: 100%;
-        content: "";
-        background: red;
-        border-radius: 50%;
-      }
 
-      &::before {
-        top: 20px;
-        left: 20px;
-        background: yellow;
-        filter: blur(5px);
+        /* animation: rotate 10s linear;
+        animation-iteration-count: infinite; */
+
+        &::before,
+        &::after {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          content: "";
+          background: red;
+          border-radius: 50%;
+        }
+
+        &::before {
+          top: 20px;
+          left: 20px;
+          background: yellow;
+          filter: blur(5px);
+        }
       }
 
     }
   }
 
   & .ball-1 {
-    &::after {
-      background: var(--color-primary);
-    }
+    & span {
+      &::after {
+        background: var(--color-primary);
+      }
 
-    &::before {
-      top: 20px;
-      left: -20px;
-      background: var(--color-primary);
+      &::before {
+        top: 20px;
+        left: -20px;
+        background: var(--color-primary);
+      }
+
     }
 
     transform: translate(120%, -120%) scale(1.2);
@@ -126,14 +139,17 @@ export default {
   }
 
   & .ball-2 {
-    &::after {
-      background: var(--color-primary);
-    }
+    & span {
+      &::after {
+        background: var(--color-primary);
+      }
 
-    &::before {
-      top: 20px;
-      left: 20px;
-      background: var(--color-primary);
+      &::before {
+        top: 20px;
+        left: 20px;
+        background: var(--color-primary);
+      }
+
     }
 
     transform: translate(-270%, 240%) scale(2);
@@ -144,14 +160,16 @@ export default {
   }
 
   & .ball-3 {
-    &::after {
-      background: var(--color-primary);
-    }
+    & span {
+      &::after {
+        background: var(--color-primary);
+      }
 
-    &::before {
-      top: 20px;
-      left: -20px;
-      background: var(--color-primary);
+      &::before {
+        top: 20px;
+        left: -20px;
+        background: var(--color-primary);
+      }
     }
 
     transform: translate(250%, 332%) scale(2);
@@ -162,17 +180,20 @@ export default {
   }
 
   & .ball-4 {
-    &::after {
-      background: var(--color-secondary);
+    & span {
+      &::after {
+        background: var(--color-secondary);
+      }
+
+      &::before {
+        top: -20px;
+        left: 20px;
+        background: var(--color-secondary);
+      }
+
     }
 
     display: none;
-
-    &::before {
-      top: -20px;
-      left: 20px;
-      background: var(--color-secondary);
-    }
 
     @media (--sm) {
       display: block;
@@ -181,5 +202,15 @@ export default {
   }
 
 }
+
+/* @keyframes rotate {
+  0% {
+    transform: rotateZ(0);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+} */
 
 </style>
