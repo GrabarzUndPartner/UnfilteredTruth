@@ -44,7 +44,7 @@ Learn more about [NuxtJS](https://nuxtjs.org/)
 [logo]: https://user-images.githubusercontent.com/8287751/109680685-09c58480-7b7d-11eb-8c35-b88889559fd4.jpg
 
 [license-src]: https://img.shields.io/github/license/GrabarzUndPartner/UnfilteredTruth.svg
-[license-href]: https://npmjs.com/package/nuxt-speedkit
+[license-href]: https://github.com/GrabarzUndPartner/UnfilteredTruth/blob/main/LICENSE
 
 [renovate-status-src]: <https://img.shields.io/badge/renovate-enabled-brightgreen>
 [renovate-status-href]: <https://renovate.whitesourcesoftware.com/>
