@@ -5,7 +5,11 @@
 [![main][github-workflow-main-src]][github-workflow-main-href]
 [![develop][github-workflow-develop-src]][github-workflow-develop-href]
 
+
 [![Renovate - Status][renovate-status-src]][renovate-status-href]
+[![Known Vulnerabilities](https://snyk.io/test/github/GrabarzUndPartner/UnfilteredTruth/badge.svg)](https://snyk.io/test/github/GrabarzUndPartner/UnfilteredTruth)
+
+[![License][license-src]][license-href]
 
 [✨ &nbsp;&nbsp;**Release Notes**](./CHANGELOG.md)
 
@@ -40,6 +44,9 @@ Learn more about [NuxtJS](https://nuxtjs.org/)
 
 <!-- Badges -->
 [logo]: https://user-images.githubusercontent.com/8287751/109680685-09c58480-7b7d-11eb-8c35-b88889559fd4.jpg
+
+[license-src]: https://img.shields.io/github/license/GrabarzUndPartner/UnfilteredTruth.svg
+[license-href]: https://npmjs.com/package/nuxt-speedkit
 
 [renovate-status-src]: <https://img.shields.io/badge/renovate-enabled-brightgreen>
 [renovate-status-href]: <https://renovate.whitesourcesoftware.com/>
