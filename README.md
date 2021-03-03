@@ -31,7 +31,7 @@ Everybody should be able to share video evidence with the world – unobstructed
 
 Learn more about [NuxtJS](https://nuxtjs.org/)
 
-<img src="https://nuxtjs.org/logos/built-with-nuxt.svg" width="240" />
+<a href="https://nuxtjs.org/" target="_blank"><img src="https://nuxtjs.org/logos/built-with-nuxt.svg" width="240" /></a>
 
 ## Thanks to:
 [videoconverter.js](https://github.com/bgrins/videoconverter.js/)
