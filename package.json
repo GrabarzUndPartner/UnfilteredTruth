@@ -75,7 +75,7 @@
     "@nuxtjs/robots": "2.4.2",
     "@nuxtjs/sitemap": "2.4.0",
     "@nuxtjs/storybook": "3.3.1",
-    "@storybook/addon-a11y": "6.1.20",
+    "@storybook/addon-a11y": "6.1.21",
     "audiobuffer-to-wav": "1.0.0",
     "binary-data-chunking": "3.0.1",
     "core-js": "3.9.1",
