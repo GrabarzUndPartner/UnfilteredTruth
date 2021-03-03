@@ -1,5 +1,20 @@
 # Project Changelog
 
+# [1.5.0](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.4.2...v1.5.0) (2021-03-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency core-js to v3.9.1 ([036fefe](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/036fefea02cec048d323861a607655c16f29968c))
+* **deps:** update dependency css-loader to v5.1.1 ([58c5f7f](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/58c5f7fffea695da89adbda5e21a1fa23033b8a0))
+* **deps:** update dependency postcss-nested to v5.0.4 ([7f600cb](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/7f600cbc625869f3005e1962e49b28561b9bb484))
+* **deps:** update dependency rxjs to v6.6.6 ([c1d11d9](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/c1d11d9ec28521b2db7c5cd754af1967215dada8))
+
+
+### Features
+
+* **update:** fix bestpractice and accessibility; update content ([97b751a](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/97b751a57fcf3b890cb28f9c2a69e52b80868297))
+
 ## [1.4.2](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.4.1...v1.4.2) (2021-03-02)
 
 
