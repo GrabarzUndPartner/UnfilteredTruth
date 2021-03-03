@@ -5,10 +5,14 @@
     </span>
     <rich-text class="audio-check__content" style-type="audio-check">
       <h2>{{ headline }}</h2>
-      <p>{{ before }}</p>
-      <wavesurfer :video="stats.video" />
-      <p>{{ after }}</p>
-      <wavesurfer :video="createVideoElement(stats.blob)" />
+      <div v-if="!$isDeviceIos()" class="audio-check__content__before">
+        <p>{{ before }}</p>
+        <wavesurfer :video="stats.video" :height="waveHeight" />
+      </div>
+      <div class="audio-check__content__after">
+        <p>{{ after }}</p>
+        <wavesurfer :video="createVideoElement(stats.blob)" :height="waveHeight" />
+      </div>
     </rich-text>
   </div>
 </template>
@@ -38,8 +42,40 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      waveHeight: 100
+    };
+  },
+  mounted () {
+    this.waveHeight = this.getWaveHeight();
+  },
 
   methods: {
+    // eslint-disable-next-line complexity
+    getWaveHeight () {
+      if (this.$isDeviceIos()) {
+        if (global.matchMedia('(min-width: 992px)').matches) {
+          return 200;
+        } else if (global.matchMedia('(min-width: 768px)').matches) {
+          return 220;
+        } else if (global.matchMedia('(min-width: 576px)').matches) {
+          return 200;
+        } else {
+          return (120 / 320 * window.innerWidth);
+        }
+      } else if (global.matchMedia('(min-width: 1200px)').matches) {
+        return 120;
+      } else if (global.matchMedia('(min-width: 992px)').matches) {
+        return 70;
+      } else if (global.matchMedia('(min-width: 768px)').matches) {
+        return 80;
+      } else if (global.matchMedia('(min-width: 576px)').matches) {
+        return 80;
+      } else {
+        return (40 / 320 * window.innerWidth);
+      }
+    },
     onClickClose (e) {
       this.$emit('close', e);
     },
@@ -57,6 +93,26 @@ export default {
 .molecule-audio-check {
   color: var(--color-primary);
   background: var(--color-tertiary);
+
+  & .audio-check__content__after {
+    margin-top: calc(20 / 320 * 100vw);
+
+    @media (--xs) {
+      margin-top: 20px;
+    }
+
+    @media (--sm) {
+      margin-top: 20px;
+    }
+
+    @media (--md) {
+      margin-top: 20px;
+    }
+  }
+
+  & .audio-check__content__before + .audio-check__content__after {
+    margin-top: 0;
+  }
 
   & .audio-check__content {
     padding: 0 calc(15 / 320 * 100vw);

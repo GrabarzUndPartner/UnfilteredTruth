@@ -2,7 +2,7 @@
   <div
     v-font="[
       $getFont('Alfa Slab One', 400, 'normal', {selector: 'h2, h3'}),
-      $getFont('Roboto', 400, 'italic', {selector: 'p'}),
+      $getFont('Roboto', 400, 'italic', {selector: 'p, li'}),
       $getFont('Roboto', 700, 'normal', {selector: 'h4'})
     ]"
     class="atom-rich-text"
@@ -41,6 +41,11 @@ export default {
 
 <style lang="postcss" scoped>
 .atom-rich-text {
+  & a,
+  & >>> a {
+    color: var(--color-primary);
+  }
+
   & h2,
   & >>> h2 {
     margin: 0;
@@ -200,9 +205,12 @@ export default {
     }
   }
 
-  &.rich-text--text-layer {
+  &.rich-text--text-layer-center {
     text-align: center;
+  }
 
+  &.rich-text--text-layer,
+  &.rich-text--text-layer-center {
     & h2,
     & >>> h2 {
       margin: 0;
@@ -245,8 +253,31 @@ export default {
 
     & p,
     & >>> p {
-      margin: calc(20 / 320 * 100vw);
+      margin: calc(20 / 320 * 100vw) 0;
       font-size: calc(18 / 320 * 100vw);
+
+      @media (--xs) {
+        margin: 20px  0;
+        font-size: 18px;
+      }
+
+      @media (--sm) {
+        font-size: 24px;
+      }
+    }
+
+    & ul,
+    & >>> ul {
+      margin: calc(20 / 320 * 100vw) 0;
+      font-size: calc(18 / 320 * 100vw);
+
+      & li {
+        margin: calc(10 / 320 * 100vw) 0;
+
+        @media (--xs) {
+          margin: 10px;
+        }
+      }
 
       @media (--xs) {
         margin: 20px;
@@ -256,7 +287,6 @@ export default {
       @media (--sm) {
         font-size: 24px;
       }
-
     }
   }
 
