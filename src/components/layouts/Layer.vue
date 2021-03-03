@@ -11,7 +11,6 @@
           <div>
             <button
               v-if="closeButton"
-              class="close"
               @click="onClickClose"
             >
               <svg-icon-close />
@@ -121,26 +120,32 @@ export default {
     }
 
     & button {
+      position: relative;
+      top: -10px;
+      right: -10px;
       display: block;
       float: right;
-      padding: 0;
+      padding: 10px;
       cursor: pointer;
       background: transparent;
       border: none;
       outline: none;
       opacity: 1;
-      transition: filter 0.2s linear;
       appearance: none;
 
       @media (hover: none) {
         &:active {
-          filter: blur(3px);
+          & svg {
+            filter: blur(3px);
+          }
         }
       }
 
       @media (hover: hover) {
         &:hover {
-          filter: blur(3px);
+          & svg {
+            filter: blur(3px);
+          }
         }
       }
     }
@@ -150,6 +155,9 @@ export default {
       width: calc(30 / 375 * 100vw);
       height: calc(30 / 375 * 100vw);
       fill: var(--color-primary);
+      transition: filter 0.2s linear;
+      backface-visibility: hidden;
+      will-change: filter;
 
       @media (--xs) {
         width: 30px;

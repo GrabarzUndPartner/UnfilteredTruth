@@ -52,7 +52,7 @@ export default {
   list-style: none;
 
   & li {
-    flex: 0 0 50%;
+    flex: 0 0 calc(100% / 3);
     text-align: center;
   }
 

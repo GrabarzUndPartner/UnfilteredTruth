@@ -60,7 +60,9 @@ export default {
   }
 
   & > span {
+    will-change: filter, transform;
     filter: blur(2px);
+    backface-visibility: hidden;
   }
 
   &.js--running {
