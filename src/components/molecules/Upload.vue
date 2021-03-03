@@ -1,5 +1,5 @@
 <template>
-  <div
+  <label
     v-font="$getFont('Alfa Slab One')"
     class="molecule-upload"
     :class="{highlight}"
@@ -36,7 +36,7 @@
       @error="onError"
       @loadedmetadata="({target}) => onLoad(target, file)"
     />
-  </div>
+  </label>
 </template>
 
 <script>
@@ -115,7 +115,6 @@ export default {
   },
 
   mounted () {
-    console.log(this.$isDeviceAndroid(), this.$isDeviceIos());
     if (!this.$isBrowserSupported()) {
       this.error = ERROR_UNSUPPORTED_BROWSER;
     }
@@ -200,6 +199,7 @@ export default {
     width: 100%;
     font-size: calc(12 / 320 * 100vw);
     text-align: center;
+    pointer-events: none;
 
     @media (--xs) {
       top: 10px;
