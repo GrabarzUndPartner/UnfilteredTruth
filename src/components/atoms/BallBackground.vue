@@ -71,17 +71,44 @@ export default {
       display: block;
       width: 100%;
       height: 100%;
-      background: var(--color-primary);
-      filter: drop-shadow(20px 20px 6px var(--color-primary));
       border-radius: 50%;
       transition: transform 0.2s ease-in;
       will-change: tranform, filter;
+
+      &::before,
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        content: "";
+        background: red;
+        border-radius: 50%;
+      }
+
+      &::before {
+        top: 20px;
+        left: 20px;
+        background: yellow;
+        filter: blur(5px);
+      }
+
     }
   }
 
   & .ball-1 {
-    background: var(--color-primary);
-    filter: drop-shadow(-20px 20px 6px var(--color-primary));
+    &::after {
+      background: var(--color-primary);
+    }
+
+    &::before {
+      top: 20px;
+      left: -20px;
+      background: var(--color-primary);
+    }
+
     transform: translate(120%, -120%) scale(1.2);
 
     @media (--xs) {
@@ -99,8 +126,16 @@ export default {
   }
 
   & .ball-2 {
-    background: var(--color-primary);
-    filter: drop-shadow(20px 20px 6px var(--color-primary));
+    &::after {
+      background: var(--color-primary);
+    }
+
+    &::before {
+      top: 20px;
+      left: 20px;
+      background: var(--color-primary);
+    }
+
     transform: translate(-270%, 240%) scale(2);
 
     @media (--sm) {
@@ -109,8 +144,16 @@ export default {
   }
 
   & .ball-3 {
-    background: var(--color-primary);
-    filter: drop-shadow(-20px 20px 6px var(--color-primary));
+    &::after {
+      background: var(--color-primary);
+    }
+
+    &::before {
+      top: 20px;
+      left: -20px;
+      background: var(--color-primary);
+    }
+
     transform: translate(250%, 332%) scale(2);
 
     @media (--sm) {
@@ -119,9 +162,17 @@ export default {
   }
 
   & .ball-4 {
+    &::after {
+      background: var(--color-secondary);
+    }
+
     display: none;
-    background: var(--color-secondary);
-    filter: drop-shadow(20px -20px 6px var(--color-secondary));
+
+    &::before {
+      top: -20px;
+      left: 20px;
+      background: var(--color-secondary);
+    }
 
     @media (--sm) {
       display: block;
