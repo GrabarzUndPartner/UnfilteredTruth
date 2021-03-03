@@ -1,6 +1,6 @@
 <template>
   <label
-    v-font="$getFont('Alfa Slab One')"
+    v-font="[$getFont('Alfa Slab One', 400, 'normal'), $getFont('Roboto', 700, 'italic', {selector: '.molecule-upload__info'})]"
     class="molecule-upload"
     :class="{highlight}"
     @dragenter="hover(true)"
@@ -11,7 +11,7 @@
     <input ref="input" type="file" @change="onChange">
     <div>
       <transition name="fade" mode="out-in">
-        <span v-if="infoText" v-font="$getFont('Roboto', 700, 'italic')" class="molecule-upload__info" v-html="infoText" />
+        <span v-if="infoText" class="molecule-upload__info" v-html="infoText" />
       </transition>
       <span class="molecule-upload__text">{{ text }}</span>
       <svg-icon-upload />
