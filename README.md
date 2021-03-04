@@ -32,8 +32,8 @@ Everybody should be able to share video evidence with the world – unobstructed
 Learn more about [NuxtJS](https://nuxtjs.org/)
 
 <a href="https://nuxtjs.org/" target="_blank"><img src="https://nuxtjs.org/logos/built-with-nuxt.svg" width="240" /></a>
-
-## TODO
+---
+## ToDos
 - [ ] full android support
 - [ ] exploring other audio attacks to prevent blocking by upload filters
 - [ ] optimized loading states
