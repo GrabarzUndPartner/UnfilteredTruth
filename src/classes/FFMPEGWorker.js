@@ -47,12 +47,12 @@ export default class FFMPEGWorker {
       const transferable = new Transferable(worker);
       transferable.publish(files);
       transferable.subscribe(([
-        file
+        transferableFile
       ]) => {
         transferable.destroy();
         this.info.next(CONVERSION_COMPLETE);
         this.done.next(URL.createObjectURL(new Blob([
-          file.data
+          transferableFile.data
         ], { type: 'video/mp4' })));
       });
     });
