@@ -5,8 +5,9 @@
 [![main][github-workflow-main-src]][github-workflow-main-href]
 [![develop][github-workflow-develop-src]][github-workflow-develop-href]
 
-
+[![Sonarcloud Status][sonarcloud-src]][sonarcloud-href]
 [![Renovate - Status][renovate-status-src]][renovate-status-href]
+
 [![License][license-src]][license-href]
 
 [✨ &nbsp;&nbsp;**Release Notes**](./CHANGELOG.md)
@@ -57,6 +58,9 @@ Learn more about [NuxtJS](https://nuxtjs.org/)
 
 [renovate-status-src]: <https://img.shields.io/badge/renovate-enabled-brightgreen>
 [renovate-status-href]: <https://renovate.whitesourcesoftware.com/>
+
+[sonarcloud-src]: <https://sonarcloud.io/api/project_badges/measure?project=GrabarzUndPartner_UnfilteredTruth&metric=alert_status>
+[sonarcloud-href]: <https://sonarcloud.io/dashboard?id=GrabarzUndPartner_UnfilteredTruth>
 
 [github-workflow-main-src]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/workflows/Main/badge.svg?branch=main>
 [github-workflow-main-href]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/actions?query=workflow%3AMain>
