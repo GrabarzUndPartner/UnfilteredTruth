@@ -33,6 +33,14 @@ Learn more about [NuxtJS](https://nuxtjs.org/)
 
 <a href="https://nuxtjs.org/" target="_blank"><img src="https://nuxtjs.org/logos/built-with-nuxt.svg" width="240" /></a>
 
+## TODO
+- [ ] full android support
+- [ ] exploring other audio attacks to prevent blocking by upload filters
+- [ ] optimized loading states
+- [ ] increase time limits
+- [ ] PWA support
+- [ ] i18n support
+
 ## Thanks to:
 [videoconverter.js](https://github.com/bgrins/videoconverter.js/)
 
