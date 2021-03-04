@@ -1,13 +1,9 @@
-// process.env.DEBUG = 'nuxt:*';
-
 const path = require('path');
 const fs = require('fs');
-const isDev = process.env.NODE_ENV === 'development';
-
-// const DEFAULT_LANG = 'en';
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  dev: isDev,
+  dev: isDevelopment,
   target: 'static',
   srcDir: 'src/',
   css: [],
@@ -52,7 +48,7 @@ module.exports = {
     })()
   },
 
-  modern: isDev ? false : 'client',
+  modern: isDevelopment ? false : 'client',
 
   build: {
     analyze: false,
