@@ -102,7 +102,7 @@
     "worker-loader": "3.0.8"
   },
   "peerDependencies": {
-    "postcss": "8.2.6"
+    "postcss": "8.2.7"
   },
   "snyk": true
 }
