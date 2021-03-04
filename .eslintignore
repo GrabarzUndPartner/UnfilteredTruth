@@ -13,7 +13,5 @@
 # Files
 src/static/**/*.js
 src/static/sw.js
-
-
-
+src/content/*.html
 src/modules/device-detection/plugin.js

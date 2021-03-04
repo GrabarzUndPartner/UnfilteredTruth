@@ -1,6 +1,5 @@
 <template>
   <div class="layout">
-    <grid />
     <main>
       <nuxt />
     </main>
@@ -14,15 +13,10 @@
 
 <script>
 
-import Grid from '@/components/utils/Grid';
 import layerControl from '@/service/layerControl';
-// eslint-disable-next-line import/no-webpack-loader-syntax
 import imprintContent from '@/content/imprint.html';
-// eslint-disable-next-line import/no-webpack-loader-syntax
 import privacyContent from '@/content/privacy.html';
-// eslint-disable-next-line import/no-webpack-loader-syntax
 import disclaimerContent from '@/content/disclaimer.html';
-// eslint-disable-next-line import/no-webpack-loader-syntax
 import privacyPromiseContent from '@/content/privacy-promise.html';
 
 const DATA_ATTR_PREVENT_SCROLLING = 'data-prevent-scrolling';
@@ -31,9 +25,6 @@ export default {
   speedkitComponents: {
     PageFooter: () => import('@/components/page/Footer'),
     PageTextLayer: () => import('@/components/page/TextLayer')
-  },
-  components: {
-    Grid
   },
 
   data () {
