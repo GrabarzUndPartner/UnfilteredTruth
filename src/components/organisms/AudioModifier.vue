@@ -14,7 +14,6 @@
 import UploadModifier from '@/components/molecules/UploadModifier';
 import InfoList from '@/components/molecules/InfoList';
 import InfoSlider from '@/components/molecules/InfoSlider';
-// import { getRandomString } from '@/utils/random';
 import { CONVERSION_COMPLETE, CONVERSION_START } from '@/classes/FFMPEGWorker';
 import LostContainer from '../layouts/LostContainer';
 
