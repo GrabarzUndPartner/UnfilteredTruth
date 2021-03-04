@@ -33,3 +33,4 @@ sw.*
 env/cert/*
 !env/cert/README.md
 .eslintcache
+.eslint-report.json

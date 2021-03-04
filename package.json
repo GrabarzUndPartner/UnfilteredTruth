@@ -27,6 +27,7 @@
     "lint": "npm run lint:es && npm run lint:css",
     "lint:es": "eslint --ext .js,.vue .",
     "lint:css": "stylelint \"src/**/*.vue\"",
+    "lint:report": "eslint --ext .js,.vue -f json-relative -o ./eslint-report.json .",
     "audit": "npm audit --json | npx npm-audit-html --output .reports/audit.html",
     "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once",

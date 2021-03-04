@@ -4,11 +4,11 @@ const gitlab = require('./.semantic-release/gitlab.json');
 const args = process.argv
   .slice(2)
   .map(arg => arg.split('='))
-  .reduce((args, [
+  .reduce((result, [
     value, key
   ]) => {
-    args[String(value).replace(/-/g, '')] = key;
-    return args;
+    result[String(value).replace(/-/g, '')] = key;
+    return result;
   }, {});
 
 module.exports = (args.provider === 'gitlab') ? gitlab : github;
