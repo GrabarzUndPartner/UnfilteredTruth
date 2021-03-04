@@ -5,7 +5,7 @@
   "baseBranches": [
     "develop"
   ],
-  "ignoreDeps": ["postcss-url", "postcss-momentum-scrolling"],
+  "ignoreDeps": ["postcss-loader"],
   "automerge": true,
   "major": {
     "automerge": false
