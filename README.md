@@ -44,7 +44,7 @@ Learn more about [NuxtJS](https://nuxtjs.org/)
 - [ ] i18n support
 
 ## Thanks to:
-- [Todd Jeremy](https://uniontownlabs.org/notebook/2016/09/18/tricking-instagram-with-infrasound/)
+- [Todd Jeremy Treece](https://uniontownlabs.org/notebook/2016/09/18/tricking-instagram-with-infrasound/)
 - [videoconverter.js](https://github.com/bgrins/videoconverter.js/)
 
 ## License
