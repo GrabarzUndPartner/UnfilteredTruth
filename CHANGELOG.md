@@ -1,5 +1,14 @@
 # Project Changelog
 
+## [1.5.2](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.1...v1.5.2) (2021-03-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency license-webpack-plugin to v2.3.15 ([8ed1552](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/8ed155294290b5c51d066e92dcf1c18f60d2125e))
+* **package:** updated package-lock ([212924f](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/212924ff7e924c95825f4ef965c8cabfea2918e7))
+* **readme:** added todos ([1f0cfb8](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/1f0cfb810d30b6d8b69ecf833ec8f8f551e26fb7))
+
 ## [1.5.1](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.0...v1.5.1) (2021-03-03)
 
 

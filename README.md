@@ -5,9 +5,8 @@
 [![main][github-workflow-main-src]][github-workflow-main-href]
 [![develop][github-workflow-develop-src]][github-workflow-develop-href]
 
-
+[![Sonarcloud Status][sonarcloud-src]][sonarcloud-href]
 [![Renovate - Status][renovate-status-src]][renovate-status-href]
-[![Known Vulnerabilities](https://snyk.io/test/github/GrabarzUndPartner/UnfilteredTruth/badge.svg)](https://snyk.io/test/github/GrabarzUndPartner/UnfilteredTruth)
 
 [![License][license-src]][license-href]
 
@@ -33,9 +32,10 @@ Everybody should be able to share video evidence with the world – unobstructed
 
 Learn more about [NuxtJS](https://nuxtjs.org/)
 
-<img src="https://nuxtjs.org/logos/built-with-nuxt.svg" width="240" />
+<a href="https://nuxtjs.org/" target="_blank"><img src="https://nuxtjs.org/logos/built-with-nuxt.svg" width="240" /></a>
 
-## TODO
+---
+## ToDos
 - [ ] full android support
 - [ ] exploring other audio attacks to prevent blocking by upload filters
 - [ ] optimized loading states
@@ -48,16 +48,19 @@ Learn more about [NuxtJS](https://nuxtjs.org/)
 
 ## License
 
-[ LGP License v2.1](./LICENSE)
+[LGPL-2.1 License](./LICENSE)
 
 <!-- Badges -->
 [logo]: https://user-images.githubusercontent.com/8287751/109680685-09c58480-7b7d-11eb-8c35-b88889559fd4.jpg
 
 [license-src]: https://img.shields.io/github/license/GrabarzUndPartner/UnfilteredTruth.svg
-[license-href]: https://npmjs.com/package/nuxt-speedkit
+[license-href]: https://github.com/GrabarzUndPartner/UnfilteredTruth/blob/main/LICENSE
 
 [renovate-status-src]: <https://img.shields.io/badge/renovate-enabled-brightgreen>
 [renovate-status-href]: <https://renovate.whitesourcesoftware.com/>
+
+[sonarcloud-src]: <https://sonarcloud.io/api/project_badges/measure?project=GrabarzUndPartner_UnfilteredTruth&metric=alert_status>
+[sonarcloud-href]: <https://sonarcloud.io/dashboard?id=GrabarzUndPartner_UnfilteredTruth>
 
 [github-workflow-main-src]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/workflows/Main/badge.svg?branch=main>
 [github-workflow-main-href]: <https://github.com/GrabarzUndPartner/UnfilteredTruth/actions?query=workflow%3AMain>
