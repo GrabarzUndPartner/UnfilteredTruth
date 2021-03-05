@@ -99,7 +99,7 @@
     "rucksack-css": "1.0.2",
     "rxjs": "6.6.6",
     "snyk": "1.458.0",
-    "wavesurfer.js": "4.5.0",
+    "wavesurfer.js": "4.6.0",
     "worker-loader": "3.0.8"
   },
   "peerDependencies": {
