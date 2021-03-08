@@ -45,6 +45,7 @@ import SvgIconUpload from '@/assets/svg/icons/upload.svg?vue-template';
 import InfoBox from '../atoms/InfoBox';
 
 export const ERROR_UNSUPPORTED_BROWSER = Symbol('errorBrowserUnsupported');
+export const ERROR_IOS_UNSUPPORTED_BROWSER = Symbol('errorIosBrowserUnsupported');
 export const ERROR_FILE_SIZE = Symbol('errorFileSize');
 export const ERROR_VIDEO_LENGTH = Symbol('errorFileSize');
 export const ERROR_FILE_FORMAT = Symbol('errorFileFormat');
@@ -66,15 +67,20 @@ export default {
     },
     androidExperimentalText: {
       type: String,
-      default: 'Support for Android is currently experimental.'
+      default: 'Android support is experimental. In case of problems, switch to another device.'
     },
     errorMessages: {
       type: Object,
       default () {
         return {
+
           [ERROR_UNSUPPORTED_BROWSER]: {
             headline: 'Browser not supported.',
             text: 'This tool currently supports ?Chrome, Edge, Firefox, Safari (on desktop) ?Safari (iOS) or Google Chrome (Android)'
+          },
+          [ERROR_IOS_UNSUPPORTED_BROWSER]: {
+            headline: 'Browser not supported.',
+            text: 'Sorry, your browser is not supported. <br>Please switch to iOS Safari or another device.'
           },
           [ERROR_FILE_SIZE]: {
             headline: 'File to large',
@@ -119,11 +125,15 @@ export default {
       this.error = ERROR_UNSUPPORTED_BROWSER;
     }
 
+    if (this.$isDeviceIos() && !this.$isBrowserSafari()) {
+      this.error = ERROR_IOS_UNSUPPORTED_BROWSER;
+    }
+
     const text = [
       this.maxLengthText.replace('%length%', this.getMaxLength())
     ];
     if (this.$isDeviceAndroid()) {
-      text.push(this.androidExperimentalText);
+      text.unshift(this.androidExperimentalText);
     }
     this.infoText = text.join('<br>');
   },
