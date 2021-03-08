@@ -106,8 +106,13 @@ export default {
   & .audio-modifier__device-notification {
     lost-column: 12/12;
     lost-offset: 0/12;
-    margin-top: -20px;
-    margin-bottom: 40px;
+    margin-bottom: calc(40 / 320 * 100vw);
+
+    @media (--xs) {
+      lost-column: 10/12;
+      lost-offset: 1/12;
+      margin-bottom: 40px;
+    }
 
     @media (--sm) {
       lost-column: 10/12;
