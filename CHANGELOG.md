@@ -1,5 +1,15 @@
 # Project Changelog
 
+## [1.5.4](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.3...v1.5.4) (2021-03-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency file-type to v16.3.0 ([d6558b7](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/d6558b75199c0ef6068093cdd48a852ccfec4e80))
+* **deps:** update dependency snyk to v1.473.0 ([0fb27e7](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/0fb27e7a2a12fe860a0c5bacfb6430f597629486))
+* **device:** improve android message and ios safari detection ([4922b37](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/4922b3739be4332b91b27c7cfc9e84fa2bba3db2))
+* **ios:** add message for firefox unsupport on ios ([7e9f158](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/7e9f1585a499e8c33019c94b01ee046b6a365d14))
+
 ## [1.5.3](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.2...v1.5.3) (2021-03-05)
 
 
