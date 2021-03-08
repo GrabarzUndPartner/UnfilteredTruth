@@ -68,6 +68,7 @@ import LostContainer from '../layouts/LostContainer';
 
 import AtomLinkButton from '../atoms/LinkButton';
 import AtomTextButton from '../atoms/TextButton';
+import { ERROR_IOS_UNSUPPORTED_BROWSER } from './Upload.vue';
 
 export default {
   components: {
@@ -111,6 +112,10 @@ export default {
             headline: 'Browser not supported.',
             text: 'This tool currently supports Google Chrome, Microsoft Edge, Firefox, Safari (on desktop) and Safari (iOS). Support for Android is experimental.'
           },
+          [ERROR_IOS_UNSUPPORTED_BROWSER]: {
+            headline: 'Browser not supported.',
+            text: 'Sorry, your browser is not supported. <br>Please switch to iOS Safari or another device.'
+          },
           [ERROR_FILE_SIZE]: {
             headline: 'File to large',
             text: 'File Size is to large…',
@@ -134,8 +139,7 @@ export default {
       default () {
         return {
           [ERROR]: {
-            error: true,
-            styleType: null,
+            styleType: 'error',
             headline: 'Conversion failed.',
             text: 'Sorry! Please, try another browser or device.',
             foot: null

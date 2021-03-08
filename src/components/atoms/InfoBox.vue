@@ -19,10 +19,6 @@ import RichText from '@/components/atoms/RichText';
 export default {
   components: { TextFade, RichText },
   props: {
-    error: {
-      type: Boolean,
-      default: false
-    },
     fade: {
       type: Boolean,
       default: false
@@ -47,8 +43,7 @@ export default {
   computed: {
     styleClasses () {
       return {
-        [`info-box--${this.styleType}`]: this.styleType,
-        'info-box--error': this.error
+        [`info-box--${this.styleType}`]: this.styleType
       };
     }
   }
