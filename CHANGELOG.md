@@ -1,5 +1,15 @@
 # Project Changelog
 
+## [1.5.3](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.2...v1.5.3) (2021-03-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency postcss-momentum-scrolling to v3.8.16 ([43ab5c7](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/43ab5c7a9869bbee33cadc7faaea162dd9e170fb))
+* **deps:** update dependency postcss-nested to v5.0.5 ([6129b2d](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/6129b2d72380004fad8d03452f4011cae806d3c4))
+* **deps:** update dependency snyk to v1.471.0 ([6cb8069](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/6cb806950e0cd48ff08d0487c5a36e888a6ac8dc))
+* **deps:** update dependency wavesurfer.js to v4.6.0 ([2f1f68c](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/2f1f68c272563cf333c72e3c7bf3b3b339b695e0))
+
 ## [1.5.2](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.1...v1.5.2) (2021-03-04)
 
 
