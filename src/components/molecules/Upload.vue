@@ -65,10 +65,6 @@ export default {
       type: String,
       default: 'Max. video length: %length% seconds.'
     },
-    androidExperimentalText: {
-      type: String,
-      default: 'Android support is experimental. In case of problems, switch to another device.'
-    },
     errorMessages: {
       type: Object,
       default () {
@@ -132,9 +128,6 @@ export default {
     const text = [
       this.maxLengthText.replace('%length%', this.getMaxLength())
     ];
-    if (this.$isDeviceAndroid()) {
-      text.unshift(this.androidExperimentalText);
-    }
     this.infoText = text.join('<br>');
   },
 
