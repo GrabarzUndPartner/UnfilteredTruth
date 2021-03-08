@@ -139,8 +139,7 @@ export default {
       default () {
         return {
           [ERROR]: {
-            error: true,
-            styleType: null,
+            styleType: 'error',
             headline: 'Conversion failed.',
             text: 'Sorry! Please, try another browser or device.',
             foot: null
