@@ -1,5 +1,12 @@
 # Project Changelog
 
+## [1.5.5](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.4...v1.5.5) (2021-03-31)
+
+
+### Bug Fixes
+
+* upgrade snyk from 1.473.0 to 1.476.0 ([e1eec51](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/e1eec51c7c2210afd8780625afbf312b696309ce))
+
 ## [1.5.4](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.3...v1.5.4) (2021-03-08)
 
 
