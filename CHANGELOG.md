@@ -1,5 +1,12 @@
 # Project Changelog
 
+## [1.5.7](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.6...v1.5.7) (2021-04-12)
+
+
+### Bug Fixes
+
+* upgrade @nuxtjs/robots from 2.4.2 to 2.5.0 ([1f7b99f](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/1f7b99fc1a73240514611cd4e88fe60e90ec8269))
+
 ## [1.5.6](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.5...v1.5.6) (2021-04-12)
 
 
