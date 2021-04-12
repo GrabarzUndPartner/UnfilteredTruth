@@ -1,5 +1,12 @@
 # Project Changelog
 
+## [1.5.6](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.5...v1.5.6) (2021-04-12)
+
+
+### Bug Fixes
+
+* upgrade nuxt-speedkit from 1.1.21 to 1.1.22 ([7702b50](https://github.com/GrabarzUndPartner/UnfilteredTruth/commit/7702b509877c99db4f9f008d25f72f4112925407))
+
 ## [1.5.5](https://github.com/GrabarzUndPartner/UnfilteredTruth/compare/v1.5.4...v1.5.5) (2021-03-31)
 
 
