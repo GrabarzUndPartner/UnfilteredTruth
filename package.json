@@ -69,7 +69,7 @@
     "vue-svg-loader": "0.16.0"
   },
   "dependencies": {
-    "@ffmpeg/ffmpeg": "0.9.8",
+    "@ffmpeg/ffmpeg": "0.10.0",
     "@fullhuman/postcss-purgecss": "4.0.3",
     "@js-basics/vector": "1.57.1",
     "@nuxtjs/pwa": "3.3.5",
