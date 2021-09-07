@@ -71,7 +71,7 @@
   "dependencies": {
     "@ffmpeg/ffmpeg": "0.10.1",
     "@fullhuman/postcss-purgecss": "4.0.3",
-    "@js-basics/vector": "1.57.1",
+    "@js-basics/vector": "1.57.2",
     "@nuxtjs/pwa": "3.3.5",
     "@nuxtjs/robots": "2.5.0",
     "@nuxtjs/sitemap": "2.4.0",
