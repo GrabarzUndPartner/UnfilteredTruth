@@ -83,7 +83,7 @@
     "css-loader": "5.1.1",
     "file-type": "16.3.0",
     "license-webpack-plugin": "2.3.15",
-    "lost": "8.3.1",
+    "lost": "9.0.0",
     "nuxt": "2.15.2",
     "nuxt-speedkit": "1.1.22",
     "object-fit-images": "github:StephanGerbeth/object-fit-images",
